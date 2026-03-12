@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWMS - YEAR 5 CRS EXAM</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6d8ba0;
+            --bg-color: #f0f4f8;
+            --text-color: #2d3436;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .exam-container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--primary-color);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 { color: var(--primary-color); margin: 0; font-size: 1.6em; }
+        .timer-box {
+            position: sticky;
+            top: 10px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+        .question-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .question-text { font-weight: 600; margin-bottom: 12px; display: block; }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .options label:hover { background: #e9ecef; }
+        input[type="radio"] { margin-right: 10px; }
+        
+        .correct-ans {
+            margin-top: 10px;
+            color: #27ae60;
+            font-weight: bold;
+            display: none;
+            font-size: 0.9em;
+        }
+        
+        #submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: 0.3s;
+        }
+        #submit-btn:hover { background: #345a8a; }
+        
+        #result-summary {
+            display: none;
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid var(--primary-color);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="timer-box" id="timerDisplay">45:00</div>
+
+<div class="exam-container">
+    <div class="header">
+        <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+        <p><strong>TERM TWO EXAMINATION | 2025/2026 ACADEMIC SESSION</strong></p>
+        <p>Class: Year 5 | Subject: CHRISTIAN RELIGIOUS STUDIES</p>
+    </div>
+
+    <form id="crsForm"></form>
+
+    <button id="submit-btn" onclick="gradeExam()">Finish Examination</button>
+
+    <div id="result-summary">
+        <h2 id="scoreText">Your Score: 0 / 60</h2>
+        <p id="percentText"></p>
+        <p>Check the answers below for corrections.</p>
+    </div>
+</div>
+
+<script>
+const examQuestions = [
+    { q: "God created man to ____", o: ["be idle", "work", "beg", "complain"], c: 1 },
+    { q: "In the Garden of Eden, Adam was told to", o: ["sleep", "rule carelessly", "tend the garden", "travel"], c: 2 },
+    { q: "Hard work brings ____", o: ["shame", "reward", "hatred", "punishment"], c: 1 },
+    { q: "“If anyone will not work, neither shall he eat” teaches", o: ["pride", "laziness", "responsibility", "envy"], c: 2 },
+    { q: "Good decision making requires", o: ["haste", "prayer", "anger", "fear"], c: 1 },
+    { q: "Wise decisions are guided by ____", o: ["friends only", "God’s word", "feelings", "rumours"], c: 1 },
+    { q: "The younger son asked his father for", o: ["food", "blessing", "inheritance", "land"], c: 2 },
+    { q: "The prodigal son wasted his money on _____", o: ["farming", "good works", "reckless living", "charity"], c: 2 },
+    { q: "The prodigal son later worked feeding ____", o: ["sheep", "goats", "pigs", "cows"], c: 2 },
+    { q: "The father received his son with", o: ["anger", "punishment", "mercy", "hatred"], c: 2 },
+    { q: "God’s mercy means", o: ["giving what we deserve", "punishment", "forgiveness", "wickedness"], c: 2 },
+    { q: "The elder brother felt", o: ["happy", "jealous", "thankful", "excited"], c: 1 },
+    { q: "The tax collector who met Jesus was _____", o: ["Peter", "Zacchaeus", "John", "Matthew"], c: 1 },
+    { q: "Zacchaeus climbed a", o: ["sycamore tree", "palm tree", "orange tree", "cedar tree"], c: 0 },
+    { q: "Zacchaeus promised to", o: ["hide his money", "repay those he cheated", "travel away", "deny Jesus"], c: 1 },
+    { q: "Pentecost happened after", o: ["creation", "resurrection", "flood", "birth of Jesus"], c: 1 },
+    { q: "On Pentecost, the disciples received _____", o: ["gold", "the Holy Spirit", "land", "crowns"], c: 1 },
+    { q: "The Holy Spirit came like", o: ["rain", "wind and fire", "earthquake", "cloud"], c: 1 },
+    { q: "Jesus was tempted in the _____", o: ["city", "temple", "wilderness", "market"], c: 2 },
+    { q: "Jesus fasted for ___", o: ["7 days", "30 days", "40 days", "3 days"], c: 2 },
+    { q: "One temptation was to turn stones into", o: ["fish", "bread", "water", "oil"], c: 1 },
+    { q: "Jesus overcame temptation by _____", o: ["fighting", "praying and quoting Scripture", "running", "hiding"], c: 1 },
+    { q: "Corruption means", o: ["honesty", "stealing and cheating", "love", "kindness"], c: 1 },
+    { q: "One cause of corruption is ____", o: ["contentment", "greed", "discipline", "patience"], c: 1 },
+    { q: "Corruption destroys", o: ["homes and nations", "peace", "trust", "all of the above"], c: 3 },
+    { q: "One way to fight corruption is", o: ["bribery", "integrity", "lying", "cheating"], c: 1 },
+    { q: "Christians should practice moderation by _____", o: ["overeating", "being balanced and self-controlled", "excess", "anger"], c: 1 },
+    { q: "Moderation helps us to", o: ["sin freely", "avoid temptation", "fight others", "boast"], c: 1 },
+    { q: "Hard work brings", o: ["laziness", "productivity", "weakness", "print"], c: 1 },
+    { q: "God blesses", o: ["the idle", "the greedy", "the diligent", "the corrupt"], c: 2 },
+    { q: "Decision making should involve _____", o: ["prayer", "Bible study", "wise counsel", "all of the above"], c: 3 },
+    { q: "The prodigal son returned home because he", o: ["became rich", "was hungry and sorry", "was proud", "was forced"], c: 1 },
+    { q: "The father organized a ____", o: ["meeting", "feast", "journey", "war"], c: 1 },
+    { q: "The robe given to the son shows", o: ["rejection", "honour", "punishment", "anger"], c: 1 },
+    { q: "Zacchaeus was a", o: ["farmer", "fisherman", "tax collector", "soldier"], c: 2 },
+    { q: "People disliked tax collectors because they ____", o: ["were poor", "cheated people", "were sick", "travelled"], c: 1 },
+    { q: "Pentecost strengthened the disciples to", o: ["hide", "preach boldly", "fish only", "sleep"], c: 1 },
+    { q: "Temptation comes from", o: ["God", "Satan", "angels", "pastors"], c: 1 },
+    { q: "Jesus said, “Man shall not live by ____ alone.”", o: ["rice", "bread", "meat", "water"], c: 1 },
+    { q: "Hard work promotes", o: ["poverty", "progress", "shame", "hatred"], c: 1 },
+    { q: "A good Christian decision should glorify ____", o: ["self", "friends", "God", "money"], c: 2 },
+    { q: "The prodigal son said, “I have sinned against ____.”", o: ["heaven and you", "my brother", "my friend", "the city"], c: 0 },
+    { q: "Mercy is different from justice because it shows", o: ["anger", "kindness", "revenge", "pride"], c: 1 },
+    { q: "Corruption can be reduced by", o: ["fear of God", "honesty", "transparency", "all of the above"], c: 3 },
+    { q: "Moderation requires _____", o: ["discipline", "greed", "haste", "pride"], c: 0 },
+    { q: "Hardworking Christians are", o: ["dependable", "careless", "lazy", "dishonest"], c: 0 },
+    { q: "The elder brother refused to _____", o: ["work", "eat", "join the celebration", "speak"], c: 2 },
+    { q: "Zacchaeus gave half of his goods to", o: ["soldiers", "the poor", "friends", "rulers"], c: 1 },
+    { q: "The Holy Spirit gave the disciples power to ____", o: ["sing only", "speak in tongues", "sleep", "hide"], c: 1 },
+    { q: "Jesus is the son of _____", o: ["Abraham", "Adam", "God", "Rebekah"], c: 2 },
+    { q: "Greed leads to", o: ["contentment", "corruption", "peace", "honesty"], c: 1 },
+    { q: "A moderate life avoids _____", o: ["balance", "excess", "prayer", "self-control"], c: 1 },
+    { q: "God rewards", o: ["faithfulness", "laziness", "dishonesty", "corruption"], c: 0 },
+    { q: "The story of ‘The prodigal son’ shows God’s", o: ["anger", "mercy", "pride", "hatred"], c: 1 },
+    { q: "Christians should resist temptation by _____", o: ["prayer", "fasting", "Bible study", "all of the above"], c: 3 },
+    { q: "Corruption harms", o: ["individuals", "society", "government", "all of the above"], c: 3 },
+    { q: "Decision making without God leads to", o: ["wisdom", "mistakes", "joy", "peace"], c: 1 },
+    { q: "Moderation helps Christians to _____", o: ["grow spiritually", "fall into sin", "fight", "boast"], c: 0 },
+    { q: "Hard Work brings", o: ["curse only", "blessing from God", "punishment", "burden only"], c: 1 },
+    { q: "Christians must live honestly because God ______", o: ["sees all things", "ignores sin", "sleeps", "changes"], c: 0 }
+];
+
+const form = document.getElementById('crsForm');
+examQuestions.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'question-item';
+    div.innerHTML = `
+        <span class="question-text">${i + 1}. ${item.q}</span>
+        <div class="options">
+            ${item.o.map((opt, idx) => `
+                <label><input type="radio" name="q${i}" value="${idx}"> ${String.fromCharCode(65 + idx)}. ${opt}</label>
+            `).join('')}
+        </div>
+        <div class="correct-ans" id="ans-${i}">Correct Answer: ${item.o[item.c]}</div>
+    `;
+    form.appendChild(div);
+});
+
+let timeInSeconds = 45 * 60;
+const timerDisplay = document.getElementById('timerDisplay');
+const countdown = setInterval(() => {
+    let minutes = Math.floor(timeInSeconds / 60);
+    let seconds = timeInSeconds % 60;
+    timerDisplay.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    if (timeInSeconds <= 0) { clearInterval(countdown); gradeExam(); }
+    timeInSeconds--;
+}, 1000);
+
+function gradeExam() {
+    clearInterval(countdown);
+    document.getElementById('submit-btn').disabled = true;
+    let score = 0;
+    examQuestions.forEach((item, i) => {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        document.getElementById(`ans-${i}`).style.display = "block";
+        if (selected && parseInt(selected.value) === item.c) {
+            score++;
+        }
+    });
+    const resultBox = document.getElementById('result-summary');
+    resultBox.style.display = "block";
+    document.getElementById('scoreText').innerText = `Your Score: ${score} / 60`;
+    document.getElementById('percentText').innerText = `Percentage: ${Math.round((score/60)*100)}%`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
