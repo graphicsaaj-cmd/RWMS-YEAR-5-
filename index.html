@@ -1,399 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ROYAL WUNDERKIND MODEL SCHOOL - CCA EXAM</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics CBT - Royal Wunderkind Model School</title>
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 20px;
-            background-color: #f8f9fa;
-            line-height: 1.5;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .timer {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: #d32f2f;
-            text-align: center;
-            margin: 15px 0;
-        }
-        .question {
-            margin-bottom: 28px;
-            padding: 15px;
-            border-left: 4px solid #1976d2;
-            background-color: #f5faff;
-            border-radius: 4px;
-        }
-        .options label {
-            display: block;
-            margin: 8px 0;
-            cursor: pointer;
-        }
-        .correct {
-            background-color: #e8f5e9;
-            border-left: 5px solid #4caf50;
-            padding-left: 12px;
-        }
-        .result {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #fff3e0;
-            border: 2px solid #ff9800;
-            border-radius: 8px;
-            text-align: center;
-        }
-        button {
-            display: block;
-            margin: 30px auto;
-            padding: 14px 40px;
-            font-size: 1.2em;
-            background-color: #1976d2;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #1565c0;
-        }
-        button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .hidden { display: none; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; border-bottom: 2px solid #333; margin-bottom: 20px; padding-bottom: 10px; }
+        #timer { position: fixed; top: 20px; right: 20px; background: #e74c3c; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; font-size: 1.2em; z-index: 1000; }
+        .question { margin-bottom: 25px; padding: 15px; border-bottom: 1px solid #eee; }
+        .question p { font-weight: bold; margin-bottom: 10px; }
+        .options label { display: block; margin-bottom: 8px; cursor: pointer; }
+        .result-text { font-weight: bold; margin-top: 10px; display: none; }
+        .correct { color: #27ae60; }
+        .incorrect { color: #c0392b; }
+        #submit-btn { background: #2c3e50; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; width: 100%; }
+        #submit-btn:hover { background: #34495e; }
+        #score-display { text-align: center; font-size: 1.5em; margin-top: 20px; display: none; color: #2c3e50; }
     </style>
 </head>
 <body>
 
+<div id="timer">Time Left: 45:00</div>
+
 <div class="container">
     <div class="header">
-        <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-        <h2>TERM TWO EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
-        <p><strong>Class:</strong> Upper Key Stage 2 (Year 5)</p>
-        <p><strong>Subject:</strong> CULTURAL AND CREATIVE ART</p>
-        <p><strong>SECTION A: OBJECTIVE QUESTIONS</strong></p>
+        <h2>ROYAL WUNDERKIND MODEL SCHOOL</h2>
+        <p>TERM TWO EXAMINATION, 2025/2026 ACADEMIC SESSION</p>
+        <p><strong>Class:</strong> Upper Key Stage 2 (Year 5) | <strong>Subject:</strong> MATHEMATICS</p>
+        <p><strong>Duration:</strong> 45 Minutes | <strong>INSTRUCTION:</strong> Attempt all questions.</p>
     </div>
 
-    <div class="timer" id="timer">Time Remaining: 45:00</div>
-
-    <form id="examForm">
-        <!-- Questions inserted by JS -->
+    <form id="quizForm">
+        <div id="questions-container"></div>
+        <button type="button" id="submit-btn" onclick="submitQuiz()">Submit Examination</button>
     </form>
 
-    <button id="submitBtn" type="button">Submit Exam</button>
-
-    <div id="result" class="result hidden">
-        <h2>Your Score</h2>
-        <p id="scoreText"></p>
-        <p id="percentage"></p>
-        <p><em>Correct answers are now highlighted below.</em></p>
-    </div>
+    <div id="score-display"></div>
 </div>
 
 <script>
-// Correct answers (letter only) - based on standard CCA curriculum knowledge
-const correctAnswers = [
-    'B','B','B','B','B','B','B','A','B','A',   // 1-10
-    'A','B','A','B','B','A','A','C','A','A',   // 11-20
-    'B','A','A','A','A','A','A','A','A','A',   // 21-30
-    'A','A','B','A','A','B','A','A','A','A',   // 31-40
-    'B','A','B','B','B','B','A','C','B','B',   // 41-50
-    'B','B','C','B','B','B','A','B','B','C'    // 51-60
-];
+    const questions = [
+        { q: "Which of the following is not a prime number?", o: ["1", "2", "3", "5"], a: "1" },
+        { q: "Find the L.C.M of 14 and 21", o: ["42", "84", "21", "7"], a: "42" },
+        { q: "Change 6970g to kg", o: ["69.7kg", "6.97kg", "0.697kg", "697kg"], a: "6.97kg" },
+        { q: "Express 561g 1kg in decimal form", o: ["5.61", "56.1", "0.561", "0.000561"], a: "0.561" },
+        { q: "Convert 4/5 to percentage", o: ["75%", "80%", "90%", "25%"], a: "80%" },
+        { q: "Express 0.745 as percentage", o: ["74.5%", "745%", "7.45%", "0.745%"], a: "74.5%" },
+        { q: "Find 45% of 880", o: ["396", "484", "968", "448"], a: "396" },
+        { q: "What is the place value of 7 in the number 583,745?", o: ["thousands", "hundreds", "tens", "ten thousands"], a: "hundreds" },
+        { q: "Subtract 1245 from 3562", o: ["2317", "1989", "3271", "3121"], a: "2317" },
+        { q: "What is 156.13 – 106.5?", o: ["49.63", "49.43", "49.13", "4.693"], a: "49.63" },
+        { q: "Add up 6 and 2.482", o: ["3.082", "8.482", "4.824", "4.482"], a: "8.482" },
+        { q: "Find the product of 16.37 and 36", o: ["589.32", "789.23", "25.32", "56.589"], a: "589.32" },
+        { q: "Find the square of 51", o: ["2601", "3249", "3961", "9601"], a: "2601" },
+        { q: "The perimeter of a square is 80cm. Find the length.", o: ["30cm", "40cm", "20cm", "4cm"], a: "20cm" },
+        { q: "Find √49 × √9", o: ["35", "21", "25", "31"], a: "21" },
+        { q: "Divide 6202 by 14", o: ["640", "443", "491", "427"], a: "443" },
+        { q: "Find the value of x in the equation: 5x − 4 = 21", o: ["3", "4", "5", "6"], a: "5" },
+        { q: "Find the value of x in the equation: 3x + 2 = 14", o: ["2", "3", "4", "5"], a: "4" },
+        { q: "A trader bought an item for ₦50 and sold it for ₦70. Profit?", o: ["₦10", "₦20", "₦30", "₦40"], a: "₦20" },
+        { q: "A trader bought an item for ₦80 and sold it for ₦60. Loss?", o: ["₦10", "₦20", "₦30", "₦40"], a: "₦20" },
+        { q: "Which of the numbers is the greatest?", o: ["-100", "0", "-16", "-400"], a: "0" },
+        { q: "Find simple interest on ₦200 at 10% for 1 year.", o: ["₦10", "₦20", "₦30", "₦40"], a: "₦20" },
+        { q: "Divide 8346 by 10,000", o: ["0.8346", "0.08346", "8.346", "83.46"], a: "0.8346" },
+        { q: "Divide 12 by 60", o: ["0.1", "0.2", "0.3", "0.4"], a: "0.2" },
+        { q: "Divide 4.2 by 100", o: ["0.042", "0.42", "4.2", "42"], a: "0.042" },
+        { q: "Divide 9 by 10", o: ["0.09", "0.9", "9.0", "90"], a: "0.9" },
+        { q: "Bought ₦200, sold ₦250. Percentage profit?", o: ["10%", "15%", "20%", "25%"], a: "25%" },
+        { q: "Bought ₦100, sold ₦80. Percentage loss?", o: ["10%", "15%", "20%", "25%"], a: "20%" },
+        { q: "Sold for ₦300 at profit of ₦50. Cost price?", o: ["₦200", "₦250", "₦260", "₦270"], a: "₦250" },
+        { q: "Bought for ₦150, profit ₦30. Selling price?", o: ["₦160", "₦170", "₦180", "₦190"], a: "₦180" },
+        { q: "Interest is ₦40 at 10% for 2 yrs. Find Principal.", o: ["₦100", "₦150", "₦200", "₦250"], a: "₦200" },
+        { q: "Interest on ₦200 for 2 yrs is ₦40. Find Rate.", o: ["5%", "8%", "10%", "12%"], a: "10%" },
+        { q: "Interest on ₦300 at 5% is ₦30. Find Time.", o: ["1 year", "2 years", "3 years", "4 years"], a: "2 years" },
+        { q: "Evaluate: -3 + 5", o: ["1", "2", "3", "4"], a: "2" },
+        { q: "Evaluate: 6 - 9", o: ["-1", "-2", "-3", "-4"], a: "-3" },
+        { q: "Evaluate: -4 + 7", o: ["2", "3", "4", "5"], a: "3" },
+        { q: "Multiply 1/2 x 1/3", o: ["1/2", "1/3", "1/5", "1/6"], a: "1/6" },
+        { q: "Divide 1/2 by 1/4", o: ["1", "2", "3", "4"], a: "2" },
+        { q: "What is 1/2 ÷ 2?", o: ["1/2", "1/3", "1/4", "1/5"], a: "1/4" },
+        { q: "Divide 2 by 1/2", o: ["2", "3", "4", "5"], a: "4" },
+        { q: "Divide 3/4 by 1/2", o: ["1", "1 1/2", "2", "2 1/2"], a: "1 1/2" },
+        { q: "Approximate 47 to the nearest tens", o: ["40", "45", "50", "60"], a: "50" },
+        { q: "Which is not a quadrilateral?", o: ["Circle", "Square", "Rectangle", "Parallelogram"], a: "Circle" },
+        { q: "How many lines of symmetry has a square?", o: ["4", "3", "0", "2"], a: "4" },
+        { q: "Approximate 6.346 to nearest whole number", o: ["5", "6", "7", "8"], a: "6" },
+        { q: "Approximate 4.3612 to nearest tenth", o: ["4.361", "4.4", "4.4612", "4.6"], a: "4.4" },
+        { q: "Approximate 7.2843 to nearest hundredth", o: ["7.20", "7.28", "7.29", "7.30"], a: "7.28" },
+        { q: "Approximate 5.7264 to nearest thousandth", o: ["5.725", "5.726", "5.727", "5.728"], a: "5.726" },
+        { q: "Which of the following is not a solid shape?", o: ["Cuboid", "Cube", "Cylinder", "Circle"], a: "Circle" },
+        { q: "How many faces has a cube?", o: ["5", "6", "4", "3"], a: "6" },
+        { q: "Find H.C.F of 17, 35 and 46", o: ["17", "1", "5", "12"], a: "1" },
+        { q: "Simplify 7a + 8a + a - 10a", o: ["26a", "10a", "16a", "6a"], a: "6a" },
+        { q: "Mat 24cm long and 15cm wide. Area?", o: ["369cm2", "560cm2", "360cm2", "78cm2"], a: "360cm2" },
+        { q: "Write 2753 in Roman Numerals", o: ["MMDCCLIII", "CCVIIVIII", "MMDCCVIII", "MMCCC"], a: "MMDCCLIII" },
+        { q: "Value of digit 6 in 2,168,182,043?", o: ["60,000", "6,000", "60,000,000", "600,000"], a: "60,000,000" },
+        { q: "Which is not a prime number?", o: ["43", "34", "17", "29"], a: "34" },
+        { q: "Place value of 8 in 6.758?", o: ["Units", "Thousandths", "Tenths", "Hundredths"], a: "Thousandths" },
+        { q: "Three hundred and twenty-five thousandths in figure", o: ["0.325", "3.25", "0.0325", "325.0"], a: "0.325" },
+        { q: "Change 1.216kg to grammes", o: ["1216", "121600", "121.6", "12.16"], a: "1216" },
+        { q: "Change 9.9% to decimal", o: ["0.099", "0.99", "0.0099", "9900"], a: "0.099" }
+    ];
 
-// Full correct option text for display after submission
-const correctTexts = [
-    "B. rhythmic body movement",
-    "B. traditional dance",
-    "B. France and Italy",
-    "B. prolong their life",
-    "B. clean water after use",
-    "B. safe and dry places",
-    "B. unity and patriotism",
-    "A. culture and unity",
-    "B. speaking the truth",
-    "A. doing right even when no one is watching",
-    "A. diligence",
-    "B. visual arts",
-    "A. cardboard",
-    "B. pictures with lines and shapes",
-    "B. pencil",
-    "A. light and shadow",
-    "A. flexibility and balance",
-    "C. clean and store properly",
-    "A. culture and environment",
-    "A. damage",
-    "B. in a safe box",
-    "A. primary and secondary",
-    "A. greeting purposes",
-    "A. emotions and ideas",
-    "A. patriotism",
-    "A. trust",
-    "A. good character",
-    "A. sculpture",
-    "A. climate and culture",
-    "A. promoting relaxation",
-    "A. tearing and damage",
-    "A. rough drawing",
-    "B. remove mistakes",
-    "A. productivity",
-    "A. unity",
-    "B. stage",
-    "A. safety",
-    "A. communicate ideas visually",
-    "A. sound",
-    "A. responsibility",
-    "B. Create creative works",
-    "A. Pencil",
-    "B. Musical instrument",
-    "B. Make them last longer",
-    "B. Trees",
-    "B. Hard and strong",
-    "A) Table",
-    "C. unity",
-    "B. patriotism",
-    "B. promoting peace",
-    "B. patriotism",
-    "B. national identity",
-    "C. changing waste into new products",
-    "B. plastic bottle",
-    "B. pollution",
-    "B. collection",
-    "A. resources",
-    "B. creativity",
-    "B. job",
-    "C. clean"
-];
-
-const questions = [
-    "1. Dance can best be described as",
-    "2. One major form of dance is",
-    "3. Ballet originated from",
-    "4. Care of art tools helps to",
-    "5. Paint brushes should be cleaned with ____.",
-    "6. Musical instruments should be stored in____",
-    "7. The National Anthem of Nigeria promotes.",
-    "8. Songs that reflect Nigerian identity promote.",
-    "9. Honesty means.",
-    "10. Integrity means.",
-    "11. A right attitude to work includes.",
-    "12. Card making is an aspect of.",
-    "13. Materials used for card making include.",
-    "14. Drawing is the art of making.",
-    "15. One tool used in drawing is.",
-    "16. Shading in drawing helps to show.",
-    "17. Ballet requires.",
-    "18. After using scissors, one should.",
-    "19. Nigerian traditional architecture reflects.",
-    "20. Keeping musical instruments clean prevents",
-    "21. Drawing materials should be kept",
-    "22. Colours can be grouped into",
-    "23. Card making can be used for",
-    "24. Dance expresses",
-    "25. The song- “Arise, O Compatriots” is sung to show.",
-    "26. Honesty at work leads to",
-    "27. Integrity builds.",
-    "28. Clay is commonly used in",
-    "29. Nigerian architecture varies because of",
-    "30. Entertainment helps society by",
-    "31. Proper storage of costumes prevents",
-    "32. A sketch is a",
-    "33. The eraser is used to",
-    "34. Good attitude to work promotes",
-    "35. Nigerian cultural dances promote",
-    "36. Ballet dancers often perform on a",
-    "37. Architectural designs must consider",
-    "38. One importance of drawing is to",
-    "39. Musical instruments produce",
-    "40. Caring for art tools shows",
-    "41. Tools used in arts and entertainment are used to _________",
-    "42. Which of the following is an art tool?",
-    "43. A drum is an example of a _______",
-    "44. We care for tools mainly to ______",
-    "45. Wood is obtained from ____",
-    "46. Wood is described as a ______ material.",
-    "47. Which of the following is made from wood?",
-    "48. Patriotism promotes ______ among citizens.",
-    "49. Standing at attention during the anthem shows ______.",
-    "50. One importance of patriotism is ______.",
-    "51. Keeping the environment clean is an example of ______.",
-    "52. Patriotic songs help to build national ______.",
-    "53. Recycling means ______.",
-    "54. One material that can be recycled is ______.",
-    "55. Recycling helps to reduce ______.",
-    "56. The first step in recycling is ______.",
-    "57. Recycling helps to conserve natural ______.",
-    "58. Making a flower vase from a plastic bottle shows ______.",
-    "59. Recycling creates ______ opportunities.",
-    "60. Recycling helps to keep the environment ______."
-];
-
-const optionsList = [
-    ["A. sleeping movement", "B. rhythmic body movement", "C. writing music", "D. acting drama"],
-    ["A. farming", "B. traditional dance", "C. trading", "D. banking"],
-    ["A. Nigeria", "B. France and Italy", "C. Ghana", "D. Egypt"],
-    ["A. damage them", "B. prolong their life", "C. waste money", "D. quality"],
-    ["A. sand", "B. clean water after use", "C. oil only", "D. by throwing away"],
-    ["A. wet places", "B. safe and dry places", "C. fire", "D. open rain"],
-    ["A. hatred", "B. unity and patriotism", "C. laziness", "D. division"],
-    ["A. culture and unity", "B. conflict", "C. war", "D. selfishness"],
-    ["A. telling lies", "B. speaking the truth", "C. cheating", "D. stealing"],
-    ["A. doing right even when no one is watching", "B. bribery", "C. corruption", "D. laziness"],
-    ["A. diligence", "B. carelessness", "C. pride", "D. dishonesty"],
-    ["A. performing arts", "B. visual arts", "C. agriculture", "D. sports"],
-    ["A. cardboard", "B. cement", "C. sand", "D. clay only"],
-    ["A. buildings", "B. pictures with lines and shapes", "C. songs", "D. drama"],
-    ["A. hoe", "B. pencil", "C. cutlass", "D. spoon"],
-    ["A. light and shadow", "B. noise", "C. sound", "D. smell"],
-    ["A. flexibility and balance", "B. anger", "C. shouting", "D. laziness"],
-    ["A. leave them open", "B. throw them away", "C. clean and store properly", "D. hide them"],
-    ["A. culture and environment", "B. foreign ideas only", "C. war", "D. trade"],
-    ["A. damage", "B. sound", "C. rhythm", "D. melody"],
-    ["A. scattered", "B. in a safe box", "C. under rain", "D. in fire"],
-    ["A. primary and secondary", "B. rural and urban", "C. old and new", "D. big and small"],
-    ["A. greeting purposes", "B. punishment", "C. farming", "D. fighting"],
-    ["A. emotions and ideas", "B. silence", "C. sleep", "D. hunger"],
-    ["A. patriotism", "B. hatred", "C. fear", "D. pride only"],
-    ["A. trust", "B. corruption", "C. dismissal", "D. punishment"],
-    ["A. good character", "B. bad name", "C. hatred", "D. pride"],
-    ["A. sculpture", "B. banking", "C. farming", "D. dancing"],
-    ["A. climate and culture", "B. laziness", "C. corruption", "D. noise"],
-    ["A. promoting relaxation", "B. causing war", "C. creating hatred", "D. stopping unity"],
-    ["A. tearing and damage", "B. beauty", "C. cleanliness", "D. decoration"],
-    ["A. rough drawing", "B. final painting", "C. song", "D. dance"],
-    ["A. darken lines", "B. remove mistakes", "C. cut paper", "D. paint"],
-    ["A. productivity", "B. laziness", "C. cheating", "D. failure"],
-    ["A. unity", "B. hatred", "C. war", "D. division"],
-    ["A. farm", "B. stage", "C. river", "D. road"],
-    ["A. safety", "B. danger", "C. neglect", "D. waste"],
-    ["A. communicate ideas visually", "B. destroy art", "C. create noise", "D. confusion"],
-    ["A. sound", "B. water", "C. sand", "D. smoke"],
-    ["A. responsibility", "B. laziness", "C. dishonesty", "D. pride"],
-    ["A. Cook food", "B. Create creative works", "C. Build houses", "D. Drive cars"],
-    ["A. Pencil", "B. Spoon", "C. Plate", "D. Cup"],
-    ["A. Art tool", "B. Musical instrument", "C. Toy", "D. Costume"],
-    ["A. Damage them", "B. Make them last longer", "C. Throw them away", "D. Hide them"],
-    ["A. Animals", "B. Trees", "C. Water", "D. Sand"],
-    ["A. Soft and weak", "B. Hard and strong", "C. Liquid", "D. Transparent"],
-    ["A) Table", "B) Plastic Spoon", "C) Bottle", "D) Glass cup"],
-    ["A. hatred", "B. division", "C. unity", "D. jealousy"],
-    ["A. laziness", "B. patriotism", "C. fear", "D. anger"],
-    ["A. causing conflict", "B. promoting peace", "C. destroying property", "D. breaking rules"],
-    ["A. disobedience", "B. patriotism", "C. pride", "D. laziness"],
-    ["A. confusion", "B. national identity", "C. weakness", "D. fear"],
-    ["A. burning waste", "B. throwing waste away", "C. changing waste into new products", "D. burying waste"],
-    ["A. sand", "B. plastic bottle", "C. water", "D. air"],
-    ["A. education", "B. pollution", "C. creativity", "D. sunlight"],
-    ["A. selling", "B. collection", "C. painting", "D. cooking"],
-    ["A. resources", "B. noise", "C. smoke", "D. traffic"],
-    ["A. laziness", "B. creativity", "C. pollution", "D. wastefulness"],
-    ["A. travel", "B. job", "C. war", "D. conflict"],
-    ["A. dirty", "B. polluted", "C. clean", "D. noisy"]
-];
-
-// Generate questions dynamically
-const form = document.getElementById('examForm');
-
-questions.forEach((qText, index) => {
-    const qNum = index + 1;
-    const div = document.createElement('div');
-    div.className = 'question';
-    div.id = `q${qNum}`;
-
-    let html = `<strong>${qText}</strong><br><br>`;
-    html += `<div class="options">`;
-
-    optionsList[index].forEach((opt, i) => {
-        const letter = String.fromCharCode(65 + i);
-        html += `
-            <label>
-                <input type="radio" name="q${qNum}" value="${letter}">
-                ${opt}
-            </label>`;
+    // Load questions into HTML
+    const container = document.getElementById('questions-container');
+    questions.forEach((item, index) => {
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question';
+        qDiv.innerHTML = `
+            <p>${index + 1}. ${item.q}</p>
+            <div class="options">
+                ${item.o.map(opt => `
+                    <label>
+                        <input type="radio" name="q${index}" value="${opt}"> ${opt}
+                    </label>
+                `).join('')}
+            </div>
+            <div id="ans${index}" class="result-text"></div>
+        `;
+        container.appendChild(qDiv);
     });
 
-    html += `</div>`;
-    div.innerHTML = html;
-    form.appendChild(div);
-});
-
-// Timer: 45 minutes = 2700 seconds
-let timeLeft = 45 * 60;
-const timerDisplay = document.getElementById('timer');
-let timerInterval;
-
-function updateTimer() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timerDisplay.textContent = `Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
-
-    if (timeLeft <= 0) {
-        clearInterval(timerInterval);
-        alert("Time is up! Exam auto-submitted.");
-        submitExam();
-    }
-    timeLeft--;
-}
-
-timerInterval = setInterval(updateTimer, 1000);
-updateTimer();
-
-// Submission handler
-document.getElementById('submitBtn').addEventListener('click', submitExam);
-
-function submitExam() {
-    clearInterval(timerInterval);
-    document.getElementById('submitBtn').disabled = true;
-    document.getElementById('submitBtn').textContent = "Submitted";
-
-    let score = 0;
-
-    questions.forEach((_, index) => {
-        const qNum = index + 1;
-        const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
-        const questionDiv = document.getElementById(`q${qNum}`);
-
-        // Always show correct answer
-        const correctLetter = correctAnswers[index];
-        const correctText = correctTexts[index];
-
-        questionDiv.classList.add('correct');
-        questionDiv.innerHTML += `<br><strong style="color:#2e7d32;">Correct Answer: ${correctText}</strong>`;
-
-        if (selected && selected.value === correctLetter) {
-            score++;
+    // Timer Logic
+    let time = 45 * 60;
+    const timerEl = document.getElementById('timer');
+    const countdown = setInterval(() => {
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        timerEl.innerHTML = `Time Left: ${minutes}:${seconds}`;
+        if (time <= 0) {
+            clearInterval(countdown);
+            submitQuiz();
         }
+        time--;
+    }, 1000);
 
-        // Disable radios
-        const radios = questionDiv.querySelectorAll('input[type="radio"]');
-        radios.forEach(r => r.disabled = true);
-    });
+    function submitQuiz() {
+        clearInterval(countdown);
+        let score = 0;
+        questions.forEach((item, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            const ansDiv = document.getElementById(`ans${index}`);
+            ansDiv.style.display = "block";
+            
+            if (selected && selected.value === item.a) {
+                score++;
+                ansDiv.innerHTML = `Correct! Answer: ${item.a}`;
+                ansDiv.className = "result-text correct";
+            } else {
+                ansDiv.innerHTML = `Incorrect. Correct answer: ${item.a}`;
+                ansDiv.className = "result-text incorrect";
+            }
+        });
 
-    const percentage = ((score / questions.length) * 100).toFixed(1);
-
-    document.getElementById('scoreText').textContent = `You scored ${score} out of ${questions.length}`;
-    document.getElementById('percentage').textContent = `Percentage: ${percentage}%`;
-    document.getElementById('result').classList.remove('hidden');
-
-    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
-}
+        const scoreDisplay = document.getElementById('score-display');
+        scoreDisplay.style.display = "block";
+        scoreDisplay.innerHTML = `Examination Finished!<br>Your Score: ${score} / ${questions.length}`;
+        window.scrollTo(0, 0);
+        document.getElementById('submit-btn').disabled = true;
+    }
 </script>
 
 </body>
