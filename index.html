@@ -1,167 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathematics CBT - Royal Wunderkind Model School</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ROYAL WUNDERKIND MODEL SCHOOL - PREVOCATIONAL STUDIES EXAM</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .header { text-align: center; border-bottom: 2px solid #333; margin-bottom: 20px; padding-bottom: 10px; }
-        #timer { position: fixed; top: 20px; right: 20px; background: #e74c3c; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; font-size: 1.2em; z-index: 1000; }
-        .question { margin-bottom: 25px; padding: 15px; border-bottom: 1px solid #eee; }
-        .question p { font-weight: bold; margin-bottom: 10px; }
-        .options label { display: block; margin-bottom: 8px; cursor: pointer; }
-        .result-text { font-weight: bold; margin-top: 10px; display: none; }
-        .correct { color: #27ae60; }
-        .incorrect { color: #c0392b; }
-        #submit-btn { background: #2c3e50; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; width: 100%; }
-        #submit-btn:hover { background: #34495e; }
-        #score-display { text-align: center; font-size: 1.5em; margin-top: 20px; display: none; color: #2c3e50; }
+        :root {
+            --primary-blue: #1976d2;
+            --accent-red: #d32f2f;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            line-height: 1.5;
+        }
+
+        /* Sticky Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .navbar-info {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .navbar-timer {
+            font-size: 1.3em;
+            color: var(--accent-red);
+            font-weight: bold;
+            background: #ffebee;
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--accent-red);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 100px auto 40px; /* Top margin accounts for sticky nav */
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        /* Intro Screen */
+        #introScreen {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .name-input {
+            padding: 12px;
+            width: 300px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .question {
+            margin-bottom: 28px;
+            padding: 15px;
+            border-left: 4px solid var(--primary-blue);
+            background-color: #f5faff;
+            border-radius: 4px;
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+
+        .options label:hover {
+            background-color: #e3f2fd;
+        }
+
+        .correct-answer-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .result {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 14px 40px;
+            font-size: 1.2em;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover { background-color: #1565c0; }
+        button:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        .hidden { display: none; }
+        
+        @media (max-width: 600px) {
+            .navbar { flex-direction: column; height: auto; }
+            .container { margin-top: 140px; }
+            .name-input { width: 90%; }
+        }
     </style>
 </head>
 <body>
 
-<div id="timer">Time Left: 45:00</div>
+<nav id="navbar" class="navbar hidden">
+    <div class="navbar-info">
+        <span id="navName">Candidate: </span><br>
+        <small>Prevocational Studies - Year 5</small>
+    </div>
+    <div class="navbar-timer" id="timer">45:00</div>
+</nav>
 
 <div class="container">
-    <div class="header">
-        <h2>ROYAL WUNDERKIND MODEL SCHOOL</h2>
-        <p>TERM TWO EXAMINATION, 2025/2026 ACADEMIC SESSION</p>
-        <p><strong>Class:</strong> Upper Key Stage 2 (Year 5) | <strong>Subject:</strong> MATHEMATICS</p>
-        <p><strong>Duration:</strong> 45 Minutes | <strong>INSTRUCTION:</strong> Attempt all questions.</p>
+    
+    <div id="introScreen">
+        <div class="header">
+            <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+            <h2>TERM TWO EXAMINATION</h2>
+            <p><strong>Class:</strong> Year 5 | <strong>Subject:</strong> PREVOCATIONAL STUDIES</p>
+        </div>
+        <h3>Enter Your Full Name to Begin</h3>
+        <input type="text" id="candidateName" class="name-input" placeholder="e.g. John Doe" required>
+        <button id="startBtn">Start Examination</button>
     </div>
 
-    <form id="quizForm">
-        <div id="questions-container"></div>
-        <button type="button" id="submit-btn" onclick="submitQuiz()">Submit Examination</button>
-    </form>
+    <div id="examContent" class="hidden">
+        <div class="header">
+            <h3>SECTION A: OBJECTIVES</h3>
+            <p><em>Answer all questions. Time allowed: 45 Minutes</em></p>
+        </div>
 
-    <div id="score-display"></div>
+        <form id="examForm">
+            </form>
+
+        <button id="submitBtn" type="button">Submit Exam</button>
+
+        <div id="result" class="result hidden">
+            <h2>Examination Result</h2>
+            <p id="candidateResultName" style="font-size: 1.2em; font-weight: bold;"></p>
+            <p id="scoreText" style="font-size: 1.5em; color: var(--primary-blue);"></p>
+            <p id="percentage" style="font-size: 1.2em;"></p>
+            <hr>
+            <p><em>Review your answers below. Correct answers are highlighted in green.</em></p>
+        </div>
+    </div>
 </div>
 
 <script>
-    const questions = [
-        { q: "Which of the following is not a prime number?", o: ["1", "2", "3", "5"], a: "1" },
-        { q: "Find the L.C.M of 14 and 21", o: ["42", "84", "21", "7"], a: "42" },
-        { q: "Change 6970g to kg", o: ["69.7kg", "6.97kg", "0.697kg", "697kg"], a: "6.97kg" },
-        { q: "Express 561g 1kg in decimal form", o: ["5.61", "56.1", "0.561", "0.000561"], a: "0.561" },
-        { q: "Convert 4/5 to percentage", o: ["75%", "80%", "90%", "25%"], a: "80%" },
-        { q: "Express 0.745 as percentage", o: ["74.5%", "745%", "7.45%", "0.745%"], a: "74.5%" },
-        { q: "Find 45% of 880", o: ["396", "484", "968", "448"], a: "396" },
-        { q: "What is the place value of 7 in the number 583,745?", o: ["thousands", "hundreds", "tens", "ten thousands"], a: "hundreds" },
-        { q: "Subtract 1245 from 3562", o: ["2317", "1989", "3271", "3121"], a: "2317" },
-        { q: "What is 156.13 – 106.5?", o: ["49.63", "49.43", "49.13", "4.693"], a: "49.63" },
-        { q: "Add up 6 and 2.482", o: ["3.082", "8.482", "4.824", "4.482"], a: "8.482" },
-        { q: "Find the product of 16.37 and 36", o: ["589.32", "789.23", "25.32", "56.589"], a: "589.32" },
-        { q: "Find the square of 51", o: ["2601", "3249", "3961", "9601"], a: "2601" },
-        { q: "The perimeter of a square is 80cm. Find the length.", o: ["30cm", "40cm", "20cm", "4cm"], a: "20cm" },
-        { q: "Find √49 × √9", o: ["35", "21", "25", "31"], a: "21" },
-        { q: "Divide 6202 by 14", o: ["640", "443", "491", "427"], a: "443" },
-        { q: "Find the value of x in the equation: 5x − 4 = 21", o: ["3", "4", "5", "6"], a: "5" },
-        { q: "Find the value of x in the equation: 3x + 2 = 14", o: ["2", "3", "4", "5"], a: "4" },
-        { q: "A trader bought an item for ₦50 and sold it for ₦70. Profit?", o: ["₦10", "₦20", "₦30", "₦40"], a: "₦20" },
-        { q: "A trader bought an item for ₦80 and sold it for ₦60. Loss?", o: ["₦10", "₦20", "₦30", "₦40"], a: "₦20" },
-        { q: "Which of the numbers is the greatest?", o: ["-100", "0", "-16", "-400"], a: "0" },
-        { q: "Find simple interest on ₦200 at 10% for 1 year.", o: ["₦10", "₦20", "₦30", "₦40"], a: "₦20" },
-        { q: "Divide 8346 by 10,000", o: ["0.8346", "0.08346", "8.346", "83.46"], a: "0.8346" },
-        { q: "Divide 12 by 60", o: ["0.1", "0.2", "0.3", "0.4"], a: "0.2" },
-        { q: "Divide 4.2 by 100", o: ["0.042", "0.42", "4.2", "42"], a: "0.042" },
-        { q: "Divide 9 by 10", o: ["0.09", "0.9", "9.0", "90"], a: "0.9" },
-        { q: "Bought ₦200, sold ₦250. Percentage profit?", o: ["10%", "15%", "20%", "25%"], a: "25%" },
-        { q: "Bought ₦100, sold ₦80. Percentage loss?", o: ["10%", "15%", "20%", "25%"], a: "20%" },
-        { q: "Sold for ₦300 at profit of ₦50. Cost price?", o: ["₦200", "₦250", "₦260", "₦270"], a: "₦250" },
-        { q: "Bought for ₦150, profit ₦30. Selling price?", o: ["₦160", "₦170", "₦180", "₦190"], a: "₦180" },
-        { q: "Interest is ₦40 at 10% for 2 yrs. Find Principal.", o: ["₦100", "₦150", "₦200", "₦250"], a: "₦200" },
-        { q: "Interest on ₦200 for 2 yrs is ₦40. Find Rate.", o: ["5%", "8%", "10%", "12%"], a: "10%" },
-        { q: "Interest on ₦300 at 5% is ₦30. Find Time.", o: ["1 year", "2 years", "3 years", "4 years"], a: "2 years" },
-        { q: "Evaluate: -3 + 5", o: ["1", "2", "3", "4"], a: "2" },
-        { q: "Evaluate: 6 - 9", o: ["-1", "-2", "-3", "-4"], a: "-3" },
-        { q: "Evaluate: -4 + 7", o: ["2", "3", "4", "5"], a: "3" },
-        { q: "Multiply 1/2 x 1/3", o: ["1/2", "1/3", "1/5", "1/6"], a: "1/6" },
-        { q: "Divide 1/2 by 1/4", o: ["1", "2", "3", "4"], a: "2" },
-        { q: "What is 1/2 ÷ 2?", o: ["1/2", "1/3", "1/4", "1/5"], a: "1/4" },
-        { q: "Divide 2 by 1/2", o: ["2", "3", "4", "5"], a: "4" },
-        { q: "Divide 3/4 by 1/2", o: ["1", "1 1/2", "2", "2 1/2"], a: "1 1/2" },
-        { q: "Approximate 47 to the nearest tens", o: ["40", "45", "50", "60"], a: "50" },
-        { q: "Which is not a quadrilateral?", o: ["Circle", "Square", "Rectangle", "Parallelogram"], a: "Circle" },
-        { q: "How many lines of symmetry has a square?", o: ["4", "3", "0", "2"], a: "4" },
-        { q: "Approximate 6.346 to nearest whole number", o: ["5", "6", "7", "8"], a: "6" },
-        { q: "Approximate 4.3612 to nearest tenth", o: ["4.361", "4.4", "4.4612", "4.6"], a: "4.4" },
-        { q: "Approximate 7.2843 to nearest hundredth", o: ["7.20", "7.28", "7.29", "7.30"], a: "7.28" },
-        { q: "Approximate 5.7264 to nearest thousandth", o: ["5.725", "5.726", "5.727", "5.728"], a: "5.726" },
-        { q: "Which of the following is not a solid shape?", o: ["Cuboid", "Cube", "Cylinder", "Circle"], a: "Circle" },
-        { q: "How many faces has a cube?", o: ["5", "6", "4", "3"], a: "6" },
-        { q: "Find H.C.F of 17, 35 and 46", o: ["17", "1", "5", "12"], a: "1" },
-        { q: "Simplify 7a + 8a + a - 10a", o: ["26a", "10a", "16a", "6a"], a: "6a" },
-        { q: "Mat 24cm long and 15cm wide. Area?", o: ["369cm2", "560cm2", "360cm2", "78cm2"], a: "360cm2" },
-        { q: "Write 2753 in Roman Numerals", o: ["MMDCCLIII", "CCVIIVIII", "MMDCCVIII", "MMCCC"], a: "MMDCCLIII" },
-        { q: "Value of digit 6 in 2,168,182,043?", o: ["60,000", "6,000", "60,000,000", "600,000"], a: "60,000,000" },
-        { q: "Which is not a prime number?", o: ["43", "34", "17", "29"], a: "34" },
-        { q: "Place value of 8 in 6.758?", o: ["Units", "Thousandths", "Tenths", "Hundredths"], a: "Thousandths" },
-        { q: "Three hundred and twenty-five thousandths in figure", o: ["0.325", "3.25", "0.0325", "325.0"], a: "0.325" },
-        { q: "Change 1.216kg to grammes", o: ["1216", "121600", "121.6", "12.16"], a: "1216" },
-        { q: "Change 9.9% to decimal", o: ["0.099", "0.99", "0.0099", "9900"], a: "0.099" }
-    ];
+// DATA - 60 Questions
+const questionsData = [
+    { q: "1. Which of the following is not a people in agriculture?", options: ["A. Producer", "B. Veterinary doctors", "C. Researchers", "D. Photographers"], correct: 'D', text: "D. Photographers" },
+    { q: "2. There are _______ main types of soil.", options: ["A. 2", "B. 5", "C. 3", "D. 4"], correct: 'C', text: "C. 3" },
+    { q: "3. The breaking down of rock to form soil is called _______", options: ["A. Weathering", "B. Processing", "C. Preservation", "D. Marketing"], correct: 'A', text: "A. Weathering" },
+    { q: "4. _______soil is the type of soil best for farming.", options: ["A. Clayey", "B. Loamy", "C. Sandy", "D. Rocky"], correct: 'B', text: "B. Loamy" },
+    { q: "5. The gradual wearing/washing away of the top soil by water or wing is called _______.", options: ["A. Leaching", "B. Overgrazing", "C. Erosion", "D. Pollination"], correct: 'C', text: "C. Erosion" },
+    { q: "6. The downward movement of nutrients from the top soil to the underground layers of the soil is called _______.", options: ["A. Erosion", "B. Leaching", "C. Overgrazing", "D. Staking"], correct: 'B', text: "B. Leaching" },
+    { q: "7. When farm animals feed or graze on the land for a long period of time, exposing the land and making it to lose its fertility is called _______.", options: ["A. Leaching", "B. Erosion", "C. Overgrazing", "D. Mulching"], correct: 'C', text: "C. Overgrazing" },
+    { q: "8. Which of the following is a way of making the soil fertile?", options: ["A. By burning", "B. By overgrazing the land", "C. By adding fertilizer", "D. By clean clearing"], correct: 'C', text: "C. By adding fertilizer" },
+    { q: "9. Which of the following is not a chemical fertilizer?", options: ["A. Urine", "B. NPK", "C. Sulphate of Ammonia", "D. Urea"], correct: 'A', text: "A. Urine" },
+    { q: "10. All these are ways by which the soil can lose its fertility EXCEPT _______.", options: ["A. Planting cover crops", "B. Leaching", "C. Erosion", "D. Overgrazing"], correct: 'A', text: "A. Planting cover crops" },
+    { q: "11. The act of leaving a land to rest every year with a crop like mucuna growing on it is called _______.", options: ["A. Fallowing", "B. Mulching", "C. Crop rotation", "D. Staking"], correct: 'A', text: "A. Fallowing" },
+    { q: "12. The act of removing unwanted plants growing on the farm is called _______.", options: ["A. Fallowing", "B. Weeding", "C. Fertilization", "D. Leaching"], correct: 'B', text: "B. Weeding" },
+    { q: "13. The practice of covering the top of soil or seed beds with dry plant leaves and grasses to prevents the sum from heating off and evaporating some of the nutrients available in the soil is called _______.", options: ["A. Overgrazing", "B. Erosion", "C. Mulching", "D. Weeding"], correct: 'C', text: "C. Mulching" },
+    { q: "14. Which of the following is NOT a cutting tool?", options: ["A. Cutlass", "B. Knife", "C. Wheel barrow", "D. Sickle"], correct: 'C', text: "C. Wheel barrow" },
+    { q: "15. All the following are example of carrying tools EXCEPT _______.", options: ["A. Head pan", "B. Wheel barrow", "C. Basket", "D. Axe"], correct: 'D', text: "D. Axe" },
+    { q: "16. Maize, wheat, millet, sorghum are examples of _______ crops.", options: ["A. Cereal", "B. Legume", "C. Tube", "D. Forage"], correct: 'A', text: "A. Cereal" },
+    { q: "17. _______ are crops grown for the purpose of feeding farm animals.", options: ["A. Forage crop", "B. Ornamental crops", "C. Beverage crops", "D. Spice crops"], correct: 'A', text: "A. Forage crop" },
+    { q: "18. The fluid or liquid obtained from rubber tree bark used in production of tyre is called _______.", options: ["A. Oil", "B. Syrup", "C. Latex", "D. Liquor"], correct: 'C', text: "C. Latex" },
+    { q: "19. Which of the following is not an example of Beverage crops?", options: ["A. Tea", "B. Cocoa", "C. Coffee", "D. Garlic"], correct: 'D', text: "D. Garlic" },
+    { q: "20. The planting material in plantain is called _______.", options: ["A. Steam", "B. Sucker", "C. Sett", "D. Seedling"], correct: 'B', text: "B. Sucker" },
+    { q: "21. Which of the following is one of the marketing activities?", options: ["A. Grading or sorting", "B. Loading and Off-loading", "C. Transportation, packaging and storage", "D. All of the above"], correct: 'D', text: "D. All of the above" },
+    { q: "22. _______ involves all activities associated with the flow of goods and services from the producers (farmers) to the consumers.", options: ["A. Preservation", "B. Processing", "C. Distribution", "D. Marketing"], correct: 'C', text: "C. Distribution" },
+    { q: "23. The process of arranging farm produce into cans, packs, cartons and bags is called _______.", options: ["A. Transportation", "B. Packaging", "C. Storage", "D. Grading"], correct: 'B', text: "B. Packaging" },
+    { q: "24. _______ is a written statement of all the activities carried out by a farmer on the farm, within a farming season.", options: ["A. Farm record", "B. Farm preservation", "C. Marketing", "D. Packaging"], correct: 'A', text: "A. Farm record" },
+    { q: "25. _______ is a record book that shows all the daily activities performed by a farmer on the farm.", options: ["A. Sale record", "B. Production record", "C. Profit and loss record", "D. Farm diary"], correct: 'B', text: "B. Production record" },
+    { q: "26. _______ is the first and the most important meal of the day", options: ["A. Lunch", "B. Supper", "C. Breakfast", "D. Dinner"], correct: 'C', text: "C. Breakfast" },
+    { q: "27. Which of the following is a source of protein?", options: ["A. Legumes", "B. Cereal crop", "C. Oil crops", "D. Tuber crops"], correct: 'A', text: "A. Legumes" },
+    { q: "28. A type of meal service whereby foods, plates, cutleries are set out on the table and the guests are allowed to serve themselves is called _______ service", options: ["A. Reception", "B. Entertainment", "C. Meal service", "D. Tolerance"], correct: 'A', text: "A. Reception" },
+    { q: "29. _______ is when the guests are served food and drinks to make their visit interest.", options: ["A. Reception", "B. Entertainment", "C. Meal service", "D. Tolerance"], correct: 'B', text: "B. Entertainment" },
+    { q: "30. _______ is the keeping of food in such a way that it does not spoil.", options: ["A. Food processing", "B. Food service", "C. Food distribution", "D. Food preservation"], correct: 'D', text: "D. Food preservation" },
+    { q: "31. A drink made from the combination of many fruits is called _______.", options: ["A. Fruit juice", "B. Fruit punch", "C. Five alive", "D. Milk"], correct: 'B', text: "B. Fruit punch" },
+    { q: "32. The practice of changing a crop from one form to another form after harvesting e.g. Cassava to cassava flour is called _______.", options: ["A. Preservation", "B. Drying", "C. Processing", "D. Distribution"], correct: 'C', text: "C. Processing" },
+    { q: "33. Which of the following is a method of preserving foods?", options: ["A. Freezing and refrigeration", "B. Canning", "C. Salting", "D. All of the above"], correct: 'D', text: "D. All of the above" },
+    { q: "34. Which of the following is not an example of household pest?", options: ["A. Cockroaches and files", "B. Weevils and beetles", "C. Rats and rodents", "D. Dog and goats"], correct: 'D', text: "D. Dog and goats" },
+    { q: "35. Household pests can cause the following EXCEPT _______.", options: ["A. Diseases", "B. Dirtiness of the environment", "C. Make holes and around the house", "D. Proper growth of human being"], correct: 'D', text: "D. Proper growth of human being" },
+    { q: "36. _______ causes diseases like dysentery and cholera", options: ["A. Houseflies", "B. Fleas", "C. Weevils", "D. Cockroaches"], correct: 'A', text: "A. Houseflies" },
+    { q: "37. _______ eats and destroy our foods, their droppings stain our books and clothes and produces offensive smell.", options: ["A. Ants", "B. Fleas", "C. Weevils", "D. Cockroaches"], correct: 'D', text: "D. Cockroaches" },
+    { q: "38. Which of the following food is prepared by boiling?", options: ["A. Biscuit", "B. Beans cakes", "C. Moi-moi", "D. Rice"], correct: 'C', text: "C. Moi-moi" },
+    { q: "39. Craft means making something with ... using special skills.", options: ["A. Machine", "B. Hands", "C. Brain", "D. Head"], correct: 'B', text: "B. Hands" },
+    { q: "40. All the following are made by beading EXCEPT _______.", options: ["A. Bags", "B. Purses", "C. Pillows", "D. Earring and necklaces"], correct: 'C', text: "C. Pillows" },
+    { q: "41. All of the following can be used to preserve fresh fish EXCEPT _______.", options: ["A. Freezing", "B. Drying", "C. Adding pepper", "D. Canning"], correct: 'C', text: "C. Adding pepper" },
+    { q: "42. All the following are energy giving foods EXCEPT___________.", options: ["A. egg", "B. rice", "C. maize", "D. yam"], correct: 'A', text: "A. egg" },
+    { q: "43. ______________ are sources of Vitamin.", options: ["A. rice and potato", "B. fruit and vegetable", "C. Palm oil and butter", "D. beans and okro"], correct: 'B', text: "B. fruit and vegetable" },
+    { q: "44. _____________ aids digestion of food.", options: ["A. water", "B. vegetable", "C. milk", "D. Tomato"], correct: 'A', text: "A. water" },
+    { q: "45. ______________ is also known as protective foods.", options: ["A. carbohydrate", "B. protein", "C. vitamin", "D. fat and oil"], correct: 'C', text: "C. vitamin" },
+    { q: "46. _________ is a friend of farmers.", options: ["A. earthworm", "B. flea", "C. grasshopper", "D. Weevil"], correct: 'A', text: "A. earthworm" },
+    { q: "47. -------------- is a pest that damage piece of furniture in the house.", options: ["A. earthworm", "B. white ant", "C. black ant", "D. Fly"], correct: 'B', text: "B. white ant" },
+    { q: "48. ___________ make in walls and floors and their urine is poisonous.", options: ["A. cockroaches", "B. Flies", "C. Rodents", "D. Weevil"], correct: 'C', text: "C. Rodents" },
+    { q: "49. All the following can be used to kill pest except__________", options: ["A. Pesticide", "B. rat poison", "C. insect powder", "D. Wire mesh"], correct: 'D', text: "D. Wire mesh" },
+    { q: "50. All the following are oil crops except ___________", options: ["A. Latex", "B. Palm kernel", "C. Ground nut", "D. coconut"], correct: 'A', text: "A. Latex" },
+    { q: "51. ____________ is an ornamental crop.", options: ["A. Rose flower", "B. Potato", "C. grass", "D. Soya beans"], correct: 'A', text: "A. Rose flower" },
+    { q: "52. Yam, potatoes, cocoyam, cassava are examples of _________ crops.", options: ["A. tuber", "B. Legume", "C. Forage", "D. Beverage"], correct: 'A', text: "A. tuber" },
+    { q: "53. _____________ is an example of di-cotyledon.", options: ["A. groundnut", "B. maize", "C. millet", "D. rice"], correct: 'A', text: "A. groundnut" },
+    { q: "54. Which of the following is an agent of soil formation?", options: ["A. Rain", "B. wind", "C. animal", "D. All of the above"], correct: 'D', text: "D. All of the above" },
+    { q: "55. The early man lived in __________", options: ["A. Cave", "B. Den", "C. Tree", "D. Modern house"], correct: 'A', text: "A. Cave" },
+    { q: "56. Pigs live in a __________", options: ["A. shed", "B. pen", "C. cage", "D. house"], correct: 'B', text: "B. pen" },
+    { q: "57. The young ones of sheep are called _______", options: ["A. lamb", "B. piglet", "C. calf", "D. kid"], correct: 'A', text: "A. lamb" },
+    { q: "58. The young ones of rabbits are called ________", options: ["A. kid", "B. fryer", "C. duckling", "D. calf"], correct: 'B', text: "B. fryer" },
+    { q: "59. The act of planting flowering plants is called _____________", options: ["A. afforestation", "B. deforestation", "C. horticulture", "D. weathering"], correct: 'C', text: "C. horticulture" },
+    { q: "60. The act of planting trees is called ________", options: ["A. afforestation", "B. horticulture", "C. Mulching", "D. deforestation"], correct: 'A', text: "A. afforestation" }
+];
 
-    // Load questions into HTML
-    const container = document.getElementById('questions-container');
-    questions.forEach((item, index) => {
+// Logic
+let timeLeft = 45 * 60;
+let timerInterval;
+
+const startBtn = document.getElementById('startBtn');
+const introScreen = document.getElementById('introScreen');
+const examContent = document.getElementById('examContent');
+const navbar = document.getElementById('navbar');
+const examForm = document.getElementById('examForm');
+
+// START EXAM
+startBtn.addEventListener('click', () => {
+    const name = document.getElementById('candidateName').value.trim();
+    if (!name) {
+        alert("Please enter your full name to begin.");
+        return;
+    }
+    
+    // Set UI
+    document.getElementById('navName').innerText = "Candidate: " + name;
+    introScreen.classList.add('hidden');
+    examContent.classList.remove('hidden');
+    navbar.classList.remove('hidden');
+    
+    renderQuestions();
+    startTimer();
+});
+
+function renderQuestions() {
+    questionsData.forEach((item, index) => {
+        const qNum = index + 1;
         const qDiv = document.createElement('div');
         qDiv.className = 'question';
-        qDiv.innerHTML = `
-            <p>${index + 1}. ${item.q}</p>
-            <div class="options">
-                ${item.o.map(opt => `
-                    <label>
-                        <input type="radio" name="q${index}" value="${opt}"> ${opt}
-                    </label>
-                `).join('')}
-            </div>
-            <div id="ans${index}" class="result-text"></div>
-        `;
-        container.appendChild(qDiv);
+        qDiv.id = `qBox${qNum}`;
+        
+        let optionsHtml = item.options.map((opt, i) => {
+            const letter = String.fromCharCode(65 + i);
+            return `<label><input type="radio" name="q${qNum}" value="${letter}"> ${opt}</label>`;
+        }).join('');
+
+        qDiv.innerHTML = `<strong>${item.q}</strong><div class="options">${optionsHtml}</div>`;
+        examForm.appendChild(qDiv);
+    });
+}
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        let min = Math.floor(timeLeft / 60);
+        let sec = timeLeft % 60;
+        document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0' + sec : sec}`;
+        
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert("Time is up! Submitting automatically.");
+            submitExam();
+        }
+    }, 1000);
+}
+
+document.getElementById('submitBtn').addEventListener('click', () => {
+    if(confirm("Are you sure you want to submit?")) {
+        submitExam();
+    }
+});
+
+function submitExam() {
+    clearInterval(timerInterval);
+    document.getElementById('submitBtn').disabled = true;
+    
+    let score = 0;
+    const name = document.getElementById('candidateName').value;
+
+    questionsData.forEach((item, index) => {
+        const qNum = index + 1;
+        const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+        const qBox = document.getElementById(`qBox${qNum}`);
+        
+        // Show correct answers
+        const ansDiv = document.createElement('div');
+        ansDiv.className = 'correct-answer-box';
+        ansDiv.innerText = `Correct Answer: ${item.text}`;
+        qBox.appendChild(ansDiv);
+
+        if (selected && selected.value === item.correct) {
+            score++;
+        }
+        
+        // Disable inputs
+        const radios = qBox.querySelectorAll('input');
+        radios.forEach(r => r.disabled = true);
     });
 
-    // Timer Logic
-    let time = 45 * 60;
-    const timerEl = document.getElementById('timer');
-    const countdown = setInterval(() => {
-        let minutes = Math.floor(time / 60);
-        let seconds = time % 60;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-        timerEl.innerHTML = `Time Left: ${minutes}:${seconds}`;
-        if (time <= 0) {
-            clearInterval(countdown);
-            submitQuiz();
-        }
-        time--;
-    }, 1000);
-
-    function submitQuiz() {
-        clearInterval(countdown);
-        let score = 0;
-        questions.forEach((item, index) => {
-            const selected = document.querySelector(`input[name="q${index}"]:checked`);
-            const ansDiv = document.getElementById(`ans${index}`);
-            ansDiv.style.display = "block";
-            
-            if (selected && selected.value === item.a) {
-                score++;
-                ansDiv.innerHTML = `Correct! Answer: ${item.a}`;
-                ansDiv.className = "result-text correct";
-            } else {
-                ansDiv.innerHTML = `Incorrect. Correct answer: ${item.a}`;
-                ansDiv.className = "result-text incorrect";
-            }
-        });
-
-        const scoreDisplay = document.getElementById('score-display');
-        scoreDisplay.style.display = "block";
-        scoreDisplay.innerHTML = `Examination Finished!<br>Your Score: ${score} / ${questions.length}`;
-        window.scrollTo(0, 0);
-        document.getElementById('submit-btn').disabled = true;
-    }
+    const percent = ((score / questionsData.length) * 100).toFixed(1);
+    
+    document.getElementById('candidateResultName').innerText = "Candidate: " + name;
+    document.getElementById('scoreText').innerText = `Score: ${score} / ${questionsData.length}`;
+    document.getElementById('percentage').innerText = `Percentage: ${percent}%`;
+    document.getElementById('result').classList.remove('hidden');
+    
+    navbar.classList.add('hidden'); // Hide sticky timer on results
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
 
 </body>
