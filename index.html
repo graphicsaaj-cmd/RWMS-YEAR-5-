@@ -3,232 +3,231 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ROYAL WUNDERKIND MODEL SCHOOL | Class: Upper Key Stage 2 (year 5) </title>
+    <title>ROYAL WUNDERKIND MODEL SCHOOL - EXAM</title>
     <style>
         :root {
-            --primary-blue: #1976d2;
-            --accent-red: #d32f2f;
-            --light-bg: #f8f9fa;
+            --primary: #1976d2;
+            --primary-dark: #1565c0;
+            --secondary: #2c3e50;
+            --success: #2e7d32;
+            --danger: #d32f2f;
+            --bg: #f4f7f9;
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-bg);
-            line-height: 1.5;
+            background-color: var(--bg);
+            color: #333;
         }
 
-        /* Fixed Navigation Bar */
-        .navbar {
-            position: fixed;
+        /* Sticky Header Bar */
+        .sticky-header {
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
+            z-index: 1000;
             background: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            box-sizing: border-box;
+            border-bottom: 3px solid var(--primary);
         }
 
-        .navbar-info {
-            font-weight: bold;
-            color: #333;
-            font-size: 0.9em;
-        }
-
-        .navbar-timer {
+        .timer-box {
             font-size: 1.3em;
-            color: var(--accent-red);
             font-weight: bold;
+            color: var(--danger);
             background: #ffebee;
-            padding: 5px 15px;
-            border-radius: 20px;
-            border: 1px solid var(--accent-red);
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--danger);
+        }
+
+        .progress-box {
+            font-weight: 600;
+            color: var(--secondary);
         }
 
         .container {
             max-width: 900px;
-            margin: 100px auto 40px; /* Space for sticky nav */
+            margin: 20px auto;
             background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        /* Intro/Login Screen */
-        #introScreen {
+        .header-info {
             text-align: center;
-            padding: 40px 10px;
+            border-bottom: 2px double #eee;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
         }
 
-        .name-input {
-            padding: 12px;
-            width: 80%;
-            max-width: 350px;
-            font-size: 1.1em;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
+        h1 { color: var(--primary); margin: 0; font-size: 1.8em; }
+        h2 { color: var(--secondary); font-size: 1.2em; margin-top: 5px; }
 
         .question {
-            margin-bottom: 28px;
-            padding: 15px;
-            border-left: 4px solid var(--primary-blue);
-            background-color: #f5faff;
-            border-radius: 4px;
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            background-color: #fff;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.1);
+        }
+
+        .question-title {
+            display: block;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--secondary);
         }
 
         .options label {
-            display: block;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
             margin: 8px 0;
+            border: 1px solid #eee;
+            border-radius: 6px;
             cursor: pointer;
-            padding: 8px;
-            border-radius: 4px;
             transition: background 0.2s;
         }
 
-        .options label:hover {
-            background-color: #e3f2fd;
-        }
+        .options label:hover { background-color: #f0f7ff; }
+        .options input { margin-right: 12px; transform: scale(1.2); }
 
-        .correct-answer-display {
-            background-color: #e8f5e9;
-            border-left: 5px solid #4caf50;
+        /* Highlight classes for results */
+        .correct-ans-highlight {
+            background-color: #e8f5e9 !important;
+            border: 1px solid var(--success) !important;
+            color: var(--success);
             padding: 10px;
+            border-radius: 6px;
             margin-top: 10px;
-            color: #2e7d32;
             font-weight: bold;
-        }
-
-        .result {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #fff3e0;
-            border: 2px solid #ff9800;
-            border-radius: 8px;
-            text-align: center;
         }
 
         button {
             display: block;
-            margin: 20px auto;
-            padding: 14px 40px;
+            width: 250px;
+            margin: 40px auto;
+            padding: 15px;
             font-size: 1.1em;
-            background-color: var(--primary-blue);
+            font-weight: bold;
+            background-color: var(--primary);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        button:hover { background-color: #1565c0; }
-        button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        button:hover { background-color: var(--primary-dark); }
+        button:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        #intro-screen {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .result-card {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+        }
 
         .hidden { display: none; }
-
-        @media (max-width: 600px) {
-            .navbar { flex-direction: column; text-align: center; height: auto; padding: 5px; }
-            .container { margin-top: 130px; }
-        }
     </style>
 </head>
 <body>
 
-<nav id="navbar" class="navbar hidden">
-    <div class="navbar-info">
-        <span id="navCandidateName">Candidate: </span><br>
-        <small>English Grammar | Class: Upper Key Stage 2 (year 5)</small>
+<div id="intro-screen" class="container">
+    <div class="header-info">
+        <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+        <h2>TERM TWO EXAMINATION | 2025/2026</h2>
+        <p><strong>Subject:</strong> SOCIAL AND CITIZENSHIP STUDIES (Year 5)</p>
     </div>
-    <div class="navbar-timer" id="timer">45:00</div>
-</nav>
+    <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <p><strong>Questions:</strong> 60 Multiple Choice</p>
+        <p><strong>Time Limit:</strong> 45 Minutes</p>
+        <p>Ensure you have a stable connection and are ready to begin.</p>
+    </div>
+    <button id="startBtn">Start Examination Now</button>
+</div>
 
-<div class="container">
-    <div id="introScreen">
-        <div class="header">
-            <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-            <h2>TERM TWO EXAMINATION</h2>
-            <p><strong>Subject:</strong> ENGLISH GRAMMAR | Class: Upper Key Stage 2 (year 5)</p>
-        </div>
-        <h3>Enter Your Full Name to Begin</h3>
-        <input type="text" id="candidateName" class="name-input" placeholder="Full Name..." required>
-        <button id="startBtn">Start Examination</button>
+<div id="exam-content" class="hidden">
+    <div class="sticky-header">
+        <div class="progress-box">Answered: <span id="answeredCount">0</span> / 60</div>
+        <div class="timer-box" id="timer">45:00</div>
     </div>
 
-    <div id="examContent" class="hidden">
-        <div class="header">
-            <p><strong>INSTRUCTION:</strong> Choose the correct option for each question.</p>
+    <div class="container">
+        <div class="header-info">
+            <h1>SOCIAL & CITIZENSHIP STUDIES</h1>
+            <p>Year 5 - Upper Key Stage 2</p>
         </div>
 
-        <form id="examForm">
-            </form>
+        <form id="examForm"></form>
 
-        <button id="submitBtn" type="button">Submit Exam</button>
+        <button id="submitBtn" type="button">Submit Final Answers</button>
 
-        <div id="result" class="result hidden">
+        <div id="result" class="result-card hidden">
             <h2>Examination Result</h2>
-            <p id="resultName" style="font-weight: bold;"></p>
-            <p id="scoreText" style="font-size: 1.4em;"></p>
-            <p id="percentage" style="font-weight: bold; color: var(--primary-blue);"></p>
-            <hr>
-            <p><em>Check the correct answers highlighted below.</em></p>
+            <h1 id="scoreDisplay" style="font-size: 3em; margin: 10px 0;">0/60</h1>
+            <p id="percentageDisplay" style="font-size: 1.5em; color: var(--secondary);"></p>
+            <p>Review your answers below.</p>
         </div>
     </div>
 </div>
 
 <script>
-const correctAnswers = ['A', 'C', 'B', 'D', 'B', 'B', 'B', 'B', 'A', 'B', 'A', 'B', 'A', 'C', 'D', 'B', 'A', 'A', 'B', 'B', 'B', 'A', 'B', 'C', 'A', 'B', 'B', 'A', 'B', 'B'];
-const correctTexts = ["A. quickly", "C. happily", "B. softly", "D. beautifully", "B. outside", "B. goes", "B. works", "B. rises", "A. do", "B. teaches", "A. She said that she was tired.", "B. John said that he would come the next day.", "A. The teacher told us to close the door.", "C. that", "D. who", "B. which", "A. isn’t she", "A. do we", "B. didn’t she", "B. lion", "B. bird", "A. The cake was eaten by Mary.", "B. The maize was planted by the farmer.", "C. sad", "A. small", "B. but", "B. so", "A. because of", "B. but", "B. or"];
+// Data arrays (Keep your original data)
+const correctAnswers = ['D','B','B','B','B','D','C','A','C','D','D','B','C','B','D','D','B','B','A','A','D','B','B','B','C','D','C','B','A','A','A','C','C','B','A','C','D','D','A','C','D','A','C','A','C','B','C','B','D','A','D','A','D','A','A','A','A','C','A','D'];
+const correctTexts = ["D. Month","B. Wages","B. Dividend","B. Pension","B. Pension","D. Communication","C. Sign language","A. Employment","C. land","D. Pick pocketing","D. All of above","C. Unemployment","C. Land transportation","B. Britain","D. 1955","D. Being always happy with himself.","B. Fax","B. transportation","A. Electronic mail","A. Satellite","D. Tolerance","B. Gender discrimination","B. Sex roles","B. Nature","C. Africa","D. Proper campaign and enlightenment","C. Peace education","B. A vandal","A. War","A. Propaganda","A. Vandalism","C. Cooperation","C. Ethnicism","B. Humility","A. Forgiveness","C. Tolerance and cooperation","D. All of the above","D. Ethnic or cultural difference","A. National unity","C. Happiness","D. None of the above","A. Denial of equality","C. Abolished","A. A television","C. World Wide Web","B. Computer engineer","C. USA","B. Charles Babbage","D. Alexander Graham Bell","A. A live match","D. Personal Identification Number","A. 199","D. Government","A. 3","A. Local government","A. Trunk A","A. Corruption","C. Federal government","A. Paying our taxes promptly","D. Wages and salaries"];
+const questions = ["1. Salaries are usually paid at the end of a _______","2. _______ is paid according to the numbers of hours, days or week that a person works.","3. _______ is the part of the profit which companies pay their shareholders.","4. _______ is paid to retired government and some private works on a monthly basis.","5. _______ is a percentage of a person’s former salary and allowance.","6. Talking with people in such a way that they will understand what we say to them is known as _______.","7. People who are very far from one another can communicate through _______ medium.","8. Having a job or work to do to earn a living is called _______.","9. Through _______ transport, we can move from one place to another with vehicles","10. All the following are types of good job except _______","11. _______ are a common occurrence in land transportation.","12. A situation where a person is qualified and ready to work but cannot get a job to do is _______.","13. The commonest means of transport in Nigeria is _______.","14. Rail transportation was established in Nigeria by _______.","15. The Nigeria railway corporation was established in year_______.","16. An unemployed person could be any of the following except _______.","17. A machine that can be used to send written message over a long distance is called _______.","18. The movement of people and goods from one place to another is called _______.","19. E-mail means _______.","20. _______ are objects placed in space which helps to transmit data or information from one part of the earth to another.","21. Allowing other people to live in the ways they see it without disturbing the peace and order of society is called _______.","22. _______ occurs when people are denied their rights and access to resources because of their sex.","23. _______ are roles prescribed or assigned to men and women by nature.","24. Sex roles are prescribed by _______.","25. Gender discrimination is common in _______.","26. The problem of gender discrimination can be best solved through _______.","27. _______ is concerned with preparing people with the right knowledge, attitude and skills, so as to maintain friendly relations with other people.","28. _______ is anyone who destroys public property.","29. _______ will lead to great loss of lives, property and destruction of society.","30. Peacemaking skills include all the following except _______.","31. The act of destroying public property is called _______.","32. The act of working together willingly without being forced to do so, to achieve results is called _______.","33. Relating only to those people who are of the same ethic group with us and disregarding other People is _______.","34. The act of not being proud or disrespectful to others and not being selfish when relating to other people is _______.","35. _______ is when we stop being angry and forgiving someone who has offended us.","36. Two important elements of peace are _______.","37. When economic activities are disrupted, it will lead to _______.","38. To promote national unity, we must stop emphasizing on _______.","39. When people of different ethnic groups and cultures within a country live together in peace. It is called _______.","40. Which of these is not a value of patriotism?","41. Gender discrimination can occur in the following areas except _______.","42. Gender discrimination can also lead to _______.","43. Some cultural practices in Nigeria that promotes gender discrimination must be _______.","44. _______ is an electronic devices in which we can hear the voice and see the motion picture of the message and information.","45. WWW means _______.","46. Someone who repairs faulty computers is known as a _______.","47. Which of the following countries invented the internet?","48. The computer system was invented by _______.","49. Telephone was invented by _______.","50. Watching a football match as it being played in another country through a television is called watching _______.","51. The full meaning of PIN _______.","52. The police emergency telephone number in Nigeria is _______.","53. __________ is the group of people given power and authority to make, interpret and execute the laws in society","54. There are __________ levels of government in Nigeria","55. The closest level of government to the people is the __________","56. The types of roads constructed by the Federal government is called __________ roads","57. One of the following is not a quality of a good government.","58. The highest level of government to the people is the __________","59. We can assist the government by __________","60. When one does a job, one is paid ____________"];
+const optionsList = [["A. Week", "B. Day", "C. Years", "D. Month"],["A. Salaries", "B. Wages", "C. Pensions", "D. Rates"],["A. Interest", "B. Dividend", "C. Wages", "D. Company profit"],["A. Gravity", "B. Pension", "C. Salary", "D. Wages"],["A. Gravity", "B. Pension", "C. Wage", "D. Dividend"],["A. Talking", "B. Discussion", "C. Instruction", "D. Communication"],["A. Electric", "B. Oceanic", "C. Sign language", "D. Face to face contracts"],["A. Employment", "B. Hand job", "C. Job work", "D. Worked"],["A. Space", "B. Air", "C. land", "D. Water"],["A. Mining", "B. Interesting decoration", "C. Dressmaking", "D. Pick pocketing"],["A. Accidents", "B. Armed robbery", "C. Traffic jam", "D. All of above"],["A. Laziness to find work", "B. Over unemployment", "C. Unemployment", "D. Under employment"],["A. Rail transportation", "B. Air transportation", "C. Land transportation", "D. Water transportation"],["A. USA", "B. Britain", "C. France", "D. South Africa"],["A. 1888", "B. 1890", "C. 1800", "D. 1955"],["A. A petty thief", "B. A drug abuse victim", "C. Being dependent on others for survival", "D. Being always happy with himself."],["A. telephone", "B. Fax", "C. Facet", "D. Bar code"],["A. movement", "B. transportation", "C. ferrying", "D. communication"],["A. Electronic mail", "B. Exceptional mail", "C. Encrypted message", "D. Encrypted mail"],["A. Satellite", "B. Fax", "C. Telephone", "D. Radio"],["A. Life sustenance", "B. Equality", "C. Allowance", "D. Tolerance"],["A. Racial discrimination", "B. Gender discrimination", "C. Sexual harassment", "D. Ethnic violence"],["A. Gender roles", "B. Sex roles", "C. Government roles", "D. People roles"],["A. Government", "B. Nature", "C. Group", "D. Society"],["A. USA", "B. Europe", "C. Africa", "D. Australia"],["A. Women going to university", "B. Women becoming head of the family", "C. Men becoming pregnant", "D. Proper campaign and enlightenment"],["A. Conflict education", "B. Community education", "C. Peace education", "D. Religious studies"],["A. A panda", "B. A vandal", "C. A wander", "D. A destroyer"],["A. War", "B. Peace", "C. Education", "D. Peace education"],["A. Propaganda", "B. Mediation", "C. Negotiation", "D. Dialogue"],["A. Vandalism", "B. Protest", "C. Destruction", "D. Public demonstration"],["A. Forgiveness", "B. Willingness", "C. Cooperation", "D. Self-reliance"],["A. Tolerance", "B. Brotherliness", "C. Ethnicism", "D. One state"],["A. Cooperation", "B. Humility", "C. Self-reliance", "D. Pensive"],["A. Forgiveness", "B. Honesty", "C. Submission", "D. Temperature"],["A. Wealth and poverty", "B. Peace and cooperation", "C. Tolerance and cooperation", "D. Endurance and injustice"],["A. Loss of job", "B. Poor investment", "C. Loss of property", "D. All of the above"],["A. Peace", "B. Progress", "C. Humility", "D. Ethnic or cultural difference"],["A. National unity", "B. National coalition", "C. National cooperation", "D. Unionism"],["A. Respect", "B. Courage", "C. Happiness", "D. Cooperation"],["A. Politics", "B. Inheritance", "C. Employment", "D. None of the above"],["A. Denial of equality", "B. Giving of equal opportunities", "C. Friendliness", "D. Mutual understanding"],["A. Encouraged", "B. Promoted", "C. Abolished", "D. Re-introduced"],["A. A television", "B. A radio", "C. A telephone", "D. A telegraph"],["A. We Will Win", "B. Win World War", "C. World Wide Web", "D. World War Web"],["A. Computer repairer", "B. Computer engineer", "C. Computer programmer", "D. All of the above"],["A. Russia", "B. Britain", "C. USA", "D. Nigeria"],["A. Charles Darwin", "B. Charles Babbage", "C. Bill Gates", "D. Barak Obama"],["A. Michael Faraday", "B. Orville Wright", "C. MTN", "D. Alexander Graham Bell"],["A. A live match", "B. A life match", "C. Premiership match", "D. A replay match"],["A. Password Identification Number", "B. Private Identification Number", "C. Personal Identity Number", "D. Personal Identification Number"],["A. 199", "B. 080", "C. 911", "D. 999"],["A. Agency", "B. Parastatal", "C. Police", "D. Government"],["A. 3", "B. 4", "C. 5", "D. 2"],["A. Local government", "B. Federal government", "C. Community government", "D. State government"],["A. Trunk A", "B. Trunk B", "C. Trunk C", "D. Grade A"],["A. Corruption", "B. Accounting", "C. Honesty", "D. Transparency"],["A. Local government", "B. State government", "C. Federal government", "D. Community government"],["A. Paying our taxes promptly", "B. vandalizing government property", "C. Evading taxes", "D. public protest"],["A. Pension", "B. Gratuity", "C. Dividend", "D. Wages and salaries"]];
 
-const questions = [
-    "1. The children played ______.", "2. The dog followed me ______.", "3. She spoke ______ during the meeting.", "4. She sang _________", "5. Kola is playing ________", "6. She ______ to school every day.", "7. My father ______ in a bank.", "8. The sun ______ in the east.", "9. We ______ our homework in the evening.", "10. A teacher ______ lessons daily.", "11. She said, “I am tired.”", "12. John said, “I will come tomorrow.”", "13. The teacher said, “Close the door.”", "14. This is the book ______ I borrowed.", "15. That is the girl ______ took my pen.", "16. This is the car ______ my father bought.", "17. She is coming, ______?", "18. We don’t have any homework, ______?", "19. Deborah arrived late, ______?", "20. He is as brave as a ______.", "21. She sings like a ______.", "22. Mary ate the cake.", "23. The farmer planted the maize.", "24. The opposite of happy is", "25. The opposite of big is", "26. I wanted to go, ______ it was raining.", "27. She studied hard ______ she passed the exam.", "28. We stayed indoors ______ the storm.", "29. Zainab ate some cake _____ she didn’t eat any ice-cream", "30. My mother told us to either go to the shop ____ stay at home"
-];
-
-const optionsList = [
-    ["A. quickly", "B. table", "C. book", "D. school"], ["A. loudly", "B. here", "C. happily", "D. slowly"], ["A. soft", "B. softly", "C. softness", "D. softer"], ["A. under", "B. rough", "C. sad", "D. beautifully"], ["A. hardest", "B. outside", "C. quicker", "D. quickest"], ["A. go", "B. goes", "C. going", "D. went"], ["A. work", "B. works", "C. worked", "D. working"], ["A. rise", "B. rises", "C. rose", "D. rising"], ["A. do", "B. does", "C. did", "D. doing"], ["A. teach", "B. teaches", "C. teaching", "D. taught"], ["A. She said that she was tired.", "B. She says she is tired.", "C. She said she is tired.", "D. She says that she was tired."], ["A. John said that he will come tomorrow.", "B. John said that he would come the next day.", "C. John says he would come tomorrow.", "D. John said he come tomorrow."], ["A. The teacher told us to close the door.", "B. The teacher said close the door.", "C. The teacher says to close the door.", "D. The teacher told close the door."], ["A. who", "B. whose", "C. that", "D. whom"], ["A. whose", "B. which", "C. why", "D. who"], ["A. who", "B. which", "C. why", "D. whom"], ["A. isn’t she", "B. is she", "C. doesn’t she", "D. did she"], ["A. do we", "B. don’t they", "C. did they", "D. aren’t they"], ["A. aren’t you", "B. didn’t she", "C. don’t you", "D. won’t you"], ["A. goat", "B. lion", "C. rat", "D. cat"], ["A. stone", "B. bird", "C. shoe", "D. box"], ["A. The cake was eaten by Mary.", "B. The cake is eaten by Mary.", "C. The cake eats Mary.", "D. Mary was eaten by the cake."], ["A. The maize is planted by the farmer.", "B. The maize was planted by the farmer.", "C. The maize planted the farmer.", "D. The farmer was planted."], ["A. glad", "B. joyful", "C. sad", "D. excited"], ["A. small", "B. tall", "C. wide", "D. large"], ["A. and", "B. but", "C. because", "D. so"], ["A. because", "B. so", "C. but", "D. although"], ["A. because of", "B. and", "C. but", "D. or"], ["A. Or", "B. but", "C. and", "D. they"], ["A. nor", "B. or", "C. and", "D. then"]
-];
-
+const form = document.getElementById('examForm');
 let timeLeft = 45 * 60;
 let timerInterval;
 
 // Start Logic
 document.getElementById('startBtn').addEventListener('click', () => {
-    const name = document.getElementById('candidateName').value.trim();
-    if (!name) return alert("Please enter your name.");
-
-    document.getElementById('navCandidateName').innerText = "Candidate: " + name;
-    document.getElementById('introScreen').classList.add('hidden');
-    document.getElementById('navbar').classList.remove('hidden');
-    document.getElementById('examContent').classList.remove('hidden');
-    
-    generateQuestions();
+    document.getElementById('intro-screen').classList.add('hidden');
+    document.getElementById('exam-content').classList.remove('hidden');
+    initExam();
     startTimer();
 });
 
-function generateQuestions() {
-    const form = document.getElementById('examForm');
+function initExam() {
     questions.forEach((qText, index) => {
         const qNum = index + 1;
         const div = document.createElement('div');
         div.className = 'question';
         div.id = `q${qNum}`;
-        let html = `<strong>${qText}</strong><div class="options">`;
+
+        let html = `<span class="question-title">${qText}</span>`;
+        html += `<div class="options">`;
         optionsList[index].forEach((opt, i) => {
             const letter = String.fromCharCode(65 + i);
-            html += `<label><input type="radio" name="q${qNum}" value="${letter}"> ${opt}</label>`;
+            html += `
+                <label>
+                    <input type="radio" name="q${qNum}" value="${letter}" onchange="updateProgress()">
+                    ${opt}
+                </label>`;
         });
         html += `</div>`;
         div.innerHTML = html;
@@ -236,47 +235,65 @@ function generateQuestions() {
     });
 }
 
+function updateProgress() {
+    const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+    document.getElementById('answeredCount').textContent = answered;
+}
+
 function startTimer() {
     timerInterval = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        document.getElementById('timer').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            submitExam();
+        }
         timeLeft--;
-        const min = Math.floor(timeLeft / 60);
-        const sec = timeLeft % 60;
-        document.getElementById('timer').textContent = `${min}:${sec.toString().padStart(2, '0')}`;
-        if (timeLeft <= 0) submitExam();
     }, 1000);
 }
 
 document.getElementById('submitBtn').addEventListener('click', () => {
-    if(confirm("Are you sure you want to submit?")) submitExam();
+    if(confirm("Are you sure you want to submit your exam?")) {
+        submitExam();
+    }
 });
 
 function submitExam() {
     clearInterval(timerInterval);
     document.getElementById('submitBtn').disabled = true;
-    let score = 0;
-    const name = document.getElementById('candidateName').value;
+    document.getElementById('submitBtn').textContent = "Exam Submitted";
 
+    let score = 0;
     questions.forEach((_, index) => {
         const qNum = index + 1;
         const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
-        const qDiv = document.getElementById(`q${qNum}`);
-        if (selected && selected.value === correctAnswers[index]) score++;
+        const questionDiv = document.getElementById(`q${qNum}`);
         
-        const ansBox = document.createElement('div');
-        ansBox.className = 'correct-answer-display';
-        ansBox.innerText = `Correct Answer: ${correctTexts[index]}`;
-        qDiv.appendChild(ansBox);
+        const correctText = correctTexts[index];
+        const correctLetter = correctAnswers[index];
+
+        // Highlight correct answer
+        const feedback = document.createElement('div');
+        feedback.className = 'correct-ans-highlight';
+        feedback.textContent = `Correct Answer: ${correctText}`;
+        questionDiv.appendChild(feedback);
+
+        if (selected && selected.value === correctLetter) {
+            score++;
+        }
         
-        qDiv.querySelectorAll('input').forEach(r => r.disabled = true);
+        const radios = questionDiv.querySelectorAll('input[type="radio"]');
+        radios.forEach(r => r.disabled = true);
     });
 
-    document.getElementById('resultName').innerText = "Student: " + name;
-    document.getElementById('scoreText').innerText = `You scored ${score} / ${questions.length}`;
-    document.getElementById('percentage').innerText = `Percentage: ${((score/questions.length)*100).toFixed(1)}%`;
+    const percentage = ((score / questions.length) * 100).toFixed(1);
+    document.getElementById('scoreDisplay').textContent = `${score} / ${questions.length}`;
+    document.getElementById('percentageDisplay').textContent = `Percentage: ${percentage}%`;
     document.getElementById('result').classList.remove('hidden');
-    document.getElementById('navbar').classList.add('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
 }
 </script>
+
 </body>
 </html>
