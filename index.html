@@ -1,115 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>RWMS - YEAR 5 PHE EXAM</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWMS Year 5 French Exam</title>
     <style>
         :root {
-            --primary: #2e7d32; /* Health Green */
-            --primary-dark: #1b5e20;
-            --secondary: #0277bd; /* Medical Blue */
-            --danger: #d32f2f;
-            --bg: #f4f7f4;
+            --fr-blue: #002395;
+            --fr-white: #ffffff;
+            --fr-red: #ED2939;
+            --bg: #f8f9fa;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
             margin: 0;
             padding: 0;
-            background-color: var(--bg);
             color: #333;
         }
 
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 10px 20px;
+        /* French Flag Header */
+        .flag-header {
+            height: 12px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 3px solid var(--primary);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 2000;
         }
-
-        .timer-box {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: var(--danger);
-            background: #ffebee;
-            padding: 8px 15px;
-            border-radius: 8px;
-            border: 1px solid var(--danger);
-        }
+        .flag-blue { background: var(--fr-blue); flex: 1; }
+        .flag-white { background: var(--fr-white); flex: 1; }
+        .flag-red { background: var(--fr-red); flex: 1; }
 
         .container {
-            max-width: 850px;
-            margin: 20px auto;
+            max-width: 900px;
+            margin: 40px auto;
             background: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        .header-info {
+        .header-text {
             text-align: center;
-            border-bottom: 2px double #eee;
+            border-bottom: 2px solid #eee;
             margin-bottom: 30px;
             padding-bottom: 20px;
         }
 
-        .question {
+        .header-text h1 { color: var(--fr-blue); margin: 0; font-size: 24px; }
+        .header-text h2 { color: var(--fr-red); margin: 5px 0; font-size: 18px; }
+
+        /* Login Screen */
+        #login-screen { text-align: center; }
+        .input-box {
+            padding: 15px;
+            width: 80%;
+            max-width: 400px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 18px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+        .input-box:focus { border-color: var(--fr-blue); }
+
+        /* Sticky Timer Bar */
+        .sticky-bar {
+            position: sticky;
+            top: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--fr-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .timer-display {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--fr-red);
+            background: #fff0f0;
+            padding: 5px 20px;
+            border-radius: 50px;
+            border: 2px solid var(--fr-red);
+        }
+
+        .candidate-name-display { font-weight: 600; color: var(--fr-blue); }
+
+        /* Quiz Layout */
+        .section-title {
+            background: var(--fr-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            margin: 30px 0 15px 0;
+        }
+
+        .question-block {
             margin-bottom: 25px;
             padding: 20px;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
             background: #fff;
+            border: 1px solid #eef0f2;
+            border-left: 5px solid var(--fr-blue);
+            border-radius: 8px;
         }
 
         .options label {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            margin: 8px 0;
-            border: 1px solid #eee;
-            border-radius: 6px;
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f9f9f9;
+            border-radius: 5px;
             cursor: pointer;
             transition: 0.2s;
         }
 
-        .options label:hover { background-color: #f1f8e9; }
-        .options input { margin-right: 12px; transform: scale(1.2); }
+        .options label:hover { background: #eef4ff; }
+        .options input { margin-right: 10px; }
 
-        .correct-ans-highlight {
-            background-color: #e8f5e9;
-            border: 1px solid #2e7d32;
-            color: #1b5e20;
-            padding: 10px;
-            border-radius: 6px;
-            margin-top: 10px;
+        .btn {
+            padding: 15px 40px;
+            font-size: 18px;
             font-weight: bold;
-        }
-
-        .name-input {
-            padding: 15px;
-            width: 80%;
-            max-width: 400px;
-            border: 2px solid var(--primary);
-            border-radius: 10px;
-            font-size: 1.1em;
-            margin: 20px 0;
-        }
-
-        button {
-            display: block;
-            width: 280px;
-            margin: 30px auto;
-            padding: 15px;
-            font-size: 1.1em;
-            font-weight: bold;
-            background-color: var(--primary);
             color: white;
             border: none;
             border-radius: 8px;
@@ -117,213 +136,203 @@
             transition: 0.3s;
         }
 
-        button:hover { background-color: var(--primary-dark); }
-
-        .result-card {
-            background: #e3f2fd;
-            border: 2px solid var(--secondary);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-        }
+        .btn-start { background: var(--fr-blue); }
+        .btn-submit { background: var(--fr-red); display: block; margin: 40px auto; width: 100%; max-width: 300px; }
 
         .hidden { display: none; }
+
+        /* Results Card */
+        .result-card {
+            text-align: center;
+            padding: 40px;
+            background: #e7f3ff;
+            border-radius: 12px;
+            border: 2px solid var(--fr-blue);
+        }
+
+        .correction { color: var(--fr-blue); font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
 
+<div class="flag-header">
+    <div class="flag-blue"></div>
+    <div class="flag-white"></div>
+    <div class="flag-red"></div>
+</div>
+
 <div id="login-screen" class="container">
-    <div class="header-info">
+    <div class="header-text">
         <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-        <h2>PHYSICAL & HEALTH EDUCATION | YEAR 5</h2>
-        <p>Term Two Examination | 2025/2026 Session</p>
+        <h2>FRENCH EXAMINATION - YEAR 5</h2>
+        <p>Academic Session: 2025/2026</p>
     </div>
-    <div style="text-align: center;">
-        <h3>Student Examination Login</h3>
-        <input type="text" id="studentName" class="name-input" placeholder="Enter Full Name" autocomplete="off">
-        <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 20px auto; max-width: 400px; border: 1px solid var(--primary);">
-            <p><strong>Total Questions:</strong> 60</p>
-            <p><strong>Time Allowed:</strong> 45 Minutes</p>
-        </div>
-        <button onclick="startExam()">Start Examination</button>
-    </div>
+    <p>Please enter your Full Name to begin the examination.</p>
+    <input type="text" id="candidateName" class="input-box" placeholder="Your Full Name">
+    <br>
+    <button class="btn btn-start" onclick="startExam()">Commencer l'Examen</button>
 </div>
 
 <div id="exam-screen" class="hidden">
-    <div class="sticky-header">
-        <div><strong>Student:</strong> <span id="displayName"></span></div>
-        <div style="color: var(--secondary);">Progress: <span id="progress">0</span>/60</div>
-        <div class="timer-box" id="timer">45:00</div>
+    <div class="sticky-bar">
+        <div class="candidate-name-display" id="displayName">Candidate: </div>
+        <div class="timer-display" id="timer">45:00</div>
     </div>
 
     <div class="container">
-        <form id="quizForm"></form>
-        <button id="submitBtn" onclick="gradeExam(true)">Submit My Examination</button>
+        <form id="quizForm">
+            </form>
+        <button class="btn btn-submit" onclick="submitExam()">Final Submit</button>
 
-        <div id="result-box" class="result-card hidden">
-            <h2>Examination Result</h2>
-            <h1 id="scoreVal" style="font-size: 4em; color: var(--primary); margin: 10px 0;">0/60</h1>
-            <p id="percentVal" style="font-size: 1.5em; font-weight: bold;"></p>
-            <p>Review your answers below.</p>
+        <div id="results" class="result-card hidden">
+            <h2>Resultat Final</h2>
+            <h1 id="scoreDisplay" style="font-size: 48px;"></h1>
+            <p id="percentDisplay"></p>
+            <p>Review your corrections below.</p>
         </div>
     </div>
 </div>
 
 <script>
-const quizQuestions = [
-    { q: "The human body is made up of many different ______", o: ["machines", "body parts", "animals", "stones"], a: 1, t: "body parts" },
-    { q: "Each body part has a special ______ and function.", o: ["colour", "structure", "smell", "sound"], a: 1, t: "structure" },
-    { q: "The ear is the sense organ responsible for ______", o: ["smelling", "hearing", "tasting", "touching"], a: 1, t: "hearing" },
-    { q: "The part of the ear that is visible is the ______", o: ["inner ear", "middle ear", "outer ear", "brain"], a: 2, t: "outer ear" },
-    { q: "The nose helps the body maintain ______", o: ["breathing", "balance", "digestion", "movement"], a: 0, t: "breathing" },
-    { q: "Inserting sharp objects into the ear can ______ it.", o: ["protect", "clean", "damage", "strengthen"], a: 2, t: "damage" },
-    { q: "The ______ is the largest organ in the body.", o: ["heart", "skin", "ear", "eye"], a: 1, t: "skin" },
-    { q: "The skin helps to control body ______", o: ["height", "colour", "temperature", "size"], a: 2, t: "temperature" },
-    { q: "The skin protects the body from ______", o: ["toys", "germs", "books", "water"], a: 1, t: "germs" },
-    { q: "Bathing regularly helps keep the ______ healthy", o: ["hair", "teeth", "skin", "nose"], a: 2, t: "skin" },
-    { q: "Hair grows mainly on the ______", o: ["hand", "scalp", "ear", "foot"], a: 1, t: "scalp" },
-    { q: "Hair helps protect the head from ______", o: ["cold and heat", "rain only", "sand only", "water only"], a: 0, t: "cold and heat" },
-    { q: "Dirty combs can cause ______", o: ["healthy hair", "hair problems", "long hair", "shiny hair"], a: 1, t: "hair problems" },
-    { q: "The organs used for seeing are the ______", o: ["ears", "eyes", "nose", "tongue"], a: 1, t: "eyes" },
-    { q: "The eyes help us to see ______ and shapes", o: ["colours", "smells", "sounds", "heat"], a: 0, t: "colours" },
-    { q: "Reading under good ______ protects the eyes", o: ["sound", "light", "water", "wind"], a: 1, t: "light" },
-    { q: "The mouth is part of the ______ system.", o: ["breathing", "digestive", "nervous", "muscular"], a: 1, t: "digestive" },
-    { q: "Teeth help to ______ food.", o: ["wash", "chew", "throw", "smell"], a: 1, t: "chew" },
-    { q: "Brushing the teeth should be done at least ______ daily.", o: ["once", "twice", "three times", "four times"], a: 1, t: "twice" },
-    { q: "Nails protect the ______ of the fingers and toes.", o: ["bones", "tips", "muscles", "skin"], a: 1, t: "tips" },
-    { q: "Nails should be trimmed using ______", o: ["scissors", "knife", "nail cutter", "spoon"], a: 2, t: "nail cutter" },
-    { q: "Biting the nails is a ______ habit.", o: ["good", "healthy", "bad", "helpful"], a: 2, t: "bad" },
-    { q: "Taking good care of body parts helps prevent ______.", o: ["learning", "diseases", "growth", "exercise"], a: 1, t: "diseases" },
-    { q: "Good personal hygiene helps us remain ______", o: ["dirty", "weak", "healthy", "lazy"], a: 2, t: "healthy" },
-    { q: "A School Health Programme helps protect the ______ of pupils.", o: ["books", "health", "clothes", "desks"], a: 1, t: "health" },
-    { q: "Health instruction teaches pupils about ______ living.", o: ["dirty", "healthy", "careless", "slow"], a: 1, t: "healthy" },
-    { q: "Medical care provided in school is called ______ services.", o: ["health", "food", "sports", "teaching"], a: 0, t: "health" },
-    { q: "A clean classroom is part of a healthy school ______.", o: ["subject", "programme", "environment", "rule"], a: 2, t: "environment" },
-    { q: "Nutrition services provide ______ meals for pupils.", o: ["dirty", "balanced", "stale", "cold"], a: 1, t: "balanced" },
-    { q: "Physical education includes activities such as ______", o: ["reading", "running", "writing", "drawing"], a: 1, t: "running" },
-    { q: "Pollution means the ______ of the environment.", o: ["cleaning", "contamination", "decoration", "protection"], a: 1, t: "contamination" },
-    { q: "Smoke in the air causes ______ pollution.", o: ["land", "air", "water", "noise"], a: 1, t: "air" },
-    { q: "Throwing waste carelessly is called ______.", o: ["cleaning", "littering", "sweeping", "washing"], a: 1, t: "littering" },
-    { q: "Recycling helps reduce ______.", o: ["waste", "water", "air", "land"], a: 0, t: "waste" },
-    { q: "Waste should be disposed in ______.", o: ["dustbins", "bags", "boxes", "rooms"], a: 0, t: "dustbins" },
-    { q: "Mental health refers to a person's ______ well-being.", o: ["physical", "emotional", "social", "financial"], a: 1, t: "emotional" },
-    { q: "A person with good mental health can think ______", o: ["slowly", "clearly", "wrongly", "poorly"], a: 1, t: "clearly" },
-    { q: "Social health is the ability to interact with ______", o: ["machines", "animals", "people", "trees"], a: 2, t: "people" },
-    { q: "Making good friends improves ______ health", o: ["physical", "social", "financial", "economic"], a: 1, t: "social" },
-    { q: "Too much ______ can affect the mind and body", o: ["Leisure", "stone", "stress", "recreation"], a: 2, t: "stress" },
-    { q: "Gymnastics improves body ______", o: ["balance", "weight", "height", "colour"], a: 0, t: "balance" },
-    { q: "A forward roll is a ______ activity", o: ["tumbling", "singing", "drawing", "reading"], a: 0, t: "tumbling" },
-    { q: "A cartwheel requires body ______", o: ["weakness", "strength", "sleep", "silence"], a: 1, t: "strength" },
-    { q: "Gymnastics helps improve body ______", o: ["laziness", "coordination", "sickness", "noise"], a: 1, t: "coordination" },
-    { q: "Stretching exercises improve body ______", o: ["flexibility", "sickness", "tiredness", "weight"], a: 0, t: "flexibility" },
-    { q: "Jumping helps strengthen the ______ muscles", o: ["arm", "leg", "neck", "ear"], a: 1, t: "leg" },
-    { q: "Balancing means maintaining body ______", o: ["beauty", "stability", "weakness", "weight"], a: 1, t: "stability" },
-    { q: "Rolling involves turning the body on the ______", o: ["wall", "ground", "chair", "desk"], a: 1, t: "ground" },
-    { q: "Traditional dances reflect the ______ of a people", o: ["language", "culture", "money", "school"], a: 1, t: "culture" },
-    { q: "Traditional dances are usually performed during ______", o: ["festivals and ceremonies", "reading", "sleeping", "studying"], a: 0, t: "festivals and ceremonies" },
-    { q: "Local musical instruments used in traditional dances include ______", o: ["drums", "books", "pencils", "rulers"], a: 0, t: "drums" },
-    { q: "Modern dances are influenced by ______ music", o: ["traditional", "modern", "ancient", "classical"], a: 1, t: "modern" },
-    { q: "Examples of modern dance include ______", o: ["football", "hip-hop", "farming", "swimming"], a: 1, t: "hip-hop" },
-    { q: "Camping is an/a ______ activity", o: ["indoor", "outdoor", "classroom", "office"], a: 1, t: "outdoor" },
-    { q: "During camping, people often stay in ______", o: ["houses", "tents", "cars", "buses"], a: 1, t: "tents" },
-    { q: "Camping helps develop ______ and teamwork", o: ["fighting", "survival skills", "laziness", "noise"], a: 1, t: "survival skills" },
-    { q: "Computer games are played on ______ devices.", o: ["wooden", "digital", "paper", "metal"], a: 1, t: "digital" },
-    { q: "Computer games can improve ______ skills.", o: ["cooking", "problem-solving", "farming", "washing"], a: 1, t: "problem-solving" },
-    { q: "Computer games should be played in ______", o: ["excess", "moderation", "silence", "darkness"], a: 1, t: "moderation" },
-    { q: "Recreation and leisure activities help reduce ______", o: ["happiness", "stress", "learning", "strength"], a: 1, t: "stress" }
+const examData = [
+    { s: "A. Se présenter (Introducing Yourself)", q: "Comment dit-on “My name is John” en français ?", o: ["Je suis John", "Je m’appelle John", "Bonjour John", "Merci John"], a: "B" },
+    { q: "“Bonjour” veut dire", o: ["Good night", "Good morning", "Goodbye", "Sorry"], a: "B" },
+    { q: "Pour dire “I am a pupil” on dit", o: ["Je suis élève", "Je suis professeur", "Je suis père", "Je suis mère"], a: "A" },
+    { q: "Comment demande-t-on le nom de quelqu’un ?", o: ["Comment ça va ?", "Comment tu t’appelles ?", "Où habites-tu ?", "Quel âge as-tu ?"], a: "B" },
+    { q: "“J’ai dix ans” veut dire", o: ["I am ten years old", "I am twelve years old", "I am nine years old", "I am eight years old"], a: "A" },
+    { q: "“Au revoir” veut dire", o: ["Good evening", "Goodbye", "Hello", "Thank you"], a: "B" },
+    { s: "B. Les objets dans la classe", q: "“Le livre” veut dire", o: ["Pen", "Book", "Bag", "Pencil"], a: "B" },
+    { q: "“La table” veut dire", o: ["Table", "Door", "Window", "Chair"], a: "A" },
+    { q: "“Le stylo” est", o: ["A pen", "A bag", "A book", "A ruler"], a: "A" },
+    { q: "“Le tableau” est", o: ["Blackboard", "Desk", "Book", "Pencil"], a: "A" },
+    { q: "“La chaise” veut dire", o: ["Window", "Chair", "Table", "Board"], a: "B" },
+    { q: "“Le sac” veut dire", o: ["Bag", "Chair", "Pencil", "Board"], a: "A" },
+    { s: "C. Les membres de la famille", q: "“Le père” veut dire", o: ["Mother", "Father", "Brother", "Sister"], a: "B" },
+    { q: "“La mère” veut dire", o: ["Mother", "Sister", "Aunt", "Grandmother"], a: "A" },
+    { q: "“Le frère” veut dire", o: ["Brother", "Father", "Cousin", "Uncle"], a: "A" },
+    { q: "“La sœur” veut dire", o: ["Sister", "Mother", "Aunt", "Cousin"], a: "A" },
+    { q: "“L’oncle” veut dire", o: ["Uncle", "Brother", "Father", "Son"], a: "A" },
+    { q: "“La tante” veut dire", o: ["Sister", "Aunt", "Mother", "Cousin"], a: "B" },
+    { q: "“Le grand-père” veut dire", o: ["Grandfather", "Father", "Uncle", "Brother"], a: "A" },
+    { q: "“La grand-mère” veut dire", o: ["Aunt", "Grandmother", "Sister", "Mother"], a: "B" },
+    { s: "D. Les nationalités", q: "Une person du Nigeria est", o: ["Français", "Nigérian", "Anglais", "Américain"], a: "B" },
+    { q: "Une personne de la France est", o: ["Français", "Nigérian", "Chinois", "Italien"], a: "A" },
+    { q: "Une personne de l’Angleterre est", o: ["Anglais", "Français", "Américain", "Nigérian"], a: "A" },
+    { q: "Une personne de l’Amérique est", o: ["Américain", "Français", "Nigérian", "Chinois"], a: "A" },
+    { q: "“Je suis Nigérian” veut dire", o: ["I am French", "I am Nigerian", "I am American", "I am English"], a: "B" },
+    { s: "E. Le matin (Morning Activities)", q: "“Le matin” veut dire", o: ["Afternoon", "Morning", "Night", "Evening"], a: "B" },
+    { q: "On dit le matin", o: ["Bonsoir", "Bonjour", "Au revoir", "Bonne nuit"], a: "B" },
+    { q: "Le matin je", o: ["dors", "mange", "me réveille", "joue"], a: "C" },
+    { q: "“Je me brosse les dents” veut dire", o: ["I brush my teeth", "I eat food", "I sleep", "I play"], a: "A" },
+    { q: "“Je prends le petit déjeuner” veut dire", o: ["I eat breakfast", "I sleep", "I play", "I run"], a: "A" },
+    { s: "F. Les émotions", q: "“Heureux” veut dire", o: ["Happy", "Sad", "Angry", "Tired"], a: "A" },
+    { q: "“Triste” veut dire", o: ["Happy", "Sad", "Angry", "Hungry"], a: "B" },
+    { q: "“Fatigué” veut dire", o: ["Tired", "Angry", "Happy", "Sad"], a: "A" },
+    { q: "“En colère” veut dire", o: ["Angry", "Happy", "Sad", "Tired"], a: "A" },
+    { q: "“J’ai peur” veut dire", o: ["I am afraid", "I am happy", "I am tired", "I am hungry"], a: "A" },
+    { s: "Fill in the Blanks", q: "Je __ Marie.", o: ["suis", "appelle", "m’appelle", "es"], a: "C" },
+    { q: "Bonjour, je __ élève.", o: ["suis", "es", "est", "avons"], a: "A" },
+    { q: "Mon père et ma mère sont mes __", o: ["amis", "parents", "frères", "cousins"], a: "B" },
+    { q: "Le __ est sur la table.", o: ["stylo", "frère", "mère", "tante"], a: "A" },
+    { q: "La sœur de mon père est ma __", o: ["tante", "sœur", "mère", "cousine"], a: "A" },
+    { s: "True or False", q: "“Bonjour” veut dire Good morning.", o: ["True", "False"], a: "A" },
+    { q: "“Le frère” veut dire sister.", o: ["True", "False"], a: "B" },
+    { q: "“La table” est un objet de la classe.", o: ["True", "False"], a: "A" },
+    { q: "Un Nigérian est une nationalité.", o: ["True", "False"], a: "A" },
+    { q: "“Triste” veut dire happy.", o: ["True", "False"], a: "B" },
+    { s: "Matching Meaning", q: "Livre —", o: ["Book", "Pen", "Chair", "Bag"], a: "A" },
+    { q: "Père —", o: ["Father", "Brother", "Son", "Uncle"], a: "A" },
+    { q: "Français —", o: ["French", "Nigerian", "American", "English"], a: "A" },
+    { q: "Heureux —", o: ["Happy", "Angry", "Sad", "Tired"], a: "A" },
+    { q: "Bonjour —", o: ["Good morning", "Goodbye", "Good night", "Sorry"], a: "A" },
+    { q: "Je suis __ Nigeria.", o: ["de", "à", "en", "sur"], a: "A" },
+    { q: "Le frère de ma mère est mon __", o: ["oncle", "père", "cousin", "frère"], a: "A" },
+    { q: "Une fille de mon oncle est ma __", o: ["cousine", "sœur", "mère", "tante"], a: "A" },
+    { q: "Je suis __ quand je souris.", o: ["heureux", "triste", "fatigué", "en colère"], a: "A" },
+    { q: "Le matin je dis __", o: ["bonsoir", "bonjour", "bonne nuit", "salut"], a: "B" },
+    { q: "Le tableau est dans la __", o: ["classe", "maison", "voiture", "rue"], a: "A" },
+    { q: "Ma sœur est la fille de mes __", o: ["parents", "amis", "cousins", "voisins"], a: "A" },
+    { q: "“La classe” veut dire", o: ["Classroom", "Family", "Country", "Table"], a: "A" },
+    { q: "Mon père est le __ de ma mère", o: ["mari", "frère", "cousin", "oncle"], a: "A" },
+    { q: "Je suis triste quand je __", o: ["pleure", "ris", "mange", "danse"], a: "A" }
 ];
 
-let timer;
 let timeLeft = 45 * 60;
+let timerId;
 
 function startExam() {
-    const nameInput = document.getElementById('studentName').value.trim();
-    if (nameInput === "") {
-        alert("Please enter your name to start.");
-        return;
-    }
-    document.getElementById('displayName').innerText = nameInput;
+    const name = document.getElementById('candidateName').value;
+    if (!name) return alert("Please enter your name!");
+    
     document.getElementById('login-screen').classList.add('hidden');
     document.getElementById('exam-screen').classList.remove('hidden');
-    
+    document.getElementById('displayName').innerText = "Candidate: " + name;
+
     renderQuestions();
     startTimer();
 }
 
 function renderQuestions() {
     const form = document.getElementById('quizForm');
-    quizQuestions.forEach((item, index) => {
-        const qDiv = document.createElement('div');
-        qDiv.className = 'question';
-        qDiv.id = `question-${index}`;
-        
-        let optionsHtml = '';
-        item.o.forEach((opt, optIndex) => {
-            const letter = String.fromCharCode(65 + optIndex);
-            optionsHtml += `
-                <label>
-                    <input type="radio" name="q${index}" value="${optIndex}" onchange="updateProgress()">
-                    ${letter}. ${opt}
-                </label>
-            `;
-        });
+    examData.forEach((item, index) => {
+        if (item.s) {
+            const section = document.createElement('div');
+            section.className = 'section-title';
+            section.innerText = item.s;
+            form.appendChild(section);
+        }
 
-        qDiv.innerHTML = `
-            <p><strong>${index + 1}. ${item.q}</strong></p>
-            <div class="options">${optionsHtml}</div>
-            <div id="feedback-${index}" class="hidden"></div>
+        const qBlock = document.createElement('div');
+        qBlock.className = 'question-block';
+        qBlock.innerHTML = `
+            <strong>Question ${index + 1}:</strong> ${item.q}
+            <div class="options">
+                ${item.o.map((opt, i) => {
+                    const char = String.fromCharCode(65 + i);
+                    return `<label><input type="radio" name="q${index}" value="${char}"> ${char}. ${opt}</label>`;
+                }).join('')}
+            </div>
+            <div id="corr-${index}" class="correction hidden">Correction: ${item.a}</div>
         `;
-        form.appendChild(qDiv);
+        form.appendChild(qBlock);
     });
 }
 
-function updateProgress() {
-    const answered = document.querySelectorAll('input[type="radio"]:checked').length;
-    document.getElementById('progress').innerText = answered;
-}
-
 function startTimer() {
-    timer = setInterval(() => {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        document.getElementById('timer').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            gradeExam(false);
-        }
+    timerId = setInterval(() => {
         timeLeft--;
+        let m = Math.floor(timeLeft / 60);
+        let s = timeLeft % 60;
+        document.getElementById('timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+        
+        if (timeLeft <= 0) {
+            clearInterval(timerId);
+            submitExam();
+        }
     }, 1000);
 }
 
-function gradeExam(isManual) {
-    if (isManual && !confirm("Are you sure you want to submit?")) return;
-    
-    clearInterval(timer);
-    document.getElementById('submitBtn').classList.add('hidden');
-    
+function submitExam() {
+    clearInterval(timerId);
     let score = 0;
-    quizQuestions.forEach((item, index) => {
+    
+    examData.forEach((item, index) => {
         const selected = document.querySelector(`input[name="q${index}"]:checked`);
-        const feedbackDiv = document.getElementById(`feedback-${index}`);
-        
-        feedbackDiv.classList.remove('hidden');
-        feedbackDiv.className = 'correct-ans-highlight';
-        feedbackDiv.innerHTML = `Correct Answer: ${item.o[item.a]}`;
-        
-        if (selected && parseInt(selected.value) === item.a) {
+        if (selected && selected.value === item.a) {
             score++;
         }
-        
+        document.getElementById(`corr-${index}`).classList.remove('hidden');
         // Disable inputs
         const inputs = document.getElementsByName(`q${index}`);
         inputs.forEach(input => input.disabled = true);
     });
 
-    const percent = Math.round((score / 60) * 100);
-    document.getElementById('scoreVal').innerText = `${score} / 60`;
-    document.getElementById('percentVal').innerText = `Percentage: ${percent}%`;
-    document.getElementById('result-box').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('scoreDisplay').innerText = `${score} / 60`;
+    document.getElementById('percentDisplay').innerText = `Percentage: ${((score/60)*100).toFixed(2)}%`;
+    document.getElementById('results').classList.remove('hidden');
+    document.querySelector('.btn-submit').classList.add('hidden');
+    
+    window.scrollTo({top: 0, behavior: 'smooth'});
 }
 </script>
 
