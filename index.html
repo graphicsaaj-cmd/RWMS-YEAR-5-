@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ROYAL WUNDERKIND MODEL SCHOOL - EXAM</title>
+    <title>RWMS - YEAR 5 PHE EXAM</title>
     <style>
         :root {
-            --primary: #1976d2;
-            --primary-dark: #1565c0;
-            --secondary: #2c3e50;
-            --success: #2e7d32;
+            --primary: #2e7d32; /* Health Green */
+            --primary-dark: #1b5e20;
+            --secondary: #0277bd; /* Medical Blue */
             --danger: #d32f2f;
-            --bg: #f4f7f9;
+            --bg: #f4f7f4;
         }
 
         body {
@@ -22,7 +21,6 @@
             color: #333;
         }
 
-        /* Sticky Header Bar */
         .sticky-header {
             position: sticky;
             top: 0;
@@ -46,16 +44,11 @@
             border: 1px solid var(--danger);
         }
 
-        .progress-box {
-            font-weight: 600;
-            color: var(--secondary);
-        }
-
         .container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 20px auto;
             background: white;
-            padding: 40px;
+            padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
@@ -67,29 +60,12 @@
             padding-bottom: 20px;
         }
 
-        h1 { color: var(--primary); margin: 0; font-size: 1.8em; }
-        h2 { color: var(--secondary); font-size: 1.2em; margin-top: 5px; }
-
         .question {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             padding: 20px;
             border: 1px solid #e0e0e0;
-            background-color: #fff;
             border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .question:hover {
-            border-color: var(--primary);
-            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.1);
-        }
-
-        .question-title {
-            display: block;
-            font-size: 1.1em;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--secondary);
+            background: #fff;
         }
 
         .options label {
@@ -100,27 +76,36 @@
             border: 1px solid #eee;
             border-radius: 6px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: 0.2s;
         }
 
-        .options label:hover { background-color: #f0f7ff; }
+        .options label:hover { background-color: #f1f8e9; }
         .options input { margin-right: 12px; transform: scale(1.2); }
 
-        /* Highlight classes for results */
         .correct-ans-highlight {
-            background-color: #e8f5e9 !important;
-            border: 1px solid var(--success) !important;
-            color: var(--success);
+            background-color: #e8f5e9;
+            border: 1px solid #2e7d32;
+            color: #1b5e20;
             padding: 10px;
             border-radius: 6px;
             margin-top: 10px;
             font-weight: bold;
         }
 
+        .name-input {
+            padding: 15px;
+            width: 80%;
+            max-width: 400px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+
         button {
             display: block;
-            width: 250px;
-            margin: 40px auto;
+            width: 280px;
+            margin: 30px auto;
             padding: 15px;
             font-size: 1.1em;
             font-weight: bold;
@@ -129,24 +114,17 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: 0.3s;
         }
 
         button:hover { background-color: var(--primary-dark); }
-        button:disabled { background-color: #ccc; cursor: not-allowed; }
-
-        #intro-screen {
-            text-align: center;
-            padding: 50px 20px;
-        }
 
         .result-card {
-            background: #fff3e0;
-            border: 2px solid #ff9800;
+            background: #e3f2fd;
+            border: 2px solid var(--secondary);
             padding: 30px;
             border-radius: 15px;
             text-align: center;
-            margin-top: 40px;
         }
 
         .hidden { display: none; }
@@ -154,144 +132,198 @@
 </head>
 <body>
 
-<div id="intro-screen" class="container">
+<div id="login-screen" class="container">
     <div class="header-info">
         <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-        <h2>TERM TWO EXAMINATION | 2025/2026</h2>
-        <p><strong>Subject:</strong> SOCIAL AND CITIZENSHIP STUDIES (Year 5)</p>
+        <h2>PHYSICAL & HEALTH EDUCATION | YEAR 5</h2>
+        <p>Term Two Examination | 2025/2026 Session</p>
     </div>
-    <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-        <p><strong>Questions:</strong> 60 Multiple Choice</p>
-        <p><strong>Time Limit:</strong> 45 Minutes</p>
-        <p>Ensure you have a stable connection and are ready to begin.</p>
+    <div style="text-align: center;">
+        <h3>Student Examination Login</h3>
+        <input type="text" id="studentName" class="name-input" placeholder="Enter Full Name" autocomplete="off">
+        <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 20px auto; max-width: 400px; border: 1px solid var(--primary);">
+            <p><strong>Total Questions:</strong> 60</p>
+            <p><strong>Time Allowed:</strong> 45 Minutes</p>
+        </div>
+        <button onclick="startExam()">Start Examination</button>
     </div>
-    <button id="startBtn">Start Examination Now</button>
 </div>
 
-<div id="exam-content" class="hidden">
+<div id="exam-screen" class="hidden">
     <div class="sticky-header">
-        <div class="progress-box">Answered: <span id="answeredCount">0</span> / 60</div>
+        <div><strong>Student:</strong> <span id="displayName"></span></div>
+        <div style="color: var(--secondary);">Progress: <span id="progress">0</span>/60</div>
         <div class="timer-box" id="timer">45:00</div>
     </div>
 
     <div class="container">
-        <div class="header-info">
-            <h1>SOCIAL & CITIZENSHIP STUDIES</h1>
-            <p>Year 5 - Upper Key Stage 2</p>
-        </div>
+        <form id="quizForm"></form>
+        <button id="submitBtn" onclick="gradeExam(true)">Submit My Examination</button>
 
-        <form id="examForm"></form>
-
-        <button id="submitBtn" type="button">Submit Final Answers</button>
-
-        <div id="result" class="result-card hidden">
+        <div id="result-box" class="result-card hidden">
             <h2>Examination Result</h2>
-            <h1 id="scoreDisplay" style="font-size: 3em; margin: 10px 0;">0/60</h1>
-            <p id="percentageDisplay" style="font-size: 1.5em; color: var(--secondary);"></p>
+            <h1 id="scoreVal" style="font-size: 4em; color: var(--primary); margin: 10px 0;">0/60</h1>
+            <p id="percentVal" style="font-size: 1.5em; font-weight: bold;"></p>
             <p>Review your answers below.</p>
         </div>
     </div>
 </div>
 
 <script>
-// Data arrays (Keep your original data)
-const correctAnswers = ['D','B','B','B','B','D','C','A','C','D','D','B','C','B','D','D','B','B','A','A','D','B','B','B','C','D','C','B','A','A','A','C','C','B','A','C','D','D','A','C','D','A','C','A','C','B','C','B','D','A','D','A','D','A','A','A','A','C','A','D'];
-const correctTexts = ["D. Month","B. Wages","B. Dividend","B. Pension","B. Pension","D. Communication","C. Sign language","A. Employment","C. land","D. Pick pocketing","D. All of above","C. Unemployment","C. Land transportation","B. Britain","D. 1955","D. Being always happy with himself.","B. Fax","B. transportation","A. Electronic mail","A. Satellite","D. Tolerance","B. Gender discrimination","B. Sex roles","B. Nature","C. Africa","D. Proper campaign and enlightenment","C. Peace education","B. A vandal","A. War","A. Propaganda","A. Vandalism","C. Cooperation","C. Ethnicism","B. Humility","A. Forgiveness","C. Tolerance and cooperation","D. All of the above","D. Ethnic or cultural difference","A. National unity","C. Happiness","D. None of the above","A. Denial of equality","C. Abolished","A. A television","C. World Wide Web","B. Computer engineer","C. USA","B. Charles Babbage","D. Alexander Graham Bell","A. A live match","D. Personal Identification Number","A. 199","D. Government","A. 3","A. Local government","A. Trunk A","A. Corruption","C. Federal government","A. Paying our taxes promptly","D. Wages and salaries"];
-const questions = ["1. Salaries are usually paid at the end of a _______","2. _______ is paid according to the numbers of hours, days or week that a person works.","3. _______ is the part of the profit which companies pay their shareholders.","4. _______ is paid to retired government and some private works on a monthly basis.","5. _______ is a percentage of a person’s former salary and allowance.","6. Talking with people in such a way that they will understand what we say to them is known as _______.","7. People who are very far from one another can communicate through _______ medium.","8. Having a job or work to do to earn a living is called _______.","9. Through _______ transport, we can move from one place to another with vehicles","10. All the following are types of good job except _______","11. _______ are a common occurrence in land transportation.","12. A situation where a person is qualified and ready to work but cannot get a job to do is _______.","13. The commonest means of transport in Nigeria is _______.","14. Rail transportation was established in Nigeria by _______.","15. The Nigeria railway corporation was established in year_______.","16. An unemployed person could be any of the following except _______.","17. A machine that can be used to send written message over a long distance is called _______.","18. The movement of people and goods from one place to another is called _______.","19. E-mail means _______.","20. _______ are objects placed in space which helps to transmit data or information from one part of the earth to another.","21. Allowing other people to live in the ways they see it without disturbing the peace and order of society is called _______.","22. _______ occurs when people are denied their rights and access to resources because of their sex.","23. _______ are roles prescribed or assigned to men and women by nature.","24. Sex roles are prescribed by _______.","25. Gender discrimination is common in _______.","26. The problem of gender discrimination can be best solved through _______.","27. _______ is concerned with preparing people with the right knowledge, attitude and skills, so as to maintain friendly relations with other people.","28. _______ is anyone who destroys public property.","29. _______ will lead to great loss of lives, property and destruction of society.","30. Peacemaking skills include all the following except _______.","31. The act of destroying public property is called _______.","32. The act of working together willingly without being forced to do so, to achieve results is called _______.","33. Relating only to those people who are of the same ethic group with us and disregarding other People is _______.","34. The act of not being proud or disrespectful to others and not being selfish when relating to other people is _______.","35. _______ is when we stop being angry and forgiving someone who has offended us.","36. Two important elements of peace are _______.","37. When economic activities are disrupted, it will lead to _______.","38. To promote national unity, we must stop emphasizing on _______.","39. When people of different ethnic groups and cultures within a country live together in peace. It is called _______.","40. Which of these is not a value of patriotism?","41. Gender discrimination can occur in the following areas except _______.","42. Gender discrimination can also lead to _______.","43. Some cultural practices in Nigeria that promotes gender discrimination must be _______.","44. _______ is an electronic devices in which we can hear the voice and see the motion picture of the message and information.","45. WWW means _______.","46. Someone who repairs faulty computers is known as a _______.","47. Which of the following countries invented the internet?","48. The computer system was invented by _______.","49. Telephone was invented by _______.","50. Watching a football match as it being played in another country through a television is called watching _______.","51. The full meaning of PIN _______.","52. The police emergency telephone number in Nigeria is _______.","53. __________ is the group of people given power and authority to make, interpret and execute the laws in society","54. There are __________ levels of government in Nigeria","55. The closest level of government to the people is the __________","56. The types of roads constructed by the Federal government is called __________ roads","57. One of the following is not a quality of a good government.","58. The highest level of government to the people is the __________","59. We can assist the government by __________","60. When one does a job, one is paid ____________"];
-const optionsList = [["A. Week", "B. Day", "C. Years", "D. Month"],["A. Salaries", "B. Wages", "C. Pensions", "D. Rates"],["A. Interest", "B. Dividend", "C. Wages", "D. Company profit"],["A. Gravity", "B. Pension", "C. Salary", "D. Wages"],["A. Gravity", "B. Pension", "C. Wage", "D. Dividend"],["A. Talking", "B. Discussion", "C. Instruction", "D. Communication"],["A. Electric", "B. Oceanic", "C. Sign language", "D. Face to face contracts"],["A. Employment", "B. Hand job", "C. Job work", "D. Worked"],["A. Space", "B. Air", "C. land", "D. Water"],["A. Mining", "B. Interesting decoration", "C. Dressmaking", "D. Pick pocketing"],["A. Accidents", "B. Armed robbery", "C. Traffic jam", "D. All of above"],["A. Laziness to find work", "B. Over unemployment", "C. Unemployment", "D. Under employment"],["A. Rail transportation", "B. Air transportation", "C. Land transportation", "D. Water transportation"],["A. USA", "B. Britain", "C. France", "D. South Africa"],["A. 1888", "B. 1890", "C. 1800", "D. 1955"],["A. A petty thief", "B. A drug abuse victim", "C. Being dependent on others for survival", "D. Being always happy with himself."],["A. telephone", "B. Fax", "C. Facet", "D. Bar code"],["A. movement", "B. transportation", "C. ferrying", "D. communication"],["A. Electronic mail", "B. Exceptional mail", "C. Encrypted message", "D. Encrypted mail"],["A. Satellite", "B. Fax", "C. Telephone", "D. Radio"],["A. Life sustenance", "B. Equality", "C. Allowance", "D. Tolerance"],["A. Racial discrimination", "B. Gender discrimination", "C. Sexual harassment", "D. Ethnic violence"],["A. Gender roles", "B. Sex roles", "C. Government roles", "D. People roles"],["A. Government", "B. Nature", "C. Group", "D. Society"],["A. USA", "B. Europe", "C. Africa", "D. Australia"],["A. Women going to university", "B. Women becoming head of the family", "C. Men becoming pregnant", "D. Proper campaign and enlightenment"],["A. Conflict education", "B. Community education", "C. Peace education", "D. Religious studies"],["A. A panda", "B. A vandal", "C. A wander", "D. A destroyer"],["A. War", "B. Peace", "C. Education", "D. Peace education"],["A. Propaganda", "B. Mediation", "C. Negotiation", "D. Dialogue"],["A. Vandalism", "B. Protest", "C. Destruction", "D. Public demonstration"],["A. Forgiveness", "B. Willingness", "C. Cooperation", "D. Self-reliance"],["A. Tolerance", "B. Brotherliness", "C. Ethnicism", "D. One state"],["A. Cooperation", "B. Humility", "C. Self-reliance", "D. Pensive"],["A. Forgiveness", "B. Honesty", "C. Submission", "D. Temperature"],["A. Wealth and poverty", "B. Peace and cooperation", "C. Tolerance and cooperation", "D. Endurance and injustice"],["A. Loss of job", "B. Poor investment", "C. Loss of property", "D. All of the above"],["A. Peace", "B. Progress", "C. Humility", "D. Ethnic or cultural difference"],["A. National unity", "B. National coalition", "C. National cooperation", "D. Unionism"],["A. Respect", "B. Courage", "C. Happiness", "D. Cooperation"],["A. Politics", "B. Inheritance", "C. Employment", "D. None of the above"],["A. Denial of equality", "B. Giving of equal opportunities", "C. Friendliness", "D. Mutual understanding"],["A. Encouraged", "B. Promoted", "C. Abolished", "D. Re-introduced"],["A. A television", "B. A radio", "C. A telephone", "D. A telegraph"],["A. We Will Win", "B. Win World War", "C. World Wide Web", "D. World War Web"],["A. Computer repairer", "B. Computer engineer", "C. Computer programmer", "D. All of the above"],["A. Russia", "B. Britain", "C. USA", "D. Nigeria"],["A. Charles Darwin", "B. Charles Babbage", "C. Bill Gates", "D. Barak Obama"],["A. Michael Faraday", "B. Orville Wright", "C. MTN", "D. Alexander Graham Bell"],["A. A live match", "B. A life match", "C. Premiership match", "D. A replay match"],["A. Password Identification Number", "B. Private Identification Number", "C. Personal Identity Number", "D. Personal Identification Number"],["A. 199", "B. 080", "C. 911", "D. 999"],["A. Agency", "B. Parastatal", "C. Police", "D. Government"],["A. 3", "B. 4", "C. 5", "D. 2"],["A. Local government", "B. Federal government", "C. Community government", "D. State government"],["A. Trunk A", "B. Trunk B", "C. Trunk C", "D. Grade A"],["A. Corruption", "B. Accounting", "C. Honesty", "D. Transparency"],["A. Local government", "B. State government", "C. Federal government", "D. Community government"],["A. Paying our taxes promptly", "B. vandalizing government property", "C. Evading taxes", "D. public protest"],["A. Pension", "B. Gratuity", "C. Dividend", "D. Wages and salaries"]];
+const quizQuestions = [
+    { q: "The human body is made up of many different ______", o: ["machines", "body parts", "animals", "stones"], a: 1, t: "body parts" },
+    { q: "Each body part has a special ______ and function.", o: ["colour", "structure", "smell", "sound"], a: 1, t: "structure" },
+    { q: "The ear is the sense organ responsible for ______", o: ["smelling", "hearing", "tasting", "touching"], a: 1, t: "hearing" },
+    { q: "The part of the ear that is visible is the ______", o: ["inner ear", "middle ear", "outer ear", "brain"], a: 2, t: "outer ear" },
+    { q: "The nose helps the body maintain ______", o: ["breathing", "balance", "digestion", "movement"], a: 0, t: "breathing" },
+    { q: "Inserting sharp objects into the ear can ______ it.", o: ["protect", "clean", "damage", "strengthen"], a: 2, t: "damage" },
+    { q: "The ______ is the largest organ in the body.", o: ["heart", "skin", "ear", "eye"], a: 1, t: "skin" },
+    { q: "The skin helps to control body ______", o: ["height", "colour", "temperature", "size"], a: 2, t: "temperature" },
+    { q: "The skin protects the body from ______", o: ["toys", "germs", "books", "water"], a: 1, t: "germs" },
+    { q: "Bathing regularly helps keep the ______ healthy", o: ["hair", "teeth", "skin", "nose"], a: 2, t: "skin" },
+    { q: "Hair grows mainly on the ______", o: ["hand", "scalp", "ear", "foot"], a: 1, t: "scalp" },
+    { q: "Hair helps protect the head from ______", o: ["cold and heat", "rain only", "sand only", "water only"], a: 0, t: "cold and heat" },
+    { q: "Dirty combs can cause ______", o: ["healthy hair", "hair problems", "long hair", "shiny hair"], a: 1, t: "hair problems" },
+    { q: "The organs used for seeing are the ______", o: ["ears", "eyes", "nose", "tongue"], a: 1, t: "eyes" },
+    { q: "The eyes help us to see ______ and shapes", o: ["colours", "smells", "sounds", "heat"], a: 0, t: "colours" },
+    { q: "Reading under good ______ protects the eyes", o: ["sound", "light", "water", "wind"], a: 1, t: "light" },
+    { q: "The mouth is part of the ______ system.", o: ["breathing", "digestive", "nervous", "muscular"], a: 1, t: "digestive" },
+    { q: "Teeth help to ______ food.", o: ["wash", "chew", "throw", "smell"], a: 1, t: "chew" },
+    { q: "Brushing the teeth should be done at least ______ daily.", o: ["once", "twice", "three times", "four times"], a: 1, t: "twice" },
+    { q: "Nails protect the ______ of the fingers and toes.", o: ["bones", "tips", "muscles", "skin"], a: 1, t: "tips" },
+    { q: "Nails should be trimmed using ______", o: ["scissors", "knife", "nail cutter", "spoon"], a: 2, t: "nail cutter" },
+    { q: "Biting the nails is a ______ habit.", o: ["good", "healthy", "bad", "helpful"], a: 2, t: "bad" },
+    { q: "Taking good care of body parts helps prevent ______.", o: ["learning", "diseases", "growth", "exercise"], a: 1, t: "diseases" },
+    { q: "Good personal hygiene helps us remain ______", o: ["dirty", "weak", "healthy", "lazy"], a: 2, t: "healthy" },
+    { q: "A School Health Programme helps protect the ______ of pupils.", o: ["books", "health", "clothes", "desks"], a: 1, t: "health" },
+    { q: "Health instruction teaches pupils about ______ living.", o: ["dirty", "healthy", "careless", "slow"], a: 1, t: "healthy" },
+    { q: "Medical care provided in school is called ______ services.", o: ["health", "food", "sports", "teaching"], a: 0, t: "health" },
+    { q: "A clean classroom is part of a healthy school ______.", o: ["subject", "programme", "environment", "rule"], a: 2, t: "environment" },
+    { q: "Nutrition services provide ______ meals for pupils.", o: ["dirty", "balanced", "stale", "cold"], a: 1, t: "balanced" },
+    { q: "Physical education includes activities such as ______", o: ["reading", "running", "writing", "drawing"], a: 1, t: "running" },
+    { q: "Pollution means the ______ of the environment.", o: ["cleaning", "contamination", "decoration", "protection"], a: 1, t: "contamination" },
+    { q: "Smoke in the air causes ______ pollution.", o: ["land", "air", "water", "noise"], a: 1, t: "air" },
+    { q: "Throwing waste carelessly is called ______.", o: ["cleaning", "littering", "sweeping", "washing"], a: 1, t: "littering" },
+    { q: "Recycling helps reduce ______.", o: ["waste", "water", "air", "land"], a: 0, t: "waste" },
+    { q: "Waste should be disposed in ______.", o: ["dustbins", "bags", "boxes", "rooms"], a: 0, t: "dustbins" },
+    { q: "Mental health refers to a person's ______ well-being.", o: ["physical", "emotional", "social", "financial"], a: 1, t: "emotional" },
+    { q: "A person with good mental health can think ______", o: ["slowly", "clearly", "wrongly", "poorly"], a: 1, t: "clearly" },
+    { q: "Social health is the ability to interact with ______", o: ["machines", "animals", "people", "trees"], a: 2, t: "people" },
+    { q: "Making good friends improves ______ health", o: ["physical", "social", "financial", "economic"], a: 1, t: "social" },
+    { q: "Too much ______ can affect the mind and body", o: ["Leisure", "stone", "stress", "recreation"], a: 2, t: "stress" },
+    { q: "Gymnastics improves body ______", o: ["balance", "weight", "height", "colour"], a: 0, t: "balance" },
+    { q: "A forward roll is a ______ activity", o: ["tumbling", "singing", "drawing", "reading"], a: 0, t: "tumbling" },
+    { q: "A cartwheel requires body ______", o: ["weakness", "strength", "sleep", "silence"], a: 1, t: "strength" },
+    { q: "Gymnastics helps improve body ______", o: ["laziness", "coordination", "sickness", "noise"], a: 1, t: "coordination" },
+    { q: "Stretching exercises improve body ______", o: ["flexibility", "sickness", "tiredness", "weight"], a: 0, t: "flexibility" },
+    { q: "Jumping helps strengthen the ______ muscles", o: ["arm", "leg", "neck", "ear"], a: 1, t: "leg" },
+    { q: "Balancing means maintaining body ______", o: ["beauty", "stability", "weakness", "weight"], a: 1, t: "stability" },
+    { q: "Rolling involves turning the body on the ______", o: ["wall", "ground", "chair", "desk"], a: 1, t: "ground" },
+    { q: "Traditional dances reflect the ______ of a people", o: ["language", "culture", "money", "school"], a: 1, t: "culture" },
+    { q: "Traditional dances are usually performed during ______", o: ["festivals and ceremonies", "reading", "sleeping", "studying"], a: 0, t: "festivals and ceremonies" },
+    { q: "Local musical instruments used in traditional dances include ______", o: ["drums", "books", "pencils", "rulers"], a: 0, t: "drums" },
+    { q: "Modern dances are influenced by ______ music", o: ["traditional", "modern", "ancient", "classical"], a: 1, t: "modern" },
+    { q: "Examples of modern dance include ______", o: ["football", "hip-hop", "farming", "swimming"], a: 1, t: "hip-hop" },
+    { q: "Camping is an/a ______ activity", o: ["indoor", "outdoor", "classroom", "office"], a: 1, t: "outdoor" },
+    { q: "During camping, people often stay in ______", o: ["houses", "tents", "cars", "buses"], a: 1, t: "tents" },
+    { q: "Camping helps develop ______ and teamwork", o: ["fighting", "survival skills", "laziness", "noise"], a: 1, t: "survival skills" },
+    { q: "Computer games are played on ______ devices.", o: ["wooden", "digital", "paper", "metal"], a: 1, t: "digital" },
+    { q: "Computer games can improve ______ skills.", o: ["cooking", "problem-solving", "farming", "washing"], a: 1, t: "problem-solving" },
+    { q: "Computer games should be played in ______", o: ["excess", "moderation", "silence", "darkness"], a: 1, t: "moderation" },
+    { q: "Recreation and leisure activities help reduce ______", o: ["happiness", "stress", "learning", "strength"], a: 1, t: "stress" }
+];
 
-const form = document.getElementById('examForm');
+let timer;
 let timeLeft = 45 * 60;
-let timerInterval;
 
-// Start Logic
-document.getElementById('startBtn').addEventListener('click', () => {
-    document.getElementById('intro-screen').classList.add('hidden');
-    document.getElementById('exam-content').classList.remove('hidden');
-    initExam();
+function startExam() {
+    const nameInput = document.getElementById('studentName').value.trim();
+    if (nameInput === "") {
+        alert("Please enter your name to start.");
+        return;
+    }
+    document.getElementById('displayName').innerText = nameInput;
+    document.getElementById('login-screen').classList.add('hidden');
+    document.getElementById('exam-screen').classList.remove('hidden');
+    
+    renderQuestions();
     startTimer();
-});
+}
 
-function initExam() {
-    questions.forEach((qText, index) => {
-        const qNum = index + 1;
-        const div = document.createElement('div');
-        div.className = 'question';
-        div.id = `q${qNum}`;
-
-        let html = `<span class="question-title">${qText}</span>`;
-        html += `<div class="options">`;
-        optionsList[index].forEach((opt, i) => {
-            const letter = String.fromCharCode(65 + i);
-            html += `
+function renderQuestions() {
+    const form = document.getElementById('quizForm');
+    quizQuestions.forEach((item, index) => {
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question';
+        qDiv.id = `question-${index}`;
+        
+        let optionsHtml = '';
+        item.o.forEach((opt, optIndex) => {
+            const letter = String.fromCharCode(65 + optIndex);
+            optionsHtml += `
                 <label>
-                    <input type="radio" name="q${qNum}" value="${letter}" onchange="updateProgress()">
-                    ${opt}
-                </label>`;
+                    <input type="radio" name="q${index}" value="${optIndex}" onchange="updateProgress()">
+                    ${letter}. ${opt}
+                </label>
+            `;
         });
-        html += `</div>`;
-        div.innerHTML = html;
-        form.appendChild(div);
+
+        qDiv.innerHTML = `
+            <p><strong>${index + 1}. ${item.q}</strong></p>
+            <div class="options">${optionsHtml}</div>
+            <div id="feedback-${index}" class="hidden"></div>
+        `;
+        form.appendChild(qDiv);
     });
 }
 
 function updateProgress() {
     const answered = document.querySelectorAll('input[type="radio"]:checked').length;
-    document.getElementById('answeredCount').textContent = answered;
+    document.getElementById('progress').innerText = answered;
 }
 
 function startTimer() {
-    timerInterval = setInterval(() => {
+    timer = setInterval(() => {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
-        document.getElementById('timer').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        document.getElementById('timer').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
         if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            submitExam();
+            clearInterval(timer);
+            gradeExam(false);
         }
         timeLeft--;
     }, 1000);
 }
 
-document.getElementById('submitBtn').addEventListener('click', () => {
-    if(confirm("Are you sure you want to submit your exam?")) {
-        submitExam();
-    }
-});
-
-function submitExam() {
-    clearInterval(timerInterval);
-    document.getElementById('submitBtn').disabled = true;
-    document.getElementById('submitBtn').textContent = "Exam Submitted";
-
+function gradeExam(isManual) {
+    if (isManual && !confirm("Are you sure you want to submit?")) return;
+    
+    clearInterval(timer);
+    document.getElementById('submitBtn').classList.add('hidden');
+    
     let score = 0;
-    questions.forEach((_, index) => {
-        const qNum = index + 1;
-        const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
-        const questionDiv = document.getElementById(`q${qNum}`);
+    quizQuestions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        const feedbackDiv = document.getElementById(`feedback-${index}`);
         
-        const correctText = correctTexts[index];
-        const correctLetter = correctAnswers[index];
-
-        // Highlight correct answer
-        const feedback = document.createElement('div');
-        feedback.className = 'correct-ans-highlight';
-        feedback.textContent = `Correct Answer: ${correctText}`;
-        questionDiv.appendChild(feedback);
-
-        if (selected && selected.value === correctLetter) {
+        feedbackDiv.classList.remove('hidden');
+        feedbackDiv.className = 'correct-ans-highlight';
+        feedbackDiv.innerHTML = `Correct Answer: ${item.o[item.a]}`;
+        
+        if (selected && parseInt(selected.value) === item.a) {
             score++;
         }
         
-        const radios = questionDiv.querySelectorAll('input[type="radio"]');
-        radios.forEach(r => r.disabled = true);
+        // Disable inputs
+        const inputs = document.getElementsByName(`q${index}`);
+        inputs.forEach(input => input.disabled = true);
     });
 
-    const percentage = ((score / questions.length) * 100).toFixed(1);
-    document.getElementById('scoreDisplay').textContent = `${score} / ${questions.length}`;
-    document.getElementById('percentageDisplay').textContent = `Percentage: ${percentage}%`;
-    document.getElementById('result').classList.remove('hidden');
-    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    const percent = Math.round((score / 60) * 100);
+    document.getElementById('scoreVal').innerText = `${score} / 60`;
+    document.getElementById('percentVal').innerText = `Percentage: ${percent}%`;
+    document.getElementById('result-box').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 
