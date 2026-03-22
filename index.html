@@ -1,338 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RWMS Year 5 French Exam</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ROYAL WUNDERKIND MODEL SCHOOL - HUMANITIES EXAM</title>
     <style>
-        :root {
-            --fr-blue: #002395;
-            --fr-white: #ffffff;
-            --fr-red: #ED2939;
-            --bg: #f8f9fa;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            margin: 0;
-            padding: 0;
-            color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            line-height: 1.5;
         }
-
-        /* French Flag Header */
-        .flag-header {
-            height: 12px;
-            display: flex;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            z-index: 2000;
-        }
-        .flag-blue { background: var(--fr-blue); flex: 1; }
-        .flag-white { background: var(--fr-white); flex: 1; }
-        .flag-red { background: var(--fr-red); flex: 1; }
-
         .container {
             max-width: 900px;
-            margin: 40px auto;
+            margin: 0 auto;
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
-
-        .header-text {
+        h1, h2 {
             text-align: center;
-            border-bottom: 2px solid #eee;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            color: #2c3e50;
         }
-
-        .header-text h1 { color: var(--fr-blue); margin: 0; font-size: 24px; }
-        .header-text h2 { color: var(--fr-red); margin: 5px 0; font-size: 18px; }
-
-        /* Login Screen */
-        #login-screen { text-align: center; }
-        .input-box {
-            padding: 15px;
-            width: 80%;
-            max-width: 400px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 18px;
-            margin-bottom: 20px;
-            outline: none;
-        }
-        .input-box:focus { border-color: var(--fr-blue); }
-
-        /* Sticky Timer Bar */
-        .sticky-bar {
-            position: sticky;
-            top: 12px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--fr-blue);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-radius: 0 0 12px 12px;
-        }
-
-        .timer-display {
-            font-size: 22px;
-            font-weight: bold;
-            color: var(--fr-red);
-            background: #fff0f0;
-            padding: 5px 20px;
-            border-radius: 50px;
-            border: 2px solid var(--fr-red);
-        }
-
-        .candidate-name-display { font-weight: 600; color: var(--fr-blue); }
-
-        /* Quiz Layout */
-        .section-title {
-            background: var(--fr-blue);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            margin: 30px 0 15px 0;
-        }
-
-        .question-block {
+        .header {
+            text-align: center;
             margin-bottom: 25px;
-            padding: 20px;
-            background: #fff;
-            border: 1px solid #eef0f2;
-            border-left: 5px solid var(--fr-blue);
-            border-radius: 8px;
         }
-
+        /* Login Box Styles */
+        .login-box {
+            text-align: center;
+            padding: 40px;
+            border: 2px solid #1976d2;
+            border-radius: 10px;
+            background: #fff;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+        .login-box input {
+            padding: 12px;
+            width: 80%;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .timer {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #d32f2f;
+            text-align: center;
+            margin: 15px 0;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            padding: 10px;
+            z-index: 100;
+        }
+        .question {
+            margin-bottom: 28px;
+            padding: 15px;
+            border-left: 4px solid #1976d2;
+            background-color: #f5faff;
+            border-radius: 4px;
+        }
         .options label {
             display: block;
-            padding: 10px;
-            margin: 5px 0;
-            background: #f9f9f9;
-            border-radius: 5px;
+            margin: 8px 0;
             cursor: pointer;
-            transition: 0.2s;
         }
-
-        .options label:hover { background: #eef4ff; }
-        .options input { margin-right: 10px; }
-
-        .btn {
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
+        .correct {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding-left: 12px;
+        }
+        .result {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            text-align: center;
+        }
+        button {
+            display: block;
+            margin: 30px auto;
+            padding: 14px 40px;
+            font-size: 1.2em;
+            background-color: #1976d2;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: 0.3s;
         }
-
-        .btn-start { background: var(--fr-blue); }
-        .btn-submit { background: var(--fr-red); display: block; margin: 40px auto; width: 100%; max-width: 300px; }
-
+        button:hover {
+            background-color: #1565c0;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
         .hidden { display: none; }
-
-        /* Results Card */
-        .result-card {
-            text-align: center;
-            padding: 40px;
-            background: #e7f3ff;
-            border-radius: 12px;
-            border: 2px solid var(--fr-blue);
-        }
-
-        .correction { color: var(--fr-blue); font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-<div class="flag-header">
-    <div class="flag-blue"></div>
-    <div class="flag-white"></div>
-    <div class="flag-red"></div>
-</div>
-
-<div id="login-screen" class="container">
-    <div class="header-text">
+<div class="container">
+    <div class="header">
         <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-        <h2>FRENCH EXAMINATION - YEAR 5</h2>
-        <p>Academic Session: 2025/2026</p>
-    </div>
-    <p>Please enter your Full Name to begin the examination.</p>
-    <input type="text" id="candidateName" class="input-box" placeholder="Your Full Name">
-    <br>
-    <button class="btn btn-start" onclick="startExam()">Commencer l'Examen</button>
-</div>
-
-<div id="exam-screen" class="hidden">
-    <div class="sticky-bar">
-        <div class="candidate-name-display" id="displayName">Candidate: </div>
-        <div class="timer-display" id="timer">45:00</div>
+        <h2>TERM TWO EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
+        <p><strong>Class:</strong> Upper Key Stage 2 (Year 5)</p>
+        <p><strong>Subject:</strong> HUMANITIES</p>
     </div>
 
-    <div class="container">
-        <form id="quizForm">
+    <div id="loginSection" class="login-box">
+        <h3>Candidate Information</h3>
+        <p>Enter your full name to begin the examination:</p>
+        <input type="text" id="candidateName" placeholder="Full Name" required>
+        <button onclick="startExam()">Start Examination</button>
+    </div>
+
+    <div id="examContent" class="hidden">
+        <p style="text-align: center;"><strong>SECTION A: OBJECTIVE QUESTIONS</strong></p>
+        <p style="text-align: center;"><em>INSTRUCTION: ANSWER ALL QUESTIONS</em></p>
+        
+        <div class="timer" id="timer">Time Remaining: 45:00</div>
+
+        <form id="examForm">
             </form>
-        <button class="btn btn-submit" onclick="submitExam()">Final Submit</button>
 
-        <div id="results" class="result-card hidden">
-            <h2>Resultat Final</h2>
-            <h1 id="scoreDisplay" style="font-size: 48px;"></h1>
-            <p id="percentDisplay"></p>
-            <p>Review your corrections below.</p>
-        </div>
+        <button id="submitBtn" type="button">Submit Exam</button>
+    </div>
+
+    <div id="result" class="result hidden">
+        <h2 id="studentDisplayName"></h2>
+        <h2>Your Score</h2>
+        <p id="scoreText"></p>
+        <p id="percentage"></p>
+        <p><em>Correct answers are now highlighted below.</em></p>
     </div>
 </div>
 
 <script>
-const examData = [
-    { s: "A. Se présenter (Introducing Yourself)", q: "Comment dit-on “My name is John” en français ?", o: ["Je suis John", "Je m’appelle John", "Bonjour John", "Merci John"], a: "B" },
-    { q: "“Bonjour” veut dire", o: ["Good night", "Good morning", "Goodbye", "Sorry"], a: "B" },
-    { q: "Pour dire “I am a pupil” on dit", o: ["Je suis élève", "Je suis professeur", "Je suis père", "Je suis mère"], a: "A" },
-    { q: "Comment demande-t-on le nom de quelqu’un ?", o: ["Comment ça va ?", "Comment tu t’appelles ?", "Où habites-tu ?", "Quel âge as-tu ?"], a: "B" },
-    { q: "“J’ai dix ans” veut dire", o: ["I am ten years old", "I am twelve years old", "I am nine years old", "I am eight years old"], a: "A" },
-    { q: "“Au revoir” veut dire", o: ["Good evening", "Goodbye", "Hello", "Thank you"], a: "B" },
-    { s: "B. Les objets dans la classe", q: "“Le livre” veut dire", o: ["Pen", "Book", "Bag", "Pencil"], a: "B" },
-    { q: "“La table” veut dire", o: ["Table", "Door", "Window", "Chair"], a: "A" },
-    { q: "“Le stylo” est", o: ["A pen", "A bag", "A book", "A ruler"], a: "A" },
-    { q: "“Le tableau” est", o: ["Blackboard", "Desk", "Book", "Pencil"], a: "A" },
-    { q: "“La chaise” veut dire", o: ["Window", "Chair", "Table", "Board"], a: "B" },
-    { q: "“Le sac” veut dire", o: ["Bag", "Chair", "Pencil", "Board"], a: "A" },
-    { s: "C. Les membres de la famille", q: "“Le père” veut dire", o: ["Mother", "Father", "Brother", "Sister"], a: "B" },
-    { q: "“La mère” veut dire", o: ["Mother", "Sister", "Aunt", "Grandmother"], a: "A" },
-    { q: "“Le frère” veut dire", o: ["Brother", "Father", "Cousin", "Uncle"], a: "A" },
-    { q: "“La sœur” veut dire", o: ["Sister", "Mother", "Aunt", "Cousin"], a: "A" },
-    { q: "“L’oncle” veut dire", o: ["Uncle", "Brother", "Father", "Son"], a: "A" },
-    { q: "“La tante” veut dire", o: ["Sister", "Aunt", "Mother", "Cousin"], a: "B" },
-    { q: "“Le grand-père” veut dire", o: ["Grandfather", "Father", "Uncle", "Brother"], a: "A" },
-    { q: "“La grand-mère” veut dire", o: ["Aunt", "Grandmother", "Sister", "Mother"], a: "B" },
-    { s: "D. Les nationalités", q: "Une person du Nigeria est", o: ["Français", "Nigérian", "Anglais", "Américain"], a: "B" },
-    { q: "Une personne de la France est", o: ["Français", "Nigérian", "Chinois", "Italien"], a: "A" },
-    { q: "Une personne de l’Angleterre est", o: ["Anglais", "Français", "Américain", "Nigérian"], a: "A" },
-    { q: "Une personne de l’Amérique est", o: ["Américain", "Français", "Nigérian", "Chinois"], a: "A" },
-    { q: "“Je suis Nigérian” veut dire", o: ["I am French", "I am Nigerian", "I am American", "I am English"], a: "B" },
-    { s: "E. Le matin (Morning Activities)", q: "“Le matin” veut dire", o: ["Afternoon", "Morning", "Night", "Evening"], a: "B" },
-    { q: "On dit le matin", o: ["Bonsoir", "Bonjour", "Au revoir", "Bonne nuit"], a: "B" },
-    { q: "Le matin je", o: ["dors", "mange", "me réveille", "joue"], a: "C" },
-    { q: "“Je me brosse les dents” veut dire", o: ["I brush my teeth", "I eat food", "I sleep", "I play"], a: "A" },
-    { q: "“Je prends le petit déjeuner” veut dire", o: ["I eat breakfast", "I sleep", "I play", "I run"], a: "A" },
-    { s: "F. Les émotions", q: "“Heureux” veut dire", o: ["Happy", "Sad", "Angry", "Tired"], a: "A" },
-    { q: "“Triste” veut dire", o: ["Happy", "Sad", "Angry", "Hungry"], a: "B" },
-    { q: "“Fatigué” veut dire", o: ["Tired", "Angry", "Happy", "Sad"], a: "A" },
-    { q: "“En colère” veut dire", o: ["Angry", "Happy", "Sad", "Tired"], a: "A" },
-    { q: "“J’ai peur” veut dire", o: ["I am afraid", "I am happy", "I am tired", "I am hungry"], a: "A" },
-    { s: "Fill in the Blanks", q: "Je __ Marie.", o: ["suis", "appelle", "m’appelle", "es"], a: "C" },
-    { q: "Bonjour, je __ élève.", o: ["suis", "es", "est", "avons"], a: "A" },
-    { q: "Mon père et ma mère sont mes __", o: ["amis", "parents", "frères", "cousins"], a: "B" },
-    { q: "Le __ est sur la table.", o: ["stylo", "frère", "mère", "tante"], a: "A" },
-    { q: "La sœur de mon père est ma __", o: ["tante", "sœur", "mère", "cousine"], a: "A" },
-    { s: "True or False", q: "“Bonjour” veut dire Good morning.", o: ["True", "False"], a: "A" },
-    { q: "“Le frère” veut dire sister.", o: ["True", "False"], a: "B" },
-    { q: "“La table” est un objet de la classe.", o: ["True", "False"], a: "A" },
-    { q: "Un Nigérian est une nationalité.", o: ["True", "False"], a: "A" },
-    { q: "“Triste” veut dire happy.", o: ["True", "False"], a: "B" },
-    { s: "Matching Meaning", q: "Livre —", o: ["Book", "Pen", "Chair", "Bag"], a: "A" },
-    { q: "Père —", o: ["Father", "Brother", "Son", "Uncle"], a: "A" },
-    { q: "Français —", o: ["French", "Nigerian", "American", "English"], a: "A" },
-    { q: "Heureux —", o: ["Happy", "Angry", "Sad", "Tired"], a: "A" },
-    { q: "Bonjour —", o: ["Good morning", "Goodbye", "Good night", "Sorry"], a: "A" },
-    { q: "Je suis __ Nigeria.", o: ["de", "à", "en", "sur"], a: "A" },
-    { q: "Le frère de ma mère est mon __", o: ["oncle", "père", "cousin", "frère"], a: "A" },
-    { q: "Une fille de mon oncle est ma __", o: ["cousine", "sœur", "mère", "tante"], a: "A" },
-    { q: "Je suis __ quand je souris.", o: ["heureux", "triste", "fatigué", "en colère"], a: "A" },
-    { q: "Le matin je dis __", o: ["bonsoir", "bonjour", "bonne nuit", "salut"], a: "B" },
-    { q: "Le tableau est dans la __", o: ["classe", "maison", "voiture", "rue"], a: "A" },
-    { q: "Ma sœur est la fille de mes __", o: ["parents", "amis", "cousins", "voisins"], a: "A" },
-    { q: "“La classe” veut dire", o: ["Classroom", "Family", "Country", "Table"], a: "A" },
-    { q: "Mon père est le __ de ma mère", o: ["mari", "frère", "cousin", "oncle"], a: "A" },
-    { q: "Je suis triste quand je __", o: ["pleure", "ris", "mange", "danse"], a: "A" }
-];
+// (All your quizData, correctAnswers, correctTexts, and optionsList arrays remain exactly the same as provided)
+const correctAnswers = ['B', 'C', 'C', 'B', 'B', 'B', 'C', 'B', 'A', 'B', 'B', 'A', 'B', 'A', 'C', 'B', 'C', 'B', 'C', 'C', 'B', 'B', 'B', 'A', 'C', 'B', 'B', 'C', 'C', 'C', 'A', 'A', 'C', 'B', 'B', 'A', 'C', 'C', 'B', 'A', 'A', 'C', 'C', 'B', 'B', 'B', 'B', 'A', 'C', 'A', 'B', 'A', 'B', 'A', 'B', 'A', 'B', 'B', 'A', 'B'];
+const correctTexts = ["B. federal and state governments", "C. Aguiyi-Ironsi", "C. Military coup", "B. 1966", "B. belief in and worship of a Supreme Being", "B. Christianity, Islam, Traditional Religion", "C. Bible", "B. Prophet Muhammad", "A. idols and ancestors", "B. Samuel Ajayi Crowther", "B. Bible translation", "A. black gold", "B. petrol", "A. Africa", "C. Rivers", "B. Income and revenue generation", "C. production and exchange of goods", "B. promote movement of goods and people", "C. motor car", "C. rivers and seas", "B. protecting natural resources", "B. tree planting", "B. how land is used for different purposes", "A. involves growing crops", "C. national development", "B. 1963", "B. Qur’an", "C. mosque", "C. church", "C. Yoruba", "A. introduction of Western education", "A. kerosene", "C. Bayelsa", "B. oil management", "B. environmental pollution", "A. primary economic activity", "C. tertiary sector", "C. aeroplanes", "B. encouraging development", "A. infrastructure", "A. elect their leaders", "C. sustainability for future generations", "C. 36", "B. preach the gospel", "B. twins", "B. underground", "B. earn a living", "A. Road", "C. agricultural", "A. conservation", "B. Earth and many countries", "A. Climate change", "B. harmful gases from factories", "B. cutting down trees", "A. industrial", "B. harmful gases", "B. planting trees", "B. protect", "A. air, water, and soil pollution", "B. rural areas"];
+const questions = ["1. A federation is a system of government where powers are shared between ____", "2. The first military Head of State in Nigeria was", "3. Military governments usually come into power through _____", "4. Yakubu Gowon came into power in", "5. Religion can be defined as _____", "6. The three main types of religion in Nigeria are ______", "7. The holy book of Christianity is the", "8. The founder of Islam is ______", "9. Traditional religion involves the worship of", "10. One early Christian missionary in Nigeria was _____", "11. Samuel Ajayi Crowther was known for", "12. Crude oil is also known as", "13. One product of crude oil is _____", "14. Nigeria is a major oil producing country in", "15. One oil producing state in Nigeria is ____", "16. One benefit of crude oil to Nigeria is ____", "17. Economic activities include", "18. Transportation networks help to", "19. An example of land transportation is _____", "20. Water transportation makes use of _____", "21. Conservation means", "22. One way to conserve land is _____", "23. Land use refers to", "24. Farming is a primary economic activity because it ______", "25. Good transportation system promotes", "26. Nigeria became a republic in _____", "27. The holy book of Islam is the", "28. The place of worship for Muslims is the", "29. The place of worship for Christians is the", "30. Samuel Ajayi Crowther translated the Bible into _____", "31. One importance of early Christian missionaries was", "32. An example of a petroleum product is", "33. One oil producing state in Nigeria is", "34. The Nigerian National Petroleum Company is responsible for _____", "35. Oil spillage can cause", "36. Mining is an example of ____", "37. Teaching and banking belong to", "38. Air transport uses _____", "39. One importance of transportation is", "40. Revenue from oil helps the government to provide _____", "41. A republic allows citizens to", "42. Conservation of natural resources ensures ______", "43. Nigeria has ______ states.", "44. Early Christian missionaries were sent to ______.", "45. Mary Slessor stopped the killing of ______.", "46. Crude oil is found ______.", "47. Economic activities are tasks people perform to ______.", "48. Which of these is a type of transportation network?", "49. Farming is an example of ______ land use.", "50. Planting trees helps in ______.", "51. Global environmental issues affect the ______.", "52. Which of these is a global environmental problem?", "53. Air pollution is caused by ______.", "54. Deforestation means ______.", "55. One cause of environmental problems is ______ activities.", "56. Burning fossil fuels releases ______.", "57. One solution to global environmental issues is ______.", "58. Recycling helps to ______ the environment.", "59. Proper waste management helps to prevent ______.", "60. Urbanization is the movement of people from ______ to cities."];
+const optionsList = [["A. teachers and students", "B. federal and state governments", "C. rulers and traders", "D. elders and youths"], ["A. Yakubu Gowon", "B. Nnamdi Azikiwe", "C. Aguiyi-Ironsi", "D. Olusegun Obasanjo"], ["A. elections", "B. inheritance", "C. Military coup", "D. referendum"], ["A. 1960", "B. 1966", "C. 1979", "D. 1999"], ["A. farming practice", "B. belief in and worship of a Supreme Being", "C. political party", "D. trade activity"], ["A. Islam, Farming, Trade", "B. Christianity, Islam, Traditional Religion", "C. Buddhism, Taoism, Hinduism", "D. Culture, Dance, Music"], ["A. Qur’an", "B. Torah", "C. Bible", "D. Hadith"], ["A. Jesus Christ", "B. Prophet Muhammad", "C. Abraham", "D. Moses"], ["A. idols and ancestors", "B. angels only", "C. presidents", "D. teachers"], ["A. Herbert Macaulay", "B. Samuel Ajayi Crowther", "C. Tafawa Balewa", "D. Ahmadu Bello"], ["A. oil exploration", "B. Bible translation", "C. military rule", "D. trade unionism"], ["A. black gold", "B. white gold", "C. green gold", "D. red gold"], ["A. cocoa", "B. petrol", "C. cotton", "D. rubber"], ["A. Africa", "B. Europe", "C. Asia", "D. Australia"], ["A. Kano", "B. Lagos", "C. Rivers", "D. Plateau"], ["A. unemployment", "B. Income and revenue generation", "C. drought", "D. erosion"], ["A. sleeping", "B. praying", "C. production and exchange of goods", "D. dancing"], ["A. stop trade", "B. promote movement of goods and people", "C. cause conflict", "D. prevent farming"], ["A. ship", "B. aeroplane", "C. motor car", "D. canoe"], ["A. roads", "B. rails", "C. rivers and seas", "D. airways"], ["A. wasting resources", "B. protecting natural resources", "C. burning forests", "D. pollution"], ["A. bush burning", "B. tree planting", "C. overgrazing", "D. mining carelessly"], ["A. misuse of land", "B. how land is used for different purposes", "C. selling land only", "D. stealing land"], ["A. involves growing crops", "B. wastes time", "C. causes pollution", "D. stops trade"], ["A. isolation", "B. poverty", "C. national development", "D. conflict"], ["A. 1960", "B. 1963", "C. 1979", "D. 1999"], ["A. Bible", "B. Qur’an", "C. Torah", "D. Psalms"], ["A. church", "B. shrine", "C. mosque", "D. temple"], ["A. mosque", "B. shrine", "C. church", "D. palace"], ["A. Hausa", "B. Igbo", "C. Yoruba", "D. Efik"], ["A. introduction of Western education", "B. oil drilling", "C. military rule", "D. slave trade"], ["A. kerosene", "B. cocoa", "C. timber", "D. coal"], ["A. Ekiti", "B. Osun", "C. Bayelsa", "D. Kaduna"], ["A. farming", "B. oil management", "C. teaching", "D. banking"], ["A. soil fertility", "B. environmental pollution", "C. rainfall", "D. forest growth"], ["A. primary economic activity", "B. secondary activity", "C. tertiary activity", "D. leisure activity"], ["A. primary sector", "B. secondary sector", "C. tertiary sector", "D. agricultural sector"], ["A. ships", "B. cars", "C. aeroplanes", "D. bicycles"], ["A. discouraging trade", "B. encouraging development", "C. causing isolation", "D. increasing poverty"], ["A. infrastructure", "B. laziness", "C. drought", "D. conflict"], ["A. elect their leaders", "B. appoint kings", "C. remove laws", "D. cancel elections"], ["A. waste", "B. destruction", "C. sustainability for future generations", "D. pollution"], ["A. 24", "B. 30", "C. 36", "D. 40"], ["A. trade goods", "B. preach the gospel", "C. fight wars", "D. farm"], ["A. slaves", "B. twins", "C. women", "D. kings"], ["A. on mountains", "B. underground", "C. in rivers", "D. in schools"], ["A. play", "B. earn a living", "C. sleep", "D. travel"], ["A. Road", "B. Farming", "C. Baking", "D. Mining"], ["A. industrial", "B. commercial", "C. agricultural", "D. recreational"], ["A. conservation", "B. destruction", "C. mining", "D. building"], ["A. city only", "B. Earth and many countries", "C. school", "D. home"], ["A. Climate change", "B. Watching TV", "C. Sleeping", "D. Reading"], ["A. clean water", "B. harmful gases from factories", "C. planting trees", "D. playing outside"], ["A. planting trees", "B. cutting down trees", "C. watering plants", "D. cleaning rivers"], ["A. industrial", "B. sleeping", "C. dancing", "D. cooking"], ["A. clean air", "B. harmful gases", "C. water", "D. soil"], ["A. cutting more trees", "B. planting trees", "C. dumping waste in rivers", "D. polluting air"], ["A. destroy", "B. protect", "C. pollute", "D. damage"], ["A. air, water, and soil pollution", "B. tree planting", "C. clean air", "D. animal growth"], ["A. urban areas", "B. rural areas", "C. schools", "D. factories"]];
 
+// Initial Setup
+const form = document.getElementById('examForm');
 let timeLeft = 45 * 60;
-let timerId;
+let timerInterval;
 
+// Start Exam Function
 function startExam() {
-    const name = document.getElementById('candidateName').value;
-    if (!name) return alert("Please enter your name!");
-    
-    document.getElementById('login-screen').classList.add('hidden');
-    document.getElementById('exam-screen').classList.remove('hidden');
-    document.getElementById('displayName').innerText = "Candidate: " + name;
+    const nameInput = document.getElementById('candidateName').value.trim();
+    if (nameInput === "") {
+        alert("Please enter your name to start.");
+        return;
+    }
 
-    renderQuestions();
-    startTimer();
+    document.getElementById('loginSection').classList.add('hidden');
+    document.getElementById('examContent').classList.remove('hidden');
+
+    // Start Timer
+    timerInterval = setInterval(updateTimer, 1000);
 }
 
-function renderQuestions() {
-    const form = document.getElementById('quizForm');
-    examData.forEach((item, index) => {
-        if (item.s) {
-            const section = document.createElement('div');
-            section.className = 'section-title';
-            section.innerText = item.s;
-            form.appendChild(section);
-        }
-
-        const qBlock = document.createElement('div');
-        qBlock.className = 'question-block';
-        qBlock.innerHTML = `
-            <strong>Question ${index + 1}:</strong> ${item.q}
-            <div class="options">
-                ${item.o.map((opt, i) => {
-                    const char = String.fromCharCode(65 + i);
-                    return `<label><input type="radio" name="q${index}" value="${char}"> ${char}. ${opt}</label>`;
-                }).join('')}
-            </div>
-            <div id="corr-${index}" class="correction hidden">Correction: ${item.a}</div>
-        `;
-        form.appendChild(qBlock);
+// Dynamically create questions
+questions.forEach((qText, index) => {
+    const qNum = index + 1;
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.id = `q${qNum}`;
+    let html = `<strong>${qText}</strong><br><br><div class="options">`;
+    optionsList[index].forEach((opt, i) => {
+        const letter = String.fromCharCode(65 + i);
+        html += `<label><input type="radio" name="q${qNum}" value="${letter}"> ${opt}</label>`;
     });
+    html += `</div>`;
+    div.innerHTML = html;
+    form.appendChild(div);
+});
+
+function updateTimer() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    document.getElementById('timer').textContent = `Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+    if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        alert("Time is up! Exam auto-submitted.");
+        submitExam();
+    }
+    timeLeft--;
 }
 
-function startTimer() {
-    timerId = setInterval(() => {
-        timeLeft--;
-        let m = Math.floor(timeLeft / 60);
-        let s = timeLeft % 60;
-        document.getElementById('timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-        
-        if (timeLeft <= 0) {
-            clearInterval(timerId);
-            submitExam();
-        }
-    }, 1000);
-}
+document.getElementById('submitBtn').addEventListener('click', submitExam);
 
 function submitExam() {
-    clearInterval(timerId);
+    clearInterval(timerInterval);
+    const name = document.getElementById('candidateName').value;
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('submitBtn').textContent = "Submitted";
+
     let score = 0;
-    
-    examData.forEach((item, index) => {
-        const selected = document.querySelector(`input[name="q${index}"]:checked`);
-        if (selected && selected.value === item.a) {
+    questions.forEach((_, index) => {
+        const qNum = index + 1;
+        const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+        const questionDiv = document.getElementById(`q${qNum}`);
+        const correctLetter = correctAnswers[index];
+        const correctText = correctTexts[index];
+
+        questionDiv.classList.add('correct');
+        questionDiv.innerHTML += `<br><strong style="color:#2e7d32;">Correct Answer: ${correctText}</strong>`;
+
+        if (selected && selected.value === correctLetter) {
             score++;
         }
-        document.getElementById(`corr-${index}`).classList.remove('hidden');
-        // Disable inputs
-        const inputs = document.getElementsByName(`q${index}`);
-        inputs.forEach(input => input.disabled = true);
+        const radios = questionDiv.querySelectorAll('input[type="radio"]');
+        radios.forEach(r => r.disabled = true);
     });
 
-    document.getElementById('scoreDisplay').innerText = `${score} / 60`;
-    document.getElementById('percentDisplay').innerText = `Percentage: ${((score/60)*100).toFixed(2)}%`;
-    document.getElementById('results').classList.remove('hidden');
-    document.querySelector('.btn-submit').classList.add('hidden');
-    
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    const percentage = ((score / questions.length) * 100).toFixed(1);
+    document.getElementById('studentDisplayName').textContent = "Candidate: " + name;
+    document.getElementById('scoreText').textContent = `You scored ${score} out of ${questions.length}`;
+    document.getElementById('percentage').textContent = `Percentage: ${percentage}%`;
+    document.getElementById('result').classList.remove('hidden');
+    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
 }
 </script>
 
