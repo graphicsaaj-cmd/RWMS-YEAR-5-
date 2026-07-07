@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRS YEAR 5 TERM 3 EXAMINATION 2025/2026</title>
+    <title>YEAR 5 TERM 3 PROMOTIONAL EXAMINATION - ENGLISH LANGUAGE</title>
     <style>
         :root {
             --primary-color: #1a365d;
@@ -70,6 +70,7 @@
             margin-top: 15px;
         }
 
+        /* Login view styling */
         #login-view {
             background: var(--card-bg);
             padding: 40px;
@@ -83,7 +84,6 @@
         #login-view h3 {
             margin-bottom: 20px;
             color: var(--primary-color);
-            font-size: 20px;
         }
 
         .input-field {
@@ -95,7 +95,6 @@
             font-size: 16px;
             outline: none;
             transition: border-color 0.2s;
-            text-align: center;
         }
 
         .input-field:focus {
@@ -119,6 +118,7 @@
             background: var(--primary-color);
         }
 
+        /* Fixed HUD Header */
         #hud-bar {
             position: fixed;
             top: 0;
@@ -140,6 +140,7 @@
             background: var(--danger-color);
         }
 
+        /* Section dividers */
         .section-header {
             background: #edf2f7;
             color: var(--primary-color);
@@ -152,6 +153,18 @@
             text-transform: uppercase;
         }
 
+        .comprehension-box {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: inset 4px 0 0 var(--accent-color);
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        /* Questions Block UI */
         .question-card {
             background: var(--card-bg);
             padding: 20px;
@@ -167,14 +180,15 @@
             margin-bottom: 15px;
         }
 
-        .options-grid {
+        .options-list {
+            list-style: none;
             display: grid;
             grid-template-columns: 1fr;
             gap: 10px;
         }
 
         @media(min-width: 768px) {
-            .options-grid {
+            .options-list.split-view {
                 grid-template-columns: 1fr 1fr;
             }
         }
@@ -202,7 +216,7 @@
             cursor: pointer;
         }
 
-        /* Correction/Feedback Formatting styles */
+        /* Feedback Evaluation Colors */
         .item-correct {
             background: #c6f6d5 !important;
             border-color: var(--success-color) !important;
@@ -227,6 +241,7 @@
         .badge-success { background: #c6f6d5; color: #22543d; }
         .badge-danger { background: #fed7d7; color: #742a2a; }
 
+        /* Report View UI Dashboard */
         #report-dashboard {
             background: white;
             border: 3px solid var(--accent-color);
@@ -251,6 +266,7 @@
 </head>
 <body>
 
+    <!-- Target HUD Interface Bar -->
     <div id="hud-bar" class="hidden">
         <div id="hud-candidate">Candidate: </div>
         <div id="hud-timer">Time Remaining: 45:00</div>
@@ -258,25 +274,29 @@
 
     <div class="container">
         
+        <!-- Document Master Branding Banner -->
         <div class="header-panel">
-            <h1>Christian Religious Studies Examination</h1>
-            <h2>Year 5 - Term 3 (2025/2026 Academic Session)</h2>
+            <h1>Term 3 Promotional Examination</h1>
+            <h2>Subject: English Language (CBT Portal)</h2>
             <div class="meta-grid">
-                <div><strong>Subject:</strong> C.R.S.</div>
+                <div><strong>Class Level:</strong> Year 5</div>
                 <div><strong>Allowed Window:</strong> 45 Minutes</div>
                 <div><strong>Instructions:</strong> Answer all questions</div>
             </div>
         </div>
 
+        <!-- Pre-flight Authentication Gateway -->
         <div id="login-view">
-            <h3>Candidate Registration</h3>
-            <p>Please type your full legal name below to initialize your interactive Computer-Based Testing session.</p>
-            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Full Name Here" autocomplete="off">
-            <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
+            <h3>Candidate Authentication</h3>
+            <p>Please type your full legal name below to establish validation and initialize the secure workspace.</p>
+            <input type="text" id="candidate-name-input" class="input-field" placeholder="Firstname Lastname" autocomplete="off">
+            <button class="btn" onclick="initializeWorkspace()">Start Assessment</button>
         </div>
 
+        <!-- Interactive Question Manifest Layout Workspace -->
         <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
             
+            <!-- JavaScript will render individual examination parts and question collections inside this container -->
             <div id="dynamic-exam-nodes"></div>
 
             <div style="text-align: center; margin: 40px 0;">
@@ -284,119 +304,186 @@
             </div>
         </form>
 
+        <!-- Finalized Performance Metric Report Dashboard -->
         <div id="report-dashboard" class="hidden">
             <h2>Examination Evaluation Scorecard</h2>
             <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
-            <div class="score-metrics" id="report-score-target">0 / 60</div>
+            <div class="score-metrics" id="report-score-target">0 / 50</div>
             <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
-            <p style="margin-top: 15px; color: #718096;">Review the completely marked answer-sheet detailing structured corrections below.</p>
+            <p style="margin-top: 15px; color: #718096;">Review the completely corrected answer-sheet detailing dynamic structure metrics below.</p>
         </div>
 
     </div>
 
     <script>
-        // Diagnostic Database Matrix containing full script schema
+        // High-Fidelity Diagnostic Database Matrix containing full script schema
         const structurePayload = [
-            { id: 1, q: "At what age was Jesus left behind in Jerusalem?", options: ["12", "15", "30", "10"], ans: 0 },
-            { id: 2, q: "_________ , the daughter of Herodias asked for the head of John the Baptist when she danced for Herod.", options: ["Sarah", "Salome", "Shadrach", "Zeporah"], ans: 1 },
-            { id: 3, q: "The cousin of Jesus who was six months older than Him was _____.", options: ["James", "John", "Josses", "Andrew"], ans: 1 }, // John the Baptist
-            { id: 4, q: "The name Moses means ________.", options: ["drawn from river", "drawn out of ocean", "drawn out of water", "taken from sea"], ans: 2 },
-            { id: 5, q: "Which animal did God send to replace Isaac during the sacrifice?", options: ["goat", "sheep", "Ram", "donkey"], ans: 2 },
-            { id: 6, q: "The man whose wife turned into a pillar of salt is _____.", options: ["Jacob", "Lot", "Moses", "Abraham"], ans: 1 },
-            { id: 7, q: "The resurrection of Jesus Christ gave Christians _________.", options: ["hope", "joy", "Confidence", "Knowledge"], ans: 0 },
-            { id: 8, q: "The birth of Jesus Christ was announced by _______.", options: ["Scribes", "Shepherds", "Sadducees", "Pharisees"], ans: 1 }, // Gabriel to Mary/Shepherds context
-            { id: 9, q: "When we say the Lord’s prayer, We say 'lead us not into ___________'", options: ["Problem", "temptation", "Confusion", "Hell"], ans: 1 },
-            { id: 10, q: "God gave the woman as a _______ to the man.", options: ["helper", "lover", "servant", "cook"], ans: 0 },
-            { id: 11, q: "The first man that was murdered by his brother is _______.", options: ["Cain", "Abel", "Eve", "Adam"], ans: 1 },
-            { id: 12, q: "God destroyed the world with _________ because of man’s wickedness in the days of Prophet Noah.", options: ["Fire", "Flood", "Famine", "Plague"], ans: 1 },
-            { id: 13, q: "John the Baptist was the __________ of Jesus.", options: ["disciple", "fore runner", "elder brother", "teacher"], ans: 1 },
-            { id: 14, q: "Turning water into wine at Cana was initiated by __________.", options: ["His disciple", "His father", "His mother", "The chief host"], ans: 2 },
-            { id: 15, q: "Judas betrayed Jesus with a _________.", options: ["Kiss", "gift", "Slap", "Handshake"], ans: 0 },
-            { id: 16, q: "To be a good child, you must behave like _______ in the Old Testament.", options: ["Phinehas", "Abijah", "Samuel", "Joel"], ans: 2 },
-            { id: 17, q: "Which of the following is not true about God? God is the --------------.", options: ["creator of the universe.", "sustainer of all things", "supreme being", "ruler of only heaven"], ans: 3 },
-            { id: 18, q: "God knows everything means God is _____________.", options: ["Omnipresent", "Omniscient", "Omnipotent", "faithful"], ans: 1 },
-            { id: 19, q: "God intends marriage to be a source of ____________.", options: ["Companionship", "Blessing", "Settlement", "Misunderstanding"], ans: 0 },
-            { id: 20, q: "One of the consequences of lack of repentance the house of Eli suffered was the ________.", options: ["sickness of Eli", "death of Eli and his sons", "touching of the ark of covenant", "destruction of Shiloh."], ans: 1 },
-            { id: 21, q: "To be considered as a good child, You must behave like __________ in the Old testament.", options: ["Joel", "Samuel", "Saul", "Hophni"], ans: 1 },
-            { id: 22, q: "God intends marriage to be a source of _________.", options: ["Companionship", "Blessing", "Endurance", "misunderstanding"], ans: 0 },
-            { id: 23, q: "God created the wife as a ________ to the man.", options: ["giver", "helper", "lover", "servant"], ans: 1 },
-            { id: 24, q: "Obedience is the act of _________.", options: ["doing what you are told to do", "doing what you want to", "readiness", "not complaining"], ans: 0 },
-            { id: 25, q: "Whosoever shall not receive the kingdom of God as a/an _______ shall not enter therein.", options: ["Fool", "Novice", "Adult", "Child"], ans: 3 },
-            { id: 26, q: "God created man on the ____________ day.", options: ["fourth", "Seventh", "Third", "Sixth"], ans: 3 },
-            { id: 27, q: "Every religion teaches the following except ___________.", options: ["Greed", "Tolerance", "Holiness", "Faith in God"], ans: 0 },
-            { id: 28, q: "What did the wise men use in tracing Jesus to his place of birth?", options: ["moon", "sun", "star", "Angel"], ans: 2 },
-            { id: 29, q: "Abraham means _______.", options: ["Father of hope", "Lover of God", "The one after God’s own heart", "Father of many nations"], ans: 3 },
-            { id: 30, q: "Which animal did God provide to replace Isaac?", options: ["Ram", "Sheep", "Goat", "antelope"], ans: 0 },
-            { id: 31, q: "For how many years did the Israelites wander in the wilderness?", options: ["4", "40", "14", "400"], ans: 1 },
-            { id: 32, q: "God sent Jonah to the people of ____________ for repentance.", options: ["Israel", "Nineveh", "Syria", "Jerusalem"], ans: 1 },
-            { id: 33, q: "All these people repented EXCEPT _______________.", options: ["Eli", "Zacchaeus", "Jonah", "David"], ans: 0 },
-            { id: 34, q: "_________ named all the things created by God.", options: ["God", "Adam", "Angel", "Eve"], ans: 1 },
-            { id: 35, q: "--------------- humbled himself before Jesus and did not allow his wealth to come between his soul and God.", options: ["Timothy", "Paul", "Zacchaeus", "Abraham"], ans: 2 },
-            { id: 36, q: "God created Eve from _________ of Adam’s ribs.", options: ["some", "one", "many", "two"], ans: 1 },
-            { id: 37, q: "God formed man’s body from the ________ of the ground.", options: ["sand", "dust", "clay", "stone"], ans: 1 },
-            { id: 38, q: "God carried out his work of creation in _________ days.", options: ["5", "6", "7", "40"], ans: 1 }, // Work of creation = 6 days, rested on 7th
-            { id: 39, q: "According to Psalm 90:4, a thousand years is like a _________ before God.", options: ["day", "year", "decade", "century"], ans: 0 },
-            { id: 40, q: "_________ is the creator of all things.", options: ["God", "Jesus", "Angel", "Holy Spirit"], ans: 0 },
-            { id: 41, q: "A true and genuine relationship in the church is demonstrated when you __________ love your Christian brethren.", options: ["genuinely", "hate", "fight", "control"], ans: 0 },
-            { id: 42, q: "The word 'woman' means ____________.", options: ["taken out of man", "created by man", "born by man", "married to man."], ans: 0 },
-            { id: 43, q: "The following are attributes of God EXCEPT __________.", options: ["Holiness", "Partiality", "Righteousness", "Mightiness"], ans: 1 },
-            { id: 44, q: "The sin committed by Adam and Eve is __________.", options: ["adultery", "envy", "disobedience", "hatred"], ans: 2 },
-            { id: 45, q: "In the beginning God created the heavens and the _______.", options: ["earth", "man", "firmament", "sun"], ans: 0 },
-            { id: 46, q: "All the following are works of the flesh except _______.", options: ["Love", "envy", "idolatry", "hatred"], ans: 0 },
-            { id: 47, q: "When we say the Lord’s prayer, we say 'lead us not into __________.'", options: ["hell", "problem", "temptation", "confusion"], ans: 2 },
-            { id: 48, q: "All the following are fruits of the Holy Spirit EXCEPT __________.", options: ["Kindness", "Long suffering", "witch craft", "Patience"], ans: 2 },
-            { id: 49, q: "The apostles were filled with ____________.", options: ["food", "water", "Holy Spirit", "Salt"], ans: 2 },
-            { id: 50, q: "Prophet ___________ prophesied about the coming of the Holy Spirit.", options: ["Hosea", "Amos", "Joel", "Micah"], ans: 2 }, // Joel 2:28
-            { id: 51, q: "The two apostles that healed a cripple were _____________", options: ["Peter and John", "Peter and Silas", "Peter and James", "Peter and Phillip"], ans: 0 },
-            { id: 52, q: "The Holy Spirit is our comforter in times of _________.", options: ["sorrow", "joy", "success", "happiness"], ans: 0 },
-            { id: 53, q: "The servant with one talent was punished because ____________.", options: ["he was a good servant", "he buried his talent", "he did not have many talents", "he stole other people talent."], ans: 1 },
-            { id: 54, q: "The Holy Spirit may lead us to ________ other people.", options: ["do good things to", "fight", "hate", "destroy"], ans: 0 },
-            { id: 55, q: "Ananias had a wife called _________.", options: ["Sarah", "Sapphira", "Lydia", "Eva"], ans: 1 },
-            { id: 56, q: "The Ethiopian eunuch rode on _________.", options: ["a car", "a bicycle", "a chariot", "a camel"], ans: 2 },
-            { id: 57, q: "The man from Ethiopia was reading from the book of ________.", options: ["Joel", "Isaiah", "John", "Jeremiah"], ans: 1 },
-            { id: 58, q: "How many people repented and became Christians after listening to Peter’s preaching?", options: ["3000", "2000", "500", "1000"], ans: 0 },
-            { id: 59, q: "The inspiration for preaching the gospel always comes from the ________.", options: ["Jesus", "Holy Spirit", "Man", "God"], ans: 1 },
-            { id: 60, q: "_______ was a female judge God used to deliver Israel.", options: ["Deborah", "Elizabeth", "Lydia", "Queen Vashti"], ans: 0 }
+            {
+                type: "section",
+                title: "SECTION A (COMPREHENSION PASSAGE)",
+                instruction: "Read the passage below carefully and answer the questions that follow.",
+                passage: "A long time ago, the cat and the rat lived together. The cat was bigger and stronger than the rat, therefore it commanded the rat to do all types of work and run all errands. One day, the cat said to the rat, \"get me some food, for I am hungry\". So the rat ran quickly to a nearby farm and stole a tuber of yam, which was eaten by the cat alone. The rat was very angry because the cat did not share the food with him, that later led to a serious quarrel and hatred arose between the two animals to the extent that there is hatred between them until today."
+            },
+            { id: 1, q: "Where did the rat run to for food?", options: ["the market place", "a nearby farm", "the cat's room", "a nearby church"], ans: 1 },
+            { id: 2, q: "How did he get the food?", options: ["it was stolen", "it was bought", "it was borrowed", "it was given to him by a friend"], ans: 0 },
+            { id: 3, q: "How can you describe the two animals?", options: ["they are of the same size", "they run errands together", "one was bigger and stronger than the other", "they did not live together"], ans: 2 },
+            { id: 4, q: "Who said \"get me some food\"?", options: ["sheep", "rat", "lion", "cat"], ans: 3 },
+            { id: 5, q: "What was the relationship between the two animals before?", options: ["they were friends", "they were brothers", "they were neighbours", "they were uncle and aunt"], ans: 0 },
+            { id: 6, q: "What led to their dispute?", options: ["the issue of food", "the absence of water", "the money they shared", "the rat wore cat's clothes"], ans: 0 },
+            { id: 7, q: "Nearby as used in the passage means ________.", options: ["far", "close", "long", "inside"], ans: 1 },
+            { id: 8, q: "When did the two animals lived together?", options: ["about 20 years ago", "a short time ago", "a long time ago", "once upon a time"], ans: 2 },
+            { id: 9, q: "What was the food that led to their separation?", options: ["rice", "yam", "maize", "wheat"], ans: 1 },
+            { id: 10, q: "A suitable title for this passage is ________.", options: ["the cat and the rat", "the stolen food", "a quarrel between two friends", "cat is stronger than the rat"], ans: 0 },
+            
+            {
+                type: "section",
+                title: "SECTION B",
+                instruction: "Choose from the list of words lettered A–D, the word that is almost the same in meaning with the word or group of words underlined."
+            },
+            { id: 11, q: "The <u>brilliant</u> pupil was rewarded.", options: ["awarded", "praised", "recognised", "showered"], ans: 1 },
+            { id: 12, q: "The accused was discharged and <u>acquitted</u>.", options: ["prosecuted", "pardoned", "jailed", "freed"], ans: 3 },
+            { id: 13, q: "The fuel scarcity <u>subsided</u> in the Federal Capital Territory.", options: ["ended", "finished", "receded", "reduced"], ans: 3 },
+            { id: 14, q: "Nobody has found a <u>cure</u> for the HIV/AIDS epidemic.", options: ["drug", "medicare", "remedy", "treatment"], ans: 2 },
+            { id: 15, q: "We <u>fortified</u> the door new locks after the armed robbery attack.", options: ["replaced", "hammered", "changed", "strengthened"], ans: 3 },
+            { id: 16, q: "The <u>purpose</u> of the meeting is to cause trouble.", options: ["result", "aim", "importance", "end"], ans: 1 },
+            { id: 17, q: "The lion in the zoo look <u>fierce</u>.", options: ["frightened", "big", "frightening", "tame"], ans: 2 },
+            { id: 18, q: "The enemies <u>invaded</u> our village and captured the village chief.", options: ["searched", "attacked", "saved", "helped"], ans: 1 },
+            { id: 19, q: "I shall <u>certainly</u> pass my examination, if I study hard.", options: ["honestly", "happily", "painfully", "surely"], ans: 3 },
+            { id: 20, q: "The story seems <u>unbelievable</u> to me.", options: ["ironical", "irrelevant", "unreasonable", "incredible"], ans: 3 },
+
+            {
+                type: "section",
+                title: "SECTION C",
+                instruction: "Choose the word or group of words that is most nearly opposite in meaning to the underlined words in these sentences and fits correctly into the gaps."
+            },
+            { id: 21, q: "A notice that a ________ person can read means nothing to an <u>illiterate</u> person.", options: ["literate", "scholar", "student", "teacher"], ans: 0 },
+            { id: 22, q: "Something that cost very little in <u>foreign</u> money may be expensive in ________ money.", options: ["home", "our", "national", "local"], ans: 3 },
+            { id: 23, q: "The soldiers almost <u>starved</u> the prisoners because they ________ them only once in two days.", options: ["fed", "served", "cooked", "supplied"], ans: 0 },
+            { id: 24, q: "The ________ water inside the harbour contrasted with the <u>rough</u> waves outside.", options: ["gentle", "smooth", "polite", "steady"], ans: 1 },
+            { id: 25, q: "Students who work very hard have a <u>bright</u> future while lazy ones have a ________ one.", options: ["bleak", "poor", "progressive", "weak"], ans: 0 },
+            { id: 26, q: "Teachers are happy when their students are <u>active</u> but hate to see them indulge in ________ movements.", options: ["quick", "brisk", "sluggish", "steady"], ans: 2 },
+            { id: 27, q: "Chidi's unseriousness in school brought him <u>condemnation</u> while Chukwuma's effort and success earned him ________.", options: ["fame", "support", "acclamation", "commendation"], ans: 3 },
+            { id: 28, q: "It is a wise thing to put ________ before <u>play</u>.", options: ["pleasure", "hardwork", "practice", "thinking"], ans: 1 },
+            { id: 29, q: "Although payment of the PTA levy is <u>voluntary</u>, it is ________ for all student to pay tuition fees.", options: ["optional", "necessary", "mandatory", "important"], ans: 2 },
+            { id: 30, q: "There is <u>disorder</u> everywhere! Can't somebody introduce ________ into this society?", options: ["laws", "wisdom", "order", "regulation"], ans: 2 },
+
+            {
+                type: "section",
+                title: "SECTION D",
+                instruction: "From the words lettered A to D, choose an option that is correct and most suitable to fill in the gaps in each of the sentences."
+            },
+            { id: 31, q: "It is difficult to say ________ he will come or not.", options: ["what", "whether", "why", "idea"], ans: 1 },
+            { id: 32, q: "The Inspector for Education advised us to come to school ________.", options: ["privately", "previously", "punctually", "perfectly"], ans: 2 },
+            { id: 33, q: "Every morning, my mother ________ me a cup of tea.", options: ["has given", "give", "gives", "given"], ans: 2 },
+            { id: 34, q: "I could have been the happiest of men, if my sisters ________ than Aishat, Ada and Ibukun.", options: ["tall", "more tall", "taller", "tallest"], ans: 2 },
+            { id: 35, q: "It is not mine, it is ________.", options: ["her", "theirs", "their's", "there's"], ans: 1 },
+            { id: 36, q: "The work has not ________.", options: ["been done", "being done", "been doing", "yet done"], ans: 0 },
+            { id: 37, q: "Nursing is ________ interesting job.", options: ["the", "more", "a", "an"], ans: 3 },
+            { id: 38, q: "Janet had no eraser, so Mary offered to ________ her one.", options: ["borrow", "present", "lend", "dash"], ans: 2 },
+            { id: 39, q: "The boy ________ insulted the teacher was severely punished.", options: ["which", "who", "who's", "whose"], ans: 1 },
+            { id: 40, q: "Is this your book? ________", options: ["No, it is", "No, it wasn't", "Yes, it is", "Yes, it's mine"], ans: 2 },
+            { id: 41, q: "Has the president announced the budget? Yes, ________.", options: ["He hasn't", "He don't", "He has", "He will"], ans: 2 },
+            { id: 42, q: "It is always better to \"make hay ________ the sun shines\".", options: ["as", "as soon as", "when", "while"], ans: 3 },
+            { id: 43, q: "The plural form of the word \"furniture\" is ________.", options: ["furnishing", "furnishings", "Furniture", "furnitures"], ans: 2 },
+            { id: 44, q: "Rebeccah is ________ than Felicia.", options: ["more hardworking", "most hardworking", "much hardworking", "hardworking"], ans: 0 },
+            { id: 45, q: "I know him very well, he has been a good friend of ________.", options: ["myself", "mine", "I", "my"], ans: 1 },
+            { id: 46, q: "I was frightened by the roaring lions, the bleating sheep and the ________ snakes.", options: ["mewing", "sighing", "blowing", "hissing"], ans: 3 },
+            { id: 47, q: "A collection of flowers is a ________.", options: ["bunch", "bouquet", "roll", "flowerbed"], ans: 1 },
+
+            {
+                type: "section",
+                title: "SECTION E",
+                instruction: "From the words A to D, choose the correct word or spelling."
+            },
+            { id: 48, q: "Choose the correct spelling of the animal shown below:", options: ["hippopotamus", "hippopotamus ", "hippopotamuss", "hipopotamus"], ans: 0 },
+            { id: 49, q: "Choose the correct spelling:", options: ["accommodation", "对外accomodation", "acccomodation", "acomodtion"], ans: 0 },
+            { id: 50, q: "Choose the correct spelling:", options: ["seperate", "seprate", "separate", "seperrate"], ans: 2 },
+            { id: 51, q: "Choose the correct spelling:", options: ["misisipi", "mississippi", "missisipi", "hmissisipi"], ans: 1 },
+
+            {
+                type: "section",
+                title: "SECTION F (VERBAL REASONING)",
+                instruction: "In each of the following questions, choose the word that cannot be formed by an arrangement of all or some of the letters of the words in capitals."
+            },
+            { id: 52, q: "SOMERSAULT", options: ["some", "mauler", "assault", "result"], ans: 1 },
+            { id: 53, q: "INACTIVITY", options: ["toy", "active", "act", "nativity"], ans: 1 },
+            { id: 54, q: "STUPENDOUS", options: ["pen", "spouse", "spout", "sport"], ans: 3 },
+
+            {
+                type: "section",
+                title: "VERBAL REASONING (CONTD.)",
+                instruction: "Look carefully at the first two pairs and see how the two words are related, then complete the last word:"
+            },
+            { id: 55, q: "(game, tame); (gone, tone); (grest, ________)", options: ["gray", "trost", "groan", "trest"], ans: 3 },
+            { id: 56, q: "(park, spark); (talk, stalk); (nub, ________)", options: ["herb", "hab", "rob", "snub"], ans: 3 },
+            { id: 57, q: "(bring, ring); (swing, wing); (blink, ________)", options: ["long", "link", "fling", "string"], ans: 1 },
+
+            {
+                type: "section",
+                title: "VERBAL REASONING (COMPLETION)",
+                instruction: "In the following questions, choose the option which can complete both words dynamically."
+            },
+            { id: 58, q: "kin _ _ _ ang  (Find letters to complete: kin[___] and [___]ang)", options: ["g / s", "d / o", "k / s", "g / e"], ans: 0 }, // king / sang
+            { id: 59, q: "to _ _ _ east (Find structural link letter)", options: ["w", "n", "p", "y"], ans: 1 }, // ton / neast -> or toe / east
+            { id: 60, q: "han _ _ _ ust", options: ["d", "p", "g", "r"], ans: 0 } // hand / dust
         ];
 
         let countdownRef;
-        let totalTimeSec = 45 * 60; // Fixed execution timer standard: 45 Minutes
+        let totalTimeSec = 45 * 60; // 45 Minutes execution scale
         let formSubmitted = false;
 
+        // Render examination node stream mapping logic
         function assembleExamDOM() {
             const displayPool = document.getElementById('dynamic-exam-nodes');
-            displayPool.innerHTML = `<div class="section-header">SECTION A (MULTIPLE CHOICE QUESTIONS)</div>`;
+            displayPool.innerHTML = "";
+            let questionIndexer = 1;
 
-            structurePayload.forEach((node, index) => {
-                const optionPrefix = ["A", "B", "C", "D"];
-                let optionsMarkup = "";
+            structurePayload.forEach((node) => {
+                if (node.type === "section") {
+                    let sectionUI = `<div class="section-header">${node.title}</div>`;
+                    if (node.instruction) {
+                        sectionUI += `<p style="margin: -10px 0 20px 5px; font-style: italic; color:#4a5568;">${node.instruction}</p>`;
+                    }
+                    if (node.passage) {
+                        sectionUI += `<div class="comprehension-box">${node.passage}</div>`;
+                    }
+                    displayPool.innerHTML += sectionUI;
+                } else {
+                    const optionPrefix = ["A", "B", "C", "D"];
+                    let optionsMarkup = "";
 
-                node.options.forEach((opt, idx) => {
-                    optionsMarkup += `
-                        <label class="option-item" id="lbl-q${node.id}-o${idx}">
-                            <input type="radio" name="input-q${node.id}" value="${idx}">
-                            <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
-                        </label>
-                    `;
-                });
+                    node.options.forEach((opt, idx) => {
+                        optionsMarkup += `
+                            <label class="option-item" id="lbl-q${node.id}-o${idx}">
+                                <input type="radio" name="input-q${node.id}" value="${idx}">
+                                <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
+                            </label>
+                        `;
+                    });
 
-                const cardUI = `
-                    <div class="question-card" id="card-block-q${node.id}">
-                        <div class="question-text">${index + 1}. ${node.q}</div>
-                        <div class="options-grid">
-                            ${optionsMarkup}
+                    // Add dynamic formatting for grid-splitting variants
+                    const targetGridClass = node.options.length <= 4 ? "split-view" : "";
+
+                    const cardUI = `
+                        <div class="question-card" id="card-block-q${node.id}">
+                            <div class="question-text">${questionIndexer}. ${node.q}</div>
+                            <div class="options-list ${targetGridClass}">
+                                ${optionsMarkup}
+                            </div>
+                            <div id="evaluation-q${node.id}"></div>
                         </div>
-                        <div id="evaluation-q${node.id}"></div>
-                    </div>
-                `;
-                displayPool.innerHTML += cardUI;
+                    `;
+                    displayPool.innerHTML += cardUI;
+                    questionIndexer++;
+                }
             });
         }
 
+        // Initialize active workspace 
         function initializeWorkspace() {
             const inputName = document.getElementById('candidate-name-input').value.trim();
             if (!inputName) {
-                alert("Please input your full legal name before starting.");
+                alert("Please input a valid Candidate Name string before executing initialization.");
                 return;
             }
 
@@ -410,12 +497,13 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Execute background timer threads
         function beginTimeDecrement() {
             countdownRef = setInterval(() => {
                 if (totalTimeSec <= 0) {
                     clearInterval(countdownRef);
                     document.getElementById('hud-timer').innerText = "TIME EXPIRED";
-                    alert("Your allocated exam session window has expired. Answers will now auto-evaluate.");
+                    alert("Your allocated time segment has run out. The canvas will now evaluate and log your answers.");
                     evaluateExamPayload(true);
                 } else {
                     totalTimeSec--;
@@ -427,7 +515,7 @@
 
                     document.getElementById('hud-timer').innerText = `Time Remaining: ${min}:${sec}`;
 
-                    if (totalTimeSec <= 300) {
+                    if (totalTimeSec <= 300) { // Highlight red if under 5 minutes remaining
                         document.getElementById('hud-bar').classList.add('warning');
                     }
                 }
@@ -436,18 +524,24 @@
 
         function requestUserConfirmation() {
             let trackedAnswers = 0;
+            let totalQuestionsCount = 0;
+
             structurePayload.forEach(node => {
-                if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
-                    trackedAnswers++;
+                if (!node.type) {
+                    totalQuestionsCount++;
+                    if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
+                        trackedAnswers++;
+                    }
                 }
             });
 
-            const userVerdict = confirm(`You have completed ${trackedAnswers} out of ${structurePayload.length} questions. Click OK to finish evaluation processing.`);
+            const userVerdict = confirm(`You have answered ${trackedAnswers} out of ${totalQuestionsCount} validation slots. Press OK to close verification processing.`);
             if (userVerdict) {
                 evaluateExamPayload(false);
             }
         }
 
+        // Automated evaluation matrix engine
         function evaluateExamPayload(isForcedTimeout = false) {
             if (formSubmitted) return;
             formSubmitted = true;
@@ -457,20 +551,25 @@
             document.getElementById('master-submit-btn').classList.add('hidden');
 
             let aggregateScore = 0;
+            let targetQuestionMetricsCount = 0;
             const userName = document.getElementById('candidate-name-input').value.toUpperCase();
 
             structurePayload.forEach((node) => {
+                if (node.type) return; // Skip structural elements
+
+                targetQuestionMetricsCount++;
                 const selectedRadio = document.querySelector(`input[name="input-q${node.id}"]:checked`);
                 const logFeedbackNode = document.getElementById(`evaluation-q${node.id}`);
                 const selectionIdx = selectedRadio ? parseInt(selectedRadio.value) : null;
 
+                // Freeze all element options inside dataset container
                 const optionElements = document.querySelectorAll(`input[name="input-q${node.id}"]`);
                 optionElements.forEach(radio => radio.disabled = true);
 
                 if (selectionIdx === node.ans) {
                     aggregateScore++;
                     document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
-                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct</span>`;
+                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct Option Selected</span>`;
                 } else {
                     document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
                     if (selectionIdx !== null) {
@@ -480,15 +579,15 @@
                     const charMap = ["A", "B", "C", "D"];
                     logFeedbackNode.innerHTML = `
                         <span class="correction-badge badge-danger">
-                            ✗ Incorrect (Correction: Option ${charMap[node.ans]} — "${node.options[node.ans]}")
+                            ✗ Incorrect (Correction: Select Option ${charMap[node.ans]} — "${node.options[node.ans]}")
                         </span>`;
                 }
             });
 
-            const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
+            const computationPercentage = Math.round((aggregateScore / targetQuestionMetricsCount) * 100);
             
             document.getElementById('report-name-target').innerText = `Performance Diagnostics for: ${userName}`;
-            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
+            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${targetQuestionMetricsCount}`;
             document.getElementById('report-percentage-target').innerText = `Calculated Grade: ${computationPercentage}%`;
             
             document.getElementById('report-dashboard').classList.remove('hidden');
