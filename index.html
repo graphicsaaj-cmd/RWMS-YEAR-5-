@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHE YEAR 5 TERM 3 PROMOTIONAL EXAMINATION 2025/2026</title>
+    <title>TERM 3 PROMOTIONAL EXAMINATION - HUMANITIES YEAR 5</title>
     <style>
         :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2b6cb0;
-            --accent-color: #d69e2e;
-            --success-color: #2f855a;
-            --danger-color: #c53030;
-            --light-bg: #f7fafc;
-            --card-bg: #ffffff;
-            --text-color: #2d3748;
+            --primary-color: #0d2c54; /* Royal Blue */
+            --accent-color: #c5a059;  /* Metallic Gold */
+            --light-bg: #f8f9fa;
+            --dark-text: #2b2d42;
+            --success-color: #2ec4b6;
+            --danger-color: #e71d36;
         }
 
         * {
@@ -25,219 +23,217 @@
 
         body {
             background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.6;
+            color: var(--dark-text);
             padding-bottom: 60px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 30px auto;
-            padding: 20px;
-        }
-
-        .header-panel {
-            background: var(--primary-color);
-            color: white;
+            background: #ffffff;
             padding: 30px;
             border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 8px solid var(--primary-color);
+        }
+
+        /* School Branding Header */
+        .school-header {
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+            border-bottom: 3px double var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
 
-        .header-panel h1 {
-            font-size: 24px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .header-panel h2 {
-            font-size: 18px;
-            color: #cbd5e0;
-            margin-bottom: 15px;
-        }
-
-        .meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 15px;
-        }
-
-        #login-view {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            max-width: 500px;
-            margin: 40px auto;
-        }
-
-        #login-view h3 {
-            margin-bottom: 20px;
+        .school-header h1 {
             color: var(--primary-color);
-            font-size: 20px;
+            font-size: 24px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
         }
 
-        .input-field {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 15px 0 25px 0;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+        .school-header h2 {
             font-size: 16px;
-            outline: none;
-            transition: border-color 0.2s;
-            text-align: center;
+            color: #555;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
-        .input-field:focus {
-            border-color: var(--secondary-color);
+        .exam-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 14px;
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* Login Screen Setup */
+        #login-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        .input-group input {
+            padding: 12px 20px;
+            width: 80%;
+            max-width: 400px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-color);
         }
 
         .btn {
-            background: var(--secondary-color);
-            color: white;
-            border: none;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: 2px solid var(--primary-color);
             padding: 12px 30px;
             font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
+            font-weight: bold;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: 0.3s;
             text-transform: uppercase;
         }
 
         .btn:hover {
-            background: var(--primary-color);
+            background-color: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
-        #hud-bar {
+        /* Fixed Timer Bar */
+        #timer-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 600;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             z-index: 1000;
-            border-bottom: 4px solid var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
         }
 
-        #hud-bar.warning {
-            background: var(--danger-color);
-        }
-
-        .section-header {
-            background: #edf2f7;
-            color: var(--primary-color);
-            padding: 15px 20px;
-            border-left: 6px solid var(--secondary-color);
+        /* Questions Layout */
+        .section-title {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 8px 15px;
+            margin: 20px 0;
             border-radius: 4px;
-            margin: 35px 0 20px 0;
-            font-weight: 700;
             font-size: 16px;
-            text-transform: uppercase;
         }
 
-        .question-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            border: 1px solid #e2e8f0;
+        .question-block {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #fff;
+            border-left: 4px solid #dee2e6;
+            border-radius: 0 6px 6px 0;
+            transition: 0.2s;
         }
 
         .question-text {
-            font-weight: 600;
             font-size: 16px;
-            margin-bottom: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
 
-        .options-grid {
+        .options-container {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
-        @media(min-width: 768px) {
-            .options-grid {
+        @media(min-width: 600px) {
+            .options-container {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
-        .option-item {
+        .option-label {
             display: flex;
             align-items: center;
-            background: #f8fafc;
-            border: 1px solid #edf2f7;
-            padding: 12px 15px;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border: 1px solid #e2e8f0;
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.2s;
-            font-size: 15px;
-        }
-
-        .option-item:hover {
-            background: #edf2f7;
-            border-color: #cbd5e0;
-        }
-
-        .option-item input {
-            margin-right: 12px;
-            transform: scale(1.2);
-            cursor: pointer;
-        }
-
-        .item-correct {
-            background: #c6f6d5 !important;
-            border-color: var(--success-color) !important;
-            color: #22543d;
-            font-weight: 600;
-        }
-
-        .item-wrong {
-            background: #fed7d7 !important;
-            border-color: var(--danger-color) !important;
-            color: #742a2a;
-        }
-
-        .correction-badge {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 6px 12px;
-            border-radius: 6px;
             font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .option-label:hover {
+            background: #edf2f7;
+        }
+
+        .option-label input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        /* Corrections and Review Styling */
+        .correct-ans {
+            background-color: #d1fae5 !important;
+            border-color: var(--success-color) !important;
+            color: #065f46;
             font-weight: bold;
         }
-        .badge-success { background: #c6f6d5; color: #22543d; }
-        .badge-danger { background: #fed7d7; color: #742a2a; }
 
-        #report-dashboard {
-            background: white;
-            border: 3px solid var(--accent-color);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        .wrong-ans {
+            background-color: #fee2e2 !important;
+            border-color: var(--danger-color) !important;
+            color: #991b1b;
         }
 
-        .score-metrics {
-            font-size: 54px;
+        .feedback-badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .badge-success { background: #d1fae5; color: #065f46; }
+        .badge-danger { background: #fee2e2; color: #991b1b; }
+
+        /* Results Card */
+        #results-card {
+            background: #fff;
+            border: 3px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #results-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .score-display {
+            font-size: 48px;
             font-weight: 800;
             color: var(--primary-color);
             margin: 15px 0;
@@ -250,238 +246,263 @@
 </head>
 <body>
 
-    <div id="hud-bar" class="hidden">
-        <div id="hud-candidate">Candidate: </div>
-        <div id="hud-timer">Time Remaining: 45:00</div>
+    <div id="timer-bar" class="hidden">
+        <div id="candidate-display">Candidate: </div>
+        <div id="countdown-timer">Time Left: 45:00</div>
     </div>
 
     <div class="container">
-        
-        <div class="header-panel">
-            <h1>Physical and Health Education</h1>
-            <h2>Year 5 - Term 3 (Promotional Examination 2025/2026 Session)</h2>
-            <div class="meta-grid">
-                <div><strong>Subject:</strong> P.H.E.</div>
-                <div><strong>Allowed Window:</strong> 45 Minutes</div>
-                <div><strong>Instructions:</strong> Answer all questions</div>
+        <div class="school-header">
+            <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+            <h2>Term 3 Promotional Examination | 2025/2026 Session</h2>
+            <div class="exam-meta">
+                <span><strong>Subject:</strong> Humanities</span>
+                <span><strong>Class:</strong> Year 5</span>
+                <span><strong>Duration:</strong> 45 Mins (CBT Mode)</span>
             </div>
         </div>
 
-        <div id="login-view">
-            <h3>Candidate Registration</h3>
-            <p>Please type your full name below to initialize your interactive Computer-Based Testing (CBT) engine.</p>
-            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Full Name Here" autocomplete="off">
-            <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
+        <div id="login-screen">
+            <h3>Enter Candidate Full Name to Start Examination</h3>
+            <div class="input-group">
+                <input type="text" id="candidate-name" placeholder="Surname First Name Middle Name" autocomplete="off">
+            </div>
+            <button type="button" class="btn" onclick="startExam()">Start Examination</button>
         </div>
 
-        <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
+        <form id="exam-form" class="hidden" onsubmit="event.preventDefault(); submitExam(false);">
             
-            <div id="dynamic-exam-nodes"></div>
+            <div class="section-title">
+                <strong>INSTRUCTION:</strong> Attempt all the questions in Section A. Select the most accurate option.
+            </div>
 
-            <div style="text-align: center; margin: 40px 0;">
-                <button type="button" class="btn" id="master-submit-btn" onclick="requestUserConfirmation()">Submit Examination</button>
+            <div id="quiz-questions-container">
+                </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button type="button" class="btn" id="submit-btn" onclick="confirmSubmission()">Submit Answers</button>
             </div>
         </form>
 
-        <div id="report-dashboard" class="hidden">
-            <h2>Examination Evaluation Scorecard</h2>
-            <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
-            <div class="score-metrics" id="report-score-target">0 / 50</div>
-            <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
-            <p style="margin-top: 15px; color: #718096;">Review the completely marked answer-sheet detailing structured corrections below.</p>
+        <div id="results-card" class="hidden">
+            <h2>Examination Completed!</h2>
+            <p id="result-candidate-name"></p>
+            <div class="score-display" id="score-text">0 / 60</div>
+            <p id="percentage-text" style="font-weight: 600; font-size: 18px; margin-bottom: 15px;"></p>
+            <p style="color: #666;">Scroll down to review systematic feedback and corrections for your attempted questions.</p>
         </div>
 
     </div>
 
     <script>
-        // Structural database mapping out the PHE exam payload matrix
-        const structurePayload = [
-            { id: 1, q: "__________ is caused by lack of vitamin D.", options: ["Ricket", "Kwashiorkor", "Pellagra", "marasmus"], ans: 0 },
-            { id: 2, q: "Sunshine vitamin is vitamin _________ .", options: ["D", "C", "E", "K"], ans: 0 },
-            { id: 3, q: "Vitamin___________ is necessary for the development for strong gum and root of the teeth.", options: ["K", "C", "D", "E"], ans: 1 },
-            { id: 4, q: "When a child has very tiny and weak legs, arms, neck and his /her ribs and collar bones are visible always, such a child is suffering from _______________-", options: ["Marasmus", "Scurvy", "Pellagra", "Scurvy"], ans: 0 },
-            { id: 5, q: "__________ is a class of food which help in body building, growth and repairing of worn out tissues.", options: ["Protein", "Carbohydrate", "Vitamin", "Mineral salt"], ans: 0 },
-            { id: 6, q: "Judo was first invented by _______ .", options: ["Britain", "Japan", "Nigeria", "USA"], ans: 1 },
-            { id: 7, q: "In Judo, ________ decides the winner and ends the match.", options: ["Ippon", "Shido", "Bat", "batton"], ans: 0 },
-            { id: 8, q: "Judo was introduced to Olympic in the year _______________.", options: ["1964", "1878", "1973", "1999"], ans: 0 },
-            { id: 9, q: "If you throw a ball up, what force pulls it to the ground?", options: ["Frictional", "Magnetic", "Gravitational", "Tension"], ans: 2 },
-            { id: 10, q: "Eggs, meat, fish, milk are examples of ____________", options: ["Protein", "Vitamin", "Fat & oil", "Carbohydrate"], ans: 0 },
-            { id: 11, q: "The energy used in running a relay race comes mainly from ____________ .", options: ["Carbohydrate", "Protein", "Fat & Oil", "Mineral salt"], ans: 0 },
-            { id: 12, q: "The treatment given to a patient before the doctor’s arrival is __________ .", options: ["Dialysis", "First aid", "Scanning", "Surgery"], ans: 1 },
-            { id: 13, q: "The following are safety wears EXCEPT _________ .", options: ["Wrist watch", "goggle", "Hand gloves", "Apron"], ans: 0 },
-            { id: 14, q: "All the following are examples of non-locomotor movement except __________ .", options: ["twisting", "catching", "Kicking", "galloping"], ans: 3 },
-            { id: 15, q: "All the following are basic skills in basketball except ___________", options: ["dribbling", "Passing", "Rebouncing", "Spiking"], ans: 3 }, // Spiking belongs to Volleyball
-            { id: 16, q: "All the following are equipment in basketball EXCEPT ______________ .", options: ["bat", "net", "Ball", "None of the above"], ans: 0 },
-            { id: 17, q: "All the following are conditions requiring emergency EXCEPT _________", options: ["Sleeping", "Poisoning", "Severe bleeding", "Drowning"], ans: 0 },
-            { id: 18, q: "Which of the following cannot be found in the first aid box?", options: ["Chloroquine", "Cotton wool", "Iodine", "Blade"], ans: 0 },
-            { id: 19, q: "_______ is caused by lack of iodine in a diet", options: ["Goiter", "Kwashiorkor", "Pellagra", "Scurvy"], ans: 0 },
-            { id: 20, q: "Diet low in Vitamin D, calcium and phosphorus may cause curved legs in children.", options: ["True", "False", "I don't know", "None of the above"], ans: 0 },
-            { id: 21, q: "___________- is the inability of a person to get adequate oxygen to breathe in thus resulting into choking.", options: ["Falls", "Suffocation", "Bruises", "Burns"], ans: 1 },
-            { id: 22, q: "All the following are effects of eating unbalanced diet except _________ .", options: ["Stunted growth", "Bowleg", "Kwashiorkor", "None of the above"], ans: 3 },
-            { id: 23, q: "Which of the following is due to insufficient vitamin?", options: ["Malaria", "Dysentery", "Ricket", "Diarrhoea"], ans: 2 },
-            { id: 24, q: "Disease causing organisms are called _____", options: ["Pathogens", "Carrier", "Aphid", "Bugs"], ans: 0 },
-            { id: 25, q: "A skin lesion or wound in the shape of a ring is a disease called __________ .", options: ["Scabies", "Ringworm", "Tuberculosis", "Pneumonia"], ans: 1 },
-            { id: 26, q: "Which of the following is one of the agents that causes diseases?", options: ["Virus", "Bacteria", "Fungi", "All of the above"], ans: 3 },
-            { id: 27, q: "One of the reasons why people abuse drugs is _________.", options: ["ignorance", "Illiteracy", "Pride", "All of the above"], ans: 3 },
-            { id: 28, q: "When someone cannot do without a drug it is called _________.", options: ["Drug prescription", "Drug recommendation", "Drug trafficking", "Drug addiction"], ans: 3 },
-            { id: 29, q: "Those who dispense medications prescribed by physicians to patients are called _________", options: ["Doctors", "Pharmacists", "Drug peddlers", "Nurse"], ans: 1 },
-            { id: 30, q: "An example of drug that can be taken through the skin is ___________ .", options: ["tablet", "Syrup", "Capsules", "Syringes"], ans: 3 }, // Administration through needles/injection via skin
-            { id: 31, q: "A drug baron is someone who ____________.", options: ["sells drugs in a medicine store.", "sells drugs at the hospital", "produces drugs", "buys and sells illegal drugs"], ans: 3 },
-            { id: 32, q: "An example of hard drugs is _________- .", options: ["cocaine", "cough syrup", "Vitamin C", "Paracetamol"], ans: 0 },
-            { id: 33, q: "A drug addict is likely to ____________ .", options: ["be healthy", "be intelligent", "perform poorly at work", "behave well"], ans: 2 },
-            { id: 34, q: "An illegal way of getting drugs is from --------------- .", options: ["hospital", "medicine store", "barons", "pharmacists"], ans: 2 },
-            { id: 35, q: "________ is when drugs are taken without medical prescription.", options: ["Drug abuse", "Dosage", "Recommendation", "Ignorance"], ans: 0 },
-            { id: 36, q: "Drug abuse victims can be commonly found in ___________-", options: ["Universities", "companies", "airports", "Psychiatric hospitals"], ans: 3 },
-            { id: 37, q: "Excessive drug intake could result in _________-", options: ["long life", "good jobs", "brain damage", "happiness"], ans: 2 },
-            { id: 38, q: "People who abuse drugs usually have the following looks except being _________", options: ["tidy", "rough", "unstable", "dirty"], ans: 0 },
-            { id: 39, q: "The effects of drug abuse include the following except ________ .", options: ["Job loss", "Criminal tendencies", "increased intelligence", "family disintegration"], ans: 2 },
-            { id: 40, q: "Drugs might be necessary for ------------.", options: ["Curing ailments", "Showing status", "getting new friends", "Courage"], ans: 0 },
-            { id: 41, q: "Counselling and treatment of victims of hard drugs is the duty of _________ .", options: ["doctors", "nurses", "policemen", "everyone"], ans: 3 }, // Community responsibility context
-            { id: 42, q: "Sleeplessness is also known as ________- .", options: ["Cramp", "insomnia", "tumour", "Panic syndrome"], ans: 1 },
-            { id: 43, q: "Most of the drugs that are abused contain __________- substances.", options: ["helpful", "harmful", "hidden", "hard"], ans: 1 },
-            { id: 44, q: "Continuous drug abuse may cause ______________", options: ["direction", "affection", "addiction", "connection"], ans: 2 },
-            { id: 45, q: "The use of the drugs wrongly constitutes a/an ____________ .", options: ["Curse", "Spell", "Abuse", "Addiction"], ans: 2 },
-            { id: 46, q: "Hard drugs that are usually abused include ___________ .", options: ["Paracetamol", "heroine", "Chocolate", "Pepper"], ans: 1 },
-            { id: 47, q: "The itching of the skin is a symptom of lack of Vitamin ____________.", options: ["C", "A", "K", "B"], ans: 3 }, // B-Complex deficiencies can trigger skin manifestations/pellagra issues
-            { id: 48, q: "A frequent dry cough is known as ______________", options: ["Scabies", "Pneumonia", "Tuberculosis", "typhoid"], ans: 2 },
-            { id: 49, q: "__________ causes scabies.", options: ["mites", "Lice", "ticks", "housefly"], ans: 0 },
-            { id: 50, q: "_______ and ________ are examples of Vitamins.", options: ["Rice and meat", "Fruits and vegetables", "Butter and milk", "Fruits and cheese"], ans: 1 }
+        // Complete Question Database Array with Integrated Corrections Definition Matrix
+        const questionsDB = [
+            { id: 1, q: "The first military government in Nigeria was led by ___________", options: ["Gen. Aguiyi Ironsi", "Gen. Yakubu Gowon", "Gen. Murtala Mohammed", "Gen. Olusegun Obasanjo"], ans: 0 },
+            { id: 2, q: "General Yakubu Gowon is from _______ State.", options: ["Abia", "Katsina", "Plateau", "Borno"], ans: 2 },
+            { id: 3, q: "Another name for crude oil is ______ gold.", options: ["Yellow", "Black", "Red", "Green"], ans: 1 },
+            { id: 4, q: "_______ is not a by - product of crude oil.", options: ["Palm oil", "Petrol", "Kerosene", "Diesel fuel"], ans: 0 },
+            { id: 5, q: "Olobiri is in present day ________ State.", options: ["Rivers", "Bayelsa", "Akwa-Ibom", "Delta"], ans: 1 },
+            { id: 6, q: "________ is a factory that processes raw materials into finished products.", options: ["Industry", "Office", "Establishment", "Hall"], ans: 0 },
+            { id: 7, q: "A company that builds software falls under _________ industry.", options: ["Service", "Oil & gas", "Information and Communication Technology", "Agriculture"], ans: 2 },
+            { id: 8, q: "Textile companies are majorly located in _______ and ___________ .", options: ["Ondo and Osun", "Lagos and Ekiti", "Kaduna and Kano", "Lagos and Abuja"], ans: 2 },
+            { id: 9, q: "Banks, transportation etc fall under ______ industry.", options: ["Agriculture", "Banking", "Consumable goods", "None of the above"], ans: 3 },
+            { id: 10, q: "______ is a raw material processed into tyres and plastic chair.", options: ["rubber", "timber", "Cotton", "limestone"], ans: 0 },
+            { id: 11, q: "The Nigeria oil refineries are located in the following EXCEPT _________ .", options: ["Warri", "Kaduna", "Port – Harcourt", "Lagos"], ans: 3 },
+            { id: 12, q: "______ is a raw material for cement.", options: ["Tin – ore", "limestone", "Rubber", "Stone"], ans: 1 },
+            { id: 13, q: "The longest river in Nigeria is River _______ .", options: ["Asa", "Cross", "Niger", "Benue"], ans: 2 },
+            { id: 14, q: "A person who is a legal member of a country is called __________", options: ["An Alien", "Ambassador", "Resident", "Citizen"], ans: 3 },
+            { id: 15, q: "The new Federal Capital of Nigeria is __________ .", options: ["Lagos", "Abuja", "Suleja", "Ibadan"], ans: 1 },
+            { id: 16, q: "_______ is the first occupation of man.", options: ["Farming", "Trading", "Tailoring", "Manufacturing"], ans: 0 },
+            { id: 17, q: "Corruption, bribery, lateness to work are acts of _________ .", options: ["Conflict", "Cooperation", "Dedication", "Indiscipline"], ans: 3 },
+            { id: 18, q: "Who designed the Nigeria national flag?", options: ["H.D Arowolo", "Alvan Ikoku", "Taiwo Akinkunmi", "Ibrahim Babangida"], ans: 2 },
+            { id: 19, q: "What does the black shield on the coat of arm stand for?", options: ["Good soil of Nigeria", "Strength of Nigeria", "Beauty of Nigeria", "Unity and Progress"], ans: 0 },
+            { id: 20, q: "The greatest foreign exchange of Nigeria is ___________ .", options: ["Cassava", "Petroleum", "Coal", "Rubber"], ans: 1 },
+            { id: 21, q: "The two horses on the Nigerian Coat of arms is ___________ .", options: ["Peace", "Progress", "Wealth", "Strength"], ans: 3 },
+            { id: 22, q: "The place where two rivers meet is called _________ .", options: ["Joint", "Confluence", "Valley", "Lake"], ans: 1 },
+            { id: 23, q: "The body responsible for the conduct of general election is ___________- .", options: ["ECOWAS", "OPEC", "INEC", "APC"], ans: 2 },
+            { id: 24, q: "Which political party won the presidential election held on 23rd, 2019?", options: ["PDP", "ANN", "APC", "NNPP"], ans: 2 },
+            { id: 25, q: "Which of the following is not a traditional occupation of the Nigerian?", options: ["farming", "carving", "Palm wine tapping", "formal teaching"], ans: 3 },
+            { id: 26, q: "_____________ translated the Bible into Yoruba language.", options: ["Pa Taiwo Akinkumi", "Henry Townsend", "Ajayi Crowther", "Mary Slessor"], ans: 2 },
+            { id: 27, q: "All the following are early missionaries EXCEPT _____________ .", options: ["Chief Obafemi Awolowo", "Mary Slessor", "Birch Freeman", "Henry Townsend"], ans: 0 },
+            { id: 28, q: "Mary Slessor did her missionary work in_______ .", options: ["Calabar", "Abeokuta", "Lagos", "Warri"], ans: 0 },
+            { id: 29, q: "Who among these missionaries founded the Methodist Church in Nigeria?", options: ["Mary Slessor", "Thomas Birch Freeman", "Ajayi Crowther", "Henry Townsend"], ans: 1 },
+            { id: 30, q: "___________ was the missionary who founded the Anglican mission in Nigeria.", options: ["Thomas Freeman", "Ajayi Crowther", "Henry Townsend", "Mary Slessor"], ans: 2 },
+            { id: 31, q: "___________ is the god of thunder and lightning.", options: ["Sopona", "Ogun", "Amadioha", "Osanyin"], ans: 2 },
+            { id: 32, q: "Nigeria became a republic in ____________ .", options: ["1959", "1963", "1960", "1964"], ans: 1 },
+            { id: 33, q: "____________ is the god of rainbow.", options: ["Oshumare", "Osanyin", "Oya", "Oshun"], ans: 0 },
+            { id: 34, q: "____________ is the god of thunder and fire.", options: ["Shango", "Oya", "Obatala", "Orunmila"], ans: 0 },
+            { id: 35, q: "Nigeria came under colonial rule in__________ .", options: ["1900", "1901", "1902", "1903"], ans: 0 },
+            { id: 36, q: "_________ was the first and only ceremonial president of Nigeria.", options: ["Herbert Macaulay", "Dr. Nnamdi Azikiwe", "Chief Obafemi Awolowo", "Mallam Aminu Kano"], ans: 1 },
+            { id: 37, q: "Free education was introduced in Western region in _______ .", options: ["1955", "1956", "1954", "1953"], ans: 0 },
+            { id: 38, q: "___________ established the first television station in Africa.", options: ["Herbert Macaulay", "Dr. Nnamdi Azikiwe", "Chief Obafemi Awolowo", "Mallam Aminu Kanu"], ans: 2 },
+            { id: 39, q: "A person who has or had great love for his or her country and who fought for the independence of his or her country is a ____________ .", options: ["Freedom fighter", "Nationalist", "Nationalism", "None of the above"], ans: 1 },
+            { id: 40, q: "_________ was born at ___________ .", options: ["Dr. Nnamdi Azikiwe", "Obafemi Awolowo", "Aminu Kano", "Herbert Macaulay"], ans: 0 },
+            { id: 41, q: "Dr. Nnamdi Azikwe newspaper was called_________ .", options: ["Nigeria Tribune", "The Daily News", "The Sun", "West Africa Pilot"], ans: 3 },
+            { id: 42, q: "All the following are importance of occupation EXCEPT________ .", options: ["source of income", "employment opportunities", "provision of food", "None of the above"], ans: 3 },
+            { id: 43, q: "________ became Nigeria Governor General in 1914.", options: ["Sir Fredrick Lord Lugard", "Sir Hugh Clifford", "Sir Graeme Thomas", "Sir Donald Cameron"], ans: 0 },
+            { id: 44, q: "------------- was the first Africa Bishop of Anglican Church in Nigeria.", options: ["Bishop Oyedepo", "Bishop Samuel Ajayi Crowther", "Bishop William Kumuyi", "Bishop Henry Townsend."], ans: 1 },
+            { id: 45, q: "The traditionalists make blood sacrifices to their gods in ___________-", options: ["shrine", "mosque", "church", "street"], ans: 0 },
+            { id: 46, q: "Enugu State is popular for the production of __________ .", options: ["gold", "coal", "Lead", "tin"], ans: 1 },
+            { id: 47, q: "Children’s day is usually celebrated on ---------- every year.", options: ["14th February", "1st May", "27th May", "1st October"], ans: 2 },
+            { id: 48, q: "The act of making and repairing objects made of iron is ________ .", options: ["Fishing", "Blacksmithing", "Carving", "None of the above"], ans: 1 },
+            { id: 49, q: "The act of making patterned objects from wood and stone is called _____________ .", options: ["Fishing", "Blacksmithing", "Carving", "All of the above"], ans: 2 },
+            { id: 50, q: "___________ built the first story building in Nigeria.", options: ["Mary Slessor", "Henry Townsend", "Ajayi Crowther", "Birch Thomas Freeman"], ans: 1 },
+            { id: 51, q: "Christianity was introduced to Nigeria in the ____________ century.", options: ["14th", "15th", "16th", "17th"], ans: 1 },
+            { id: 52, q: "Nigeria is divided into how many political zones?", options: ["4", "6", "5", "10"], ans: 1 },
+            { id: 53, q: "The total number of Local government in Kwara State is __________ .", options: ["20", "774", "16", "19"], ans: 2 },
+            { id: 54, q: "The total number of Local government in Nigeria is ___________- .", options: ["774", "874", "500", "775"], ans: 0 },
+            { id: 55, q: "The Efik are found in one of the following States in Nigeria.", options: ["Rivers", "Cross-River", "Ondo", "Niger"], ans: 1 },
+            { id: 56, q: "Culture is dynamic mean that culture is ____________ .", options: ["Changing", "Complex", "Rigid", "Static"], ans: 0 },
+            { id: 57, q: "Tin is mined in ________ .", options: ["Enugu", "Jos", "Abeokuta", "Ogbomoso"], ans: 1 },
+            { id: 58, q: "What was the first Political party in Nigeria?", options: ["Nigeria Youth Movement", "African Democratic Party", "Action Group", "Nigeria National Democratic Party (NNDP)."], ans: 3 },
+            { id: 59, q: "Who was the first Nigerian to become a Noble Laureate?", options: ["Wole Soyinka", "Chinua Achebe", "Michael Ikoku", "Adamu Adamu"], ans: 0 },
+            { id: 60, q: "Where was crude oil first discovered in Nigeria?", options: ["Olobiri Oilfield in Bayelsa State", "Ransome Kuti garden in Lagos State", "Icon Conservation in Lagos State", "Obajana Cement Factory in Kogi State"], ans: 0 }
         ];
 
-        let countdownRef;
-        let totalTimeSec = 45 * 60; 
-        let formSubmitted = false;
+        let timerInstance;
+        let totalSecondsRemaining = 45 * 60; // Strict 45 Minutes Configured
+        let examSubmitted = false;
 
-        function assembleExamDOM() {
-            const displayPool = document.getElementById('dynamic-exam-nodes');
-            displayPool.innerHTML = `<div class="section-header">SECTION A (MULTIPLE CHOICE QUESTIONS)</div>`;
-
-            structurePayload.forEach((node, index) => {
-                const optionPrefix = ["A", "B", "C", "D"];
-                let optionsMarkup = "";
-
-                node.options.forEach((opt, idx) => {
-                    optionsMarkup += `
-                        <label class="option-item" id="lbl-q${node.id}-o${idx}">
-                            <input type="radio" name="input-q${node.id}" value="${idx}">
-                            <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
+        // Render Questions dynamically on setup
+        function initQuestions() {
+            const container = document.getElementById('quiz-questions-container');
+            container.innerHTML = "";
+            
+            questionsDB.forEach((item, index) => {
+                const optionPrefixes = ["A", "B", "C", "D"];
+                let optionsHTML = '';
+                
+                item.options.forEach((opt, optIndex) => {
+                    optionsHTML += `
+                        <label class="option-label" id="label-q${item.id}-o${optIndex}">
+                            <input type="radio" name="question${item.id}" value="${optIndex}">
+                            <span><strong>${optionPrefixes[optIndex]}.</strong> ${opt}</span>
                         </label>
                     `;
                 });
 
-                const cardUI = `
-                    <div class="question-card" id="card-block-q${node.id}">
-                        <div class="question-text">${index + 1}. ${node.q}</div>
-                        <div class="options-grid">
-                            ${optionsMarkup}
+                const questionBlock = `
+                    <div class="question-block" id="q-block-${item.id}">
+                        <div class="question-text">${index + 1}. ${item.q}</div>
+                        <div class="options-container">
+                            ${optionsHTML}
                         </div>
-                        <div id="evaluation-q${node.id}"></div>
+                        <div id="feedback-q${item.id}"></div>
                     </div>
                 `;
-                displayPool.innerHTML += cardUI;
+                container.innerHTML += questionBlock;
             });
         }
 
-        function initializeWorkspace() {
-            const inputName = document.getElementById('candidate-name-input').value.trim();
-            if (!inputName) {
-                alert("Please input your full legal name before starting.");
+        // Initialize exam control
+        function startExam() {
+            const nameInput = document.getElementById('candidate-name').value.trim();
+            if(!nameInput) {
+                alert("Please enter candidate full name before beginning execution.");
                 return;
             }
 
-            document.getElementById('hud-candidate').innerText = `Candidate: ${inputName.toUpperCase()}`;
-            document.getElementById('login-view').classList.add('hidden');
-            document.getElementById('hud-bar').classList.remove('hidden');
-            document.getElementById('examination-form').classList.remove('hidden');
-
-            assembleExamDOM();
-            beginTimeDecrement();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('candidate-display').innerText = `Candidate: ${nameInput.toUpperCase()}`;
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('timer-bar').classList.remove('hidden');
+            document.getElementById('exam-form').classList.remove('hidden');
+            
+            initQuestions();
+            startCountdown();
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        function beginTimeDecrement() {
-            countdownRef = setInterval(() => {
-                if (totalTimeSec <= 0) {
-                    clearInterval(countdownRef);
-                    document.getElementById('hud-timer').innerText = "TIME EXPIRED";
-                    alert("Your allocated exam session window has expired. Answers will now auto-evaluate.");
-                    evaluateExamPayload(true);
+        // Countdown Processor logic
+        function startCountdown() {
+            timerInstance = setInterval(() => {
+                if(totalSecondsRemaining <= 0) {
+                    clearInterval(timerInstance);
+                    document.getElementById('countdown-timer').innerText = "TIME ELAPSED!";
+                    alert("Time is up! Your examination script will be automatically analyzed and locked.");
+                    submitExam(true);
                 } else {
-                    totalTimeSec--;
-                    let min = Math.floor(totalTimeSec / 60);
-                    let sec = totalTimeSec % 60;
-
-                    min = min < 10 ? '0' + min : min;
-                    sec = sec < 10 ? '0' + sec : sec;
-
-                    document.getElementById('hud-timer').innerText = `Time Remaining: ${min}:${sec}`;
-
-                    if (totalTimeSec <= 300) {
-                        document.getElementById('hud-bar').classList.add('warning');
+                    totalSecondsRemaining--;
+                    let minutes = Math.floor(totalSecondsRemaining / 60);
+                    let seconds = totalSecondsRemaining % 60;
+                    
+                    // Format prefix
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
+                    
+                    document.getElementById('countdown-timer').innerText = `Time Left: ${minutes}:${seconds}`;
+                    
+                    // Visual trigger when time gets low
+                    if(totalSecondsRemaining <= 300) {
+                        document.getElementById('timer-bar').style.backgroundColor = '#e71d36';
                     }
                 }
             }, 1000);
         }
 
-        function requestUserConfirmation() {
-            let trackedAnswers = 0;
-            structurePayload.forEach(node => {
-                if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
-                    trackedAnswers++;
-                }
+        function confirmSubmission() {
+            let answeredCount = 0;
+            questionsDB.forEach(item => {
+                const checkedOpt = document.querySelector(`input[name="question${item.id}"]:checked`);
+                if(checkedOpt) answeredCount++;
             });
 
-            const userVerdict = confirm(`You have completed ${trackedAnswers} out of ${structurePayload.length} questions. Click OK to finish evaluation processing.`);
-            if (userVerdict) {
-                evaluateExamPayload(false);
+            const confirmation = confirm(`You have answered ${answeredCount} out of 60 questions. Are you certain you want to close and grade your examination card?`);
+            if(confirmation) {
+                submitExam(false);
             }
         }
 
-        function evaluateExamPayload(isForcedTimeout = false) {
-            if (formSubmitted) return;
-            formSubmitted = true;
+        // Automated marking engine
+        function submitExam(isAutoForced = false) {
+            if(examSubmitted) return;
+            examSubmitted = true;
+            
+            clearInterval(timerInstance);
+            document.getElementById('timer-bar').classList.add('hidden');
+            document.getElementById('submit-btn').classList.add('hidden');
+            
+            let totalCorrect = 0;
+            const candidateName = document.getElementById('candidate-name').value.toUpperCase();
 
-            clearInterval(countdownRef);
-            document.getElementById('hud-bar').classList.add('hidden');
-            document.getElementById('master-submit-btn').classList.add('hidden');
+            // Disable all input tags and evaluate response metrics
+            questionsDB.forEach(item => {
+                const selectedOptInput = document.querySelector(`input[name="question${item.id}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback-q${item.id}`);
+                
+                let selectedIndex = selectedOptInput ? parseInt(selectedOptInput.value) : null;
+                
+                // Disable all choice selections
+                const optionsElements = document.querySelectorAll(`input[name="question${item.id}"]`);
+                optionsElements.forEach(el => el.disabled = true);
 
-            let aggregateScore = 0;
-            const userName = document.getElementById('candidate-name-input').value.toUpperCase();
-
-            structurePayload.forEach((node) => {
-                const selectedRadio = document.querySelector(`input[name="input-q${node.id}"]:checked`);
-                const logFeedbackNode = document.getElementById(`evaluation-q${node.id}`);
-                const selectionIdx = selectedRadio ? parseInt(selectedRadio.value) : null;
-
-                const optionElements = document.querySelectorAll(`input[name="input-q${node.id}"]`);
-                optionElements.forEach(radio => radio.disabled = true);
-
-                if (selectionIdx === node.ans) {
-                    aggregateScore++;
-                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
-                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct</span>`;
+                if(selectedIndex === item.ans) {
+                    totalCorrect++;
+                    // Turn selected option text container emerald green
+                    document.getElementById(`label-q${item.id}-o${item.ans}`).classList.add('correct-ans');
+                    feedbackDiv.innerHTML = `<span class="feedback-badge badge-success">✓ Correct</span>`;
                 } else {
-                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
-                    if (selectionIdx !== null) {
-                        document.getElementById(`lbl-q${node.id}-o${selectionIdx}`).classList.add('item-wrong');
+                    // Turn correct target option green
+                    document.getElementById(`label-q${item.id}-o${item.ans}`).classList.add('correct-ans');
+                    
+                    if(selectedIndex !== null) {
+                        // Mark user selection crimson red
+                        document.getElementById(`label-q${item.id}-o${selectedIndex}`).classList.add('wrong-ans');
                     }
                     
-                    const charMap = ["A", "B", "C", "D"];
-                    logFeedbackNode.innerHTML = `
-                        <span class="correction-badge badge-danger">
-                            Location Correction: Selection ${charMap[node.ans]} — "${node.options[node.ans]}"
-                        </span>`;
+                    const correctLetter = ["A", "B", "C", "D"][item.ans];
+                    const correctText = item.options[item.ans];
+                    feedbackDiv.innerHTML = `<span class="feedback-badge badge-danger">✗ Incorrect (Correct Answer is ${correctLetter}: ${correctText})</span>`;
                 }
             });
 
-            const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
+            // Display Score Summary Box
+            const scorePercentage = Math.round((totalCorrect / 60) * 100);
+            document.getElementById('result-candidate-name').innerText = `Performance Metrics Profile for: ${candidateName}`;
+            document.getElementById('score-text').innerText = `${totalCorrect} / 60`;
+            document.getElementById('percentage-text').innerText = `Score Rating: ${scorePercentage}%`;
             
-            document.getElementById('report-name-target').innerText = `Performance Diagnostics for: ${userName}`;
-            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
-            document.getElementById('report-percentage-target').innerText = `Calculated Grade: ${computationPercentage}%`;
-            
-            document.getElementById('report-dashboard').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('results-card').classList.remove('hidden');
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 </body>
