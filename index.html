@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Wunderkind Model School - CCA Examination</title>
+    <title>PHE YEAR 5 TERM 3 PROMOTIONAL EXAMINATION 2025/2026</title>
     <style>
         :root {
             --primary-color: #1a365d;
             --secondary-color: #2b6cb0;
+            --accent-color: #d69e2e;
             --success-color: #2f855a;
-            --error-color: #c53030;
-            --bg-color: #f7fafc;
+            --danger-color: #c53030;
+            --light-bg: #f7fafc;
             --card-bg: #ffffff;
             --text-color: #2d3748;
         }
@@ -23,255 +24,223 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.6;
-            padding: 20px;
+            padding-bottom: 60px;
         }
 
         .container {
-            max-width: 850px;
-            margin: 0 auto;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
         }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .school-header {
-            text-align: center;
-            border-bottom: 3px double var(--primary-color);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-
-        .school-header h1 {
-            color: var(--primary-color);
-            font-size: 24px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .school-header h2 {
-            font-size: 15px;
-            color: #4a5568;
-            font-weight: normal;
-            margin-bottom: 10px;
-        }
-
-        .school-header h3 {
-            color: var(--secondary-color);
-            font-size: 18px;
-            margin-top: 5px;
-        }
-
-        #registration-screen {
-            text-align: center;
-            max-width: 550px;
-            margin: 60px auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #cbd5e0;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-        }
-
-        .info-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .header-panel {
             background: var(--primary-color);
             color: white;
-            padding: 15px 20px;
-            border-radius: 6px;
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-            margin-bottom: 25px;
-        }
-
-        .timer {
-            font-size: 20px;
-            font-weight: bold;
-            background: rgba(255,255,255,0.2);
-            padding: 5px 15px;
-            border-radius: 4px;
-        }
-
-        .timer.warning {
-            background: var(--error-color);
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0.6; }
-        }
-
-        .category-header {
-            background: #2b6cb0;
-            color: white;
-            padding: 8px 15px;
-            margin: 25px 0 15px 0;
-            font-weight: bold;
-            border-radius: 4px;
-            text-transform: uppercase;
-            font-size: 15px;
-            letter-spacing: 0.5px;
-        }
-
-        .question-block {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .question-text {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--primary-color);
-        }
-
-        .options-list {
-            list-style: none;
-        }
-
-        .option-item {
-            margin-bottom: 8px;
-        }
-
-        .option-item label {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-
-        .option-item label:hover {
-            background-color: #edf2f7;
-        }
-
-        .option-item input[type="radio"] {
-            margin-right: 12px;
-            transform: scale(1.2);
-        }
-
-        .btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 14px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
-            width: 100%;
-        }
-
-        .btn:hover {
-            background-color: #23527c;
-        }
-
-        .btn-submit {
-            background-color: var(--success-color);
-            font-size: 18px;
-            margin-top: 25px;
-        }
-
-        .btn-submit:hover {
-            background-color: #22543d;
-        }
-
-        .results-header {
+            padding: 30px;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
         }
 
-        .score-display {
-            font-size: 52px;
-            font-weight: bold;
+        .header-panel h1 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .header-panel h2 {
+            font-size: 18px;
+            color: #cbd5e0;
+            margin-bottom: 15px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        #login-view {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+
+        #login-view h3 {
+            margin-bottom: 20px;
             color: var(--primary-color);
-            margin: 15px 0;
+            font-size: 20px;
         }
 
-        .correct-answer {
-            background-color: #c6f6d5 !important;
-            border-color: #38a169 !important;
-            color: #22543d;
-            position: relative;
+        .input-field {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 15px 0 25px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+            text-align: center;
         }
 
-        .correct-answer::after {
-            content: "✓ Correct";
-            position: absolute;
-            right: 15px;
-            font-size: 11px;
-            font-weight: bold;
-            background: #38a169;
+        .input-field:focus {
+            border-color: var(--secondary-color);
+        }
+
+        .btn {
+            background: var(--secondary-color);
             color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
         }
 
-        .wrong-answer {
-            background-color: #fed7d7 !important;
-            border-color: #e53e3e !important;
+        .btn:hover {
+            background: var(--primary-color);
+        }
+
+        #hud-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        #hud-bar.warning {
+            background: var(--danger-color);
+        }
+
+        .section-header {
+            background: #edf2f7;
+            color: var(--primary-color);
+            padding: 15px 20px;
+            border-left: 6px solid var(--secondary-color);
+            border-radius: 4px;
+            margin: 35px 0 20px 0;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        @media(min-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 15px;
+        }
+
+        .option-item:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .option-item input {
+            margin-right: 12px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .item-correct {
+            background: #c6f6d5 !important;
+            border-color: var(--success-color) !important;
+            color: #22543d;
+            font-weight: 600;
+        }
+
+        .item-wrong {
+            background: #fed7d7 !important;
+            border-color: var(--danger-color) !important;
             color: #742a2a;
         }
 
-        .wrong-choice-marker {
-            position: relative;
+        .correction-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .badge-success { background: #c6f6d5; color: #22543d; }
+        .badge-danger { background: #fed7d7; color: #742a2a; }
+
+        #report-dashboard {
+            background: white;
+            border: 3px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .wrong-choice-marker::after {
-            content: "✕ Your Choice";
-            position: absolute;
-            right: 15px;
-            font-size: 11px;
-            font-weight: bold;
-            background: #e53e3e;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
-        .section-title {
-            background: #edf2f7;
-            padding: 12px;
-            margin-bottom: 20px;
-            font-weight: bold;
+        .score-metrics {
+            font-size: 54px;
+            font-weight: 800;
             color: var(--primary-color);
-            border-left: 5px solid var(--primary-color);
+            margin: 15px 0;
         }
 
         .hidden {
@@ -281,314 +250,239 @@
 </head>
 <body>
 
-<div class="container">
+    <div id="hud-bar" class="hidden">
+        <div id="hud-candidate">Candidate: </div>
+        <div id="hud-timer">Time Remaining: 45:00</div>
+    </div>
 
-    <div id="registration-screen" class="card">
-        <div class="school-header">
-            <h1>Royal Wunderkind Model School</h1>
-            <h2>Jalala Area, Tanke, Oke - Odo, Ilorin.</h2>
-            <h3>Promotional Examination 2025/2026</h3>
-        </div>
-        <div style="margin-bottom: 25px; font-size: 15px;">
-            <p><strong>Class:</strong> Key Stage 2 (Year 5)</p>
-            <p><strong>Subject:</strong> Cultural and Creative Arts (CCA)</p>
-            <p><strong>Duration:</strong> 30 Minutes</p>
-        </div>
-        <form id="start-form" onsubmit="startExam(event)">
-            <div class="form-group">
-                <label for="candidate-name">Candidate Full Name:</label>
-                <input type="text" id="candidate-name" required placeholder="e.g., John Doe">
+    <div class="container">
+        
+        <div class="header-panel">
+            <h1>Physical and Health Education</h1>
+            <h2>Year 5 - Term 3 (Promotional Examination 2025/2026 Session)</h2>
+            <div class="meta-grid">
+                <div><strong>Subject:</strong> P.H.E.</div>
+                <div><strong>Allowed Window:</strong> 45 Minutes</div>
+                <div><strong>Instructions:</strong> Answer all questions</div>
             </div>
-            <button type="submit" class="btn">Start Examination</button>
+        </div>
+
+        <div id="login-view">
+            <h3>Candidate Registration</h3>
+            <p>Please type your full name below to initialize your interactive Computer-Based Testing (CBT) engine.</p>
+            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Full Name Here" autocomplete="off">
+            <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
+        </div>
+
+        <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
+            
+            <div id="dynamic-exam-nodes"></div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button type="button" class="btn" id="master-submit-btn" onclick="requestUserConfirmation()">Submit Examination</button>
+            </div>
         </form>
-    </div>
 
-    <div id="exam-screen" class="hidden">
-        <div class="info-bar">
-            <div><strong>Candidate:</strong> <span id="display-name"></span></div>
-            <div class="timer" id="timer-display">30:00</div>
+        <div id="report-dashboard" class="hidden">
+            <h2>Examination Evaluation Scorecard</h2>
+            <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
+            <div class="score-metrics" id="report-score-target">0 / 50</div>
+            <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
+            <p style="margin-top: 15px; color: #718096;">Review the completely marked answer-sheet detailing structured corrections below.</p>
         </div>
 
-        <div class="card">
-            <div class="school-header">
-                <h1>Royal Wunderkind Model School</h1>
-                <h3>Cultural and Creative Arts (CCA)</h3>
-            </div>
-            
-            <div class="section-title">SECTION A: OBJECTIVE — Answer All Questions</div>
-
-            <form id="quiz-form" onsubmit="submitExam(event)">
-                <div id="questions-container"></div>
-                <button type="submit" class="btn btn-submit">Submit Examination</button>
-            </form>
-        </div>
     </div>
 
-    <div id="results-screen" class="card hidden">
-        <div class="results-header">
-            <h2>Examination Summary Report</h2>
-            <p>Royal Wunderkind Model School</p>
-            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #e2e8f0;">
-            <div style="text-align: left; margin-bottom: 20px; font-size: 15px;">
-                <p><strong>Name:</strong> <span id="res-name"></span></p>
-                <p><strong>Subject:</strong> Cultural and Creative Arts (CCA)</p>
-                <p><strong>Class:</strong> Year 5</p>
-            </div>
-            <div class="score-display" id="score-text">0 / 60</div>
-            <p id="score-percentage" style="font-size: 20px; font-weight: bold;"></p>
-        </div>
+    <script>
+        // Structural database mapping out the PHE exam payload matrix
+        const structurePayload = [
+            { id: 1, q: "__________ is caused by lack of vitamin D.", options: ["Ricket", "Kwashiorkor", "Pellagra", "marasmus"], ans: 0 },
+            { id: 2, q: "Sunshine vitamin is vitamin _________ .", options: ["D", "C", "E", "K"], ans: 0 },
+            { id: 3, q: "Vitamin___________ is necessary for the development for strong gum and root of the teeth.", options: ["K", "C", "D", "E"], ans: 1 },
+            { id: 4, q: "When a child has very tiny and weak legs, arms, neck and his /her ribs and collar bones are visible always, such a child is suffering from _______________-", options: ["Marasmus", "Scurvy", "Pellagra", "Scurvy"], ans: 0 },
+            { id: 5, q: "__________ is a class of food which help in body building, growth and repairing of worn out tissues.", options: ["Protein", "Carbohydrate", "Vitamin", "Mineral salt"], ans: 0 },
+            { id: 6, q: "Judo was first invented by _______ .", options: ["Britain", "Japan", "Nigeria", "USA"], ans: 1 },
+            { id: 7, q: "In Judo, ________ decides the winner and ends the match.", options: ["Ippon", "Shido", "Bat", "batton"], ans: 0 },
+            { id: 8, q: "Judo was introduced to Olympic in the year _______________.", options: ["1964", "1878", "1973", "1999"], ans: 0 },
+            { id: 9, q: "If you throw a ball up, what force pulls it to the ground?", options: ["Frictional", "Magnetic", "Gravitational", "Tension"], ans: 2 },
+            { id: 10, q: "Eggs, meat, fish, milk are examples of ____________", options: ["Protein", "Vitamin", "Fat & oil", "Carbohydrate"], ans: 0 },
+            { id: 11, q: "The energy used in running a relay race comes mainly from ____________ .", options: ["Carbohydrate", "Protein", "Fat & Oil", "Mineral salt"], ans: 0 },
+            { id: 12, q: "The treatment given to a patient before the doctor’s arrival is __________ .", options: ["Dialysis", "First aid", "Scanning", "Surgery"], ans: 1 },
+            { id: 13, q: "The following are safety wears EXCEPT _________ .", options: ["Wrist watch", "goggle", "Hand gloves", "Apron"], ans: 0 },
+            { id: 14, q: "All the following are examples of non-locomotor movement except __________ .", options: ["twisting", "catching", "Kicking", "galloping"], ans: 3 },
+            { id: 15, q: "All the following are basic skills in basketball except ___________", options: ["dribbling", "Passing", "Rebouncing", "Spiking"], ans: 3 }, // Spiking belongs to Volleyball
+            { id: 16, q: "All the following are equipment in basketball EXCEPT ______________ .", options: ["bat", "net", "Ball", "None of the above"], ans: 0 },
+            { id: 17, q: "All the following are conditions requiring emergency EXCEPT _________", options: ["Sleeping", "Poisoning", "Severe bleeding", "Drowning"], ans: 0 },
+            { id: 18, q: "Which of the following cannot be found in the first aid box?", options: ["Chloroquine", "Cotton wool", "Iodine", "Blade"], ans: 0 },
+            { id: 19, q: "_______ is caused by lack of iodine in a diet", options: ["Goiter", "Kwashiorkor", "Pellagra", "Scurvy"], ans: 0 },
+            { id: 20, q: "Diet low in Vitamin D, calcium and phosphorus may cause curved legs in children.", options: ["True", "False", "I don't know", "None of the above"], ans: 0 },
+            { id: 21, q: "___________- is the inability of a person to get adequate oxygen to breathe in thus resulting into choking.", options: ["Falls", "Suffocation", "Bruises", "Burns"], ans: 1 },
+            { id: 22, q: "All the following are effects of eating unbalanced diet except _________ .", options: ["Stunted growth", "Bowleg", "Kwashiorkor", "None of the above"], ans: 3 },
+            { id: 23, q: "Which of the following is due to insufficient vitamin?", options: ["Malaria", "Dysentery", "Ricket", "Diarrhoea"], ans: 2 },
+            { id: 24, q: "Disease causing organisms are called _____", options: ["Pathogens", "Carrier", "Aphid", "Bugs"], ans: 0 },
+            { id: 25, q: "A skin lesion or wound in the shape of a ring is a disease called __________ .", options: ["Scabies", "Ringworm", "Tuberculosis", "Pneumonia"], ans: 1 },
+            { id: 26, q: "Which of the following is one of the agents that causes diseases?", options: ["Virus", "Bacteria", "Fungi", "All of the above"], ans: 3 },
+            { id: 27, q: "One of the reasons why people abuse drugs is _________.", options: ["ignorance", "Illiteracy", "Pride", "All of the above"], ans: 3 },
+            { id: 28, q: "When someone cannot do without a drug it is called _________.", options: ["Drug prescription", "Drug recommendation", "Drug trafficking", "Drug addiction"], ans: 3 },
+            { id: 29, q: "Those who dispense medications prescribed by physicians to patients are called _________", options: ["Doctors", "Pharmacists", "Drug peddlers", "Nurse"], ans: 1 },
+            { id: 30, q: "An example of drug that can be taken through the skin is ___________ .", options: ["tablet", "Syrup", "Capsules", "Syringes"], ans: 3 }, // Administration through needles/injection via skin
+            { id: 31, q: "A drug baron is someone who ____________.", options: ["sells drugs in a medicine store.", "sells drugs at the hospital", "produces drugs", "buys and sells illegal drugs"], ans: 3 },
+            { id: 32, q: "An example of hard drugs is _________- .", options: ["cocaine", "cough syrup", "Vitamin C", "Paracetamol"], ans: 0 },
+            { id: 33, q: "A drug addict is likely to ____________ .", options: ["be healthy", "be intelligent", "perform poorly at work", "behave well"], ans: 2 },
+            { id: 34, q: "An illegal way of getting drugs is from --------------- .", options: ["hospital", "medicine store", "barons", "pharmacists"], ans: 2 },
+            { id: 35, q: "________ is when drugs are taken without medical prescription.", options: ["Drug abuse", "Dosage", "Recommendation", "Ignorance"], ans: 0 },
+            { id: 36, q: "Drug abuse victims can be commonly found in ___________-", options: ["Universities", "companies", "airports", "Psychiatric hospitals"], ans: 3 },
+            { id: 37, q: "Excessive drug intake could result in _________-", options: ["long life", "good jobs", "brain damage", "happiness"], ans: 2 },
+            { id: 38, q: "People who abuse drugs usually have the following looks except being _________", options: ["tidy", "rough", "unstable", "dirty"], ans: 0 },
+            { id: 39, q: "The effects of drug abuse include the following except ________ .", options: ["Job loss", "Criminal tendencies", "increased intelligence", "family disintegration"], ans: 2 },
+            { id: 40, q: "Drugs might be necessary for ------------.", options: ["Curing ailments", "Showing status", "getting new friends", "Courage"], ans: 0 },
+            { id: 41, q: "Counselling and treatment of victims of hard drugs is the duty of _________ .", options: ["doctors", "nurses", "policemen", "everyone"], ans: 3 }, // Community responsibility context
+            { id: 42, q: "Sleeplessness is also known as ________- .", options: ["Cramp", "insomnia", "tumour", "Panic syndrome"], ans: 1 },
+            { id: 43, q: "Most of the drugs that are abused contain __________- substances.", options: ["helpful", "harmful", "hidden", "hard"], ans: 1 },
+            { id: 44, q: "Continuous drug abuse may cause ______________", options: ["direction", "affection", "addiction", "connection"], ans: 2 },
+            { id: 45, q: "The use of the drugs wrongly constitutes a/an ____________ .", options: ["Curse", "Spell", "Abuse", "Addiction"], ans: 2 },
+            { id: 46, q: "Hard drugs that are usually abused include ___________ .", options: ["Paracetamol", "heroine", "Chocolate", "Pepper"], ans: 1 },
+            { id: 47, q: "The itching of the skin is a symptom of lack of Vitamin ____________.", options: ["C", "A", "K", "B"], ans: 3 }, // B-Complex deficiencies can trigger skin manifestations/pellagra issues
+            { id: 48, q: "A frequent dry cough is known as ______________", options: ["Scabies", "Pneumonia", "Tuberculosis", "typhoid"], ans: 2 },
+            { id: 49, q: "__________ causes scabies.", options: ["mites", "Lice", "ticks", "housefly"], ans: 0 },
+            { id: 50, q: "_______ and ________ are examples of Vitamins.", options: ["Rice and meat", "Fruits and vegetables", "Butter and milk", "Fruits and cheese"], ans: 1 }
+        ];
 
-        <div class="section-title">Evaluation Sheet & Corrections</div>
-        <div id="corrections-container"></div>
-    </div>
+        let countdownRef;
+        let totalTimeSec = 45 * 60; 
+        let formSubmitted = false;
 
-</div>
+        function assembleExamDOM() {
+            const displayPool = document.getElementById('dynamic-exam-nodes');
+            displayPool.innerHTML = `<div class="section-header">SECTION A (MULTIPLE CHOICE QUESTIONS)</div>`;
 
-<script>
-    // System core structural database array mapping your exact questionnaire definitions
-    const questionsData = [
-        // MUSIC
-        { cat: "Music", q: "Music notation is used to represent ______.", options: ["music sounds", "musical instruments", "music videos", "music festivals"], ans: "A" },
-        { cat: "Music", q: "The staff consists of ______ horizontal lines.", options: ["3", "4", "5", "6"], ans: "C" },
-        { cat: "Music", q: "The modulator in tonic sol-fa shows the ______ and ______ of sound.", options: ["rising and falling", "loudness and softness", "speed and rhythm", "pitch and tempo"], ans: "D" },
-        { cat: "Music", q: "The values of tonic sol-fa notes are represented by ______.", options: ["commas", "dots", "stars", "slashes"], ans: "B" },
-        { cat: "Music", q: "Setting words to sol-fa notation means ______ lyrics to sol-fa notes.", options: ["singing", "writing", "dancing", "copying"], ans: "B" },
-        { cat: "Music", q: "______ are used to represent the duration of musical sounds.", options: ["Pitches", "Notes", "Staffs", "Melodies"], ans: "B" },
-        { cat: "Music", q: "Which of these notes has a tail?", options: ["Semibreve", "Minim", "Quaver", "Breve"], ans: "C" },
-        { cat: "Music", q: "Which note has two beats?", options: ["Semibreve", "Minim", "Crotchet", "Quaver"], ans: "B" },
-        { cat: "Music", q: "The duration of a musical sound depends on the note’s ______.", options: ["size", "colour", "position", "shape"], ans: "D" },
-        { cat: "Music", q: "Melody is the ______ of a song.", options: ["dance", "tune", "rhythm", "beat"], ans: "B" },
-        { cat: "Music", q: "Which of the following is a tonic sol-fa syllable?", options: ["Ka", "Mi", "Ta", "Laa"], ans: "B" },
-        { cat: "Music", q: "The first note in tonic sol-fa is ______.", options: ["Re", "Mi", "Do", "Fa"], ans: "C" },
-        { cat: "Music", q: "Which instrument is commonly used to learn basic music in schools?", options: ["Guitar", "Recorder", "Trumpet", "Violin"], ans: "B" },
-        { cat: "Music", q: "The recorder belongs to the ______ family.", options: ["percussion", "brass", "woodwind", "string"], ans: "C" },
-        { cat: "Music", q: "Proper fingering helps a recorder player to ______.", options: ["dance well", "produce correct notes", "sing louder", "play faster"], ans: "B" },
-        { cat: "Music", q: "Before playing the recorder, you should always ______.", options: ["shout", "warm up by blowing gently", "jump", "clap"], ans: "B" },
-        { cat: "Music", q: "Good blowing technique on the recorder produces ______.", options: ["noise", "clear sound", "echo", "silence"], ans: "B" },
-        { cat: "Music", q: "The keyboard is a ______ instrument.", options: ["wind", "string", "musical", "brass"], ans: "C" },
-        { cat: "Music", q: "The value of a crotchet is ______ beat.", options: ["half", "one", "two", "four"], ans: "B" },
-        { cat: "Music", q: "Which note lasts for four beats?", options: ["Quaver", "Crotchet", "Minim", "Semibreve"], ans: "D" },
-        
-        // DANCE
-        { cat: "Dance", q: "Dance is the movement of the body to ______.", options: ["food", "music", "stories", "games"], ans: "B" },
-        { cat: "Dance", q: "Dance motifs are ______ used in dance.", options: ["costumes", "repeated movement patterns", "songs", "instruments"], ans: "B" },
-        { cat: "Dance", q: "One importance of dance motifs is that they make dance ______.", options: ["confusing", "meaningful", "slower", "louder"], ans: "B" },
-        { cat: "Dance", q: "Which of these is a component of dance?", options: ["Space", "Pencil", "Chair", "Book"], ans: "A" },
-        { cat: "Dance", q: "Which of these is NOT a component of dance?", options: ["Time", "Energy", "Shape", "Spoon"], ans: "D" },
-        { cat: "Dance", q: "Feeling the music is a ______ in dance.", options: ["punishment", "technique", "costume", "mistake"], ans: "B" },
-        { cat: "Dance", q: "Hip swings are warm-up exercises for ______.", options: ["Jazz", "Ballet", "Cultural dance", "Acrobatics"], ans: "C" },
-        { cat: "Dance", q: "Heel raises are commonly associated with ______.", options: ["Ballet", "Hip-hop", "Break dance", "Salsa"], ans: "A" },
-        { cat: "Dance", q: "Neck isolation helps to warm up the ______.", options: ["hands", "legs", "neck muscles", "shoulders"], ans: "C" },
-        { cat: "Dance", q: "People dance mainly to ______.", options: ["quarrel", "entertain and express feelings", "sleep", "fight"], ans: "B" },
-        
-        // DRAMA
-        { cat: "Drama", q: "Acting is the art of ______.", options: ["singing songs", "portraying a character", "drawing pictures", "playing football"], ans: "B" },
-        { cat: "Drama", q: "A person who performs in a drama is called ______.", options: ["author", "actor", "artist", "dancer"], ans: "B" },
-        { cat: "Drama", q: "A female actor is called an ______.", options: ["actress", "acting", "actor", "author"], ans: "A" },
-        { cat: "Drama", q: "Which of these is a popular Nigerian actress?", options: ["Funke Akindele", "Serena Williams", "Beyoncé", "Rihanna"], ans: "A" },
-        { cat: "Drama", q: "Which of these is NOT a Nigerian actor?", options: ["Mike Bamiloye", "Pete Edochie", "Eddie Murphy", "Nkem Owoh"], ans: "C" },
-        { cat: "Drama", q: "The father of Western acting tradition is ______.", options: ["Shakespeare", "Wole Soyinka", "Thespis", "Aristotle"], ans: "C" },
-        { cat: "Drama", q: "Acting helps to educate the ______.", options: ["audience", "teachers", "doctors", "engineers"], ans: "A" },
-        { cat: "Drama", q: "Impersonation means ______.", options: ["singing loudly", "copying another person’s behaviour", "dancing alone", "drawing cartoons"], ans: "B" },
-        { cat: "Drama", q: "People impersonate others mainly for ______.", options: ["learning and entertainment", "sleeping", "fighting", "punishment"], ans: "A" },
-        { cat: "Drama", q: "Role play means ______.", options: ["pretending to be someone in a given situation", "playing football", "reading a story", "dancing"], ans: "A" },
-        { cat: "Drama", q: "Role play is useful in ______.", options: ["education", "therapy", "drama", "All of the above"], ans: "D" },
-        { cat: "Drama", q: "Which of these is NOT a function of role play?", options: ["Solving educational problems", "Building confidence", "Causing confusion", "Improving acting skills"], ans: "C" },
-        { cat: "Drama", q: "Acting and role play are ______.", options: ["exactly the same", "completely different", "related but not the same", "never used together"], ans: "C" },
-        { cat: "Drama", q: "Anybody can participate in ______.", options: ["role play", "surgery", "flying", "engineering"], ans: "A" },
-        { cat: "Drama", q: "Role play can help solve ______ problems.", options: ["social", "educational", "emotional", "All of the above"], ans: "D" },
-        { cat: "Drama", q: "Acting can take place without ______.", options: ["music", "role play", "costumes", "audience"], ans: "A" },
-        { cat: "Drama", q: "Which of these is a benefit of acting?", options: ["It entertains people.", "It solves some social problems.", "It educates people.", "All of the above."], ans: "D" },
-        { cat: "Drama", q: "An actor must be able to ______.", options: ["portray different characters", "repair vehicles", "build houses", "fly aeroplanes"], ans: "A" },
-        
-        // APPRENTICESHIP
-        { cat: "Apprenticeship", q: "Apprenticeship is a system of learning a ______.", options: ["trade", "language", "game", "song"], ans: "A" },
-        { cat: "Apprenticeship", q: "An apprentice usually learns from a ______.", options: ["doctor", "craftsman", "lawyer", "pilot"], ans: "B" },
-        { cat: "Apprenticeship", q: "Which of these is an apprenticeship trade?", options: ["Welding", "Football", "Singing", "Dancing"], ans: "A" },
-        { cat: "Apprenticeship", q: "Father-to-son apprenticeship is mainly for ______.", options: ["passersby", "family members", "tourists", "visitors"], ans: "B" },
-        { cat: "Apprenticeship", q: "Which attitude is important in apprenticeship?", options: ["Laziness", "Discipline", "Fighting", "Pride"], ans: "B" },
-        { cat: "Apprenticeship", q: "Apprenticeship helps learners become ______.", options: ["dependent", "self-reliant", "careless", "dishonest"], ans: "B" },
-        { cat: "Apprenticeship", q: "Which of these is NOT an apprenticeship trade?", options: ["Bricklaying", "Tailoring", "Carpentry", "Sleeping"], ans: "D" },
-        { cat: "Apprenticeship", q: "One objective of apprenticeship is to ______.", options: ["acquire practical skills", "waste time", "avoid learning", "remain unemployed"], ans: "A" },
-        { cat: "Apprenticeship", q: "Which type of apprenticeship is common within families?", options: ["School apprenticeship", "Father-to-son apprenticeship", "Foreign apprenticeship", "Online apprenticeship"], ans: "B" },
-        { cat: "Apprenticeship", q: "A good apprentice should always be ______.", options: ["obedient", "lazy", "rude", "dishonest"], ans: "A" },
-        { cat: "Apprenticeship", q: "Apprenticeship helps to reduce ______.", options: ["employment", "unemployment", "education", "discipline"], ans: "B" },
-        { cat: "Apprenticeship", q: "After completing apprenticeship successfully, an apprentice can become a ______.", options: ["master craftsman", "student prefect", "referee", "customer"], ans: "A" }
-    ];
+            structurePayload.forEach((node, index) => {
+                const optionPrefix = ["A", "B", "C", "D"];
+                let optionsMarkup = "";
 
-    let timerInterval;
-    let timeRemaining = 30 * 60; // 30 minutes explicitly in seconds
-    let candidateName = "";
-
-    function loadExamQuestions() {
-        const container = document.getElementById('questions-container');
-        let html = '';
-        let currentCategory = '';
-        
-        questionsData.forEach((question, index) => {
-            const qNum = index + 1;
-            
-            // Build sub-topic headings elegantly based on data context transitions
-            if (question.cat !== currentCategory) {
-                currentCategory = question.cat;
-                html += `<div class="category-header">${currentCategory}</div>`;
-            }
-
-            html += `
-                <div class="question-block" id="q-block-${qNum}">
-                    <div class="question-text">${qNum}. ${question.q}</div>
-                    <ul class="options-list">
-            `;
-            
-            question.options.forEach((option, oIdx) => {
-                const letter = String.fromCharCode(65 + oIdx); // A, B, C, D maps
-                html += `
-                    <li class="option-item">
-                        <label for="q-${qNum}-${letter}">
-                            <input type="radio" id="q-${qNum}-${letter}" name="question-${qNum}" value="${letter}">
-                            <strong>${letter}.</strong> &nbsp;${option}
+                node.options.forEach((opt, idx) => {
+                    optionsMarkup += `
+                        <label class="option-item" id="lbl-q${node.id}-o${idx}">
+                            <input type="radio" name="input-q${node.id}" value="${idx}">
+                            <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
                         </label>
-                    </li>
-                `;
-            });
-            
-            html += `</ul></div>`;
-        });
-        
-        container.innerHTML = html;
-    }
+                    `;
+                });
 
-    function startExam(event) {
-        event.preventDefault();
-        candidateName = document.getElementById('candidate-name').value.trim();
-        
-        if (!candidateName) return;
-
-        document.getElementById('display-name').textContent = candidateName;
-        document.getElementById('registration-screen').classList.add('hidden');
-        document.getElementById('exam-screen').classList.remove('hidden');
-        
-        loadExamQuestions();
-        startTimer();
-        window.scrollTo(0, 0);
-    }
-
-    function startTimer() {
-        const display = document.getElementById('timer-display');
-        
-        timerInterval = setInterval(() => {
-            timeRemaining--;
-            
-            let minutes = Math.floor(timeRemaining / 60);
-            let seconds = timeRemaining % 60;
-            
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-            
-            display.textContent = `${minutes}:${seconds}`;
-            
-            if (timeRemaining <= 300) { 
-                display.classList.add('warning');
-            }
-            
-            if (timeRemaining <= 0) {
-                clearInterval(timerInterval);
-                alert("Time has elapsed! Your answers are being scored automatically.");
-                computeGrading();
-            }
-        }, 1000);
-    }
-
-    function submitExam(event) {
-        if(event) event.preventDefault();
-        
-        if(timeRemaining > 0) {
-            const confirmSubmit = confirm("Are you sure you want to finish and submit your script?");
-            if (!confirmSubmit) return;
-        }
-        
-        computeGrading();
-    }
-
-    function computeGrading() {
-        clearInterval(timerInterval);
-        let score = 0;
-        const total = questionsData.length;
-        
-        document.getElementById('exam-screen').classList.add('hidden');
-        document.getElementById('results-screen').classList.remove('hidden');
-        document.getElementById('res-name').textContent = candidateName;
-        
-        const correctionsContainer = document.getElementById('corrections-container');
-        let correctionsHtml = '';
-        let currentCategory = '';
-
-        questionsData.forEach((question, index) => {
-            const qNum = index + 1;
-            const selectedRadio = document.querySelector(`input[name="question-${qNum}"]:checked`);
-            const studentSelection = selectedRadio ? selectedRadio.value : null;
-            const correctKey = question.ans;
-            
-            if (studentSelection === correctKey) {
-                score++;
-            }
-
-            if (question.cat !== currentCategory) {
-                currentCategory = question.cat;
-                correctionsHtml += `<div class="category-header">${currentCategory}</div>`;
-            }
-
-            correctionsHtml += `
-                <div class="question-block" style="border-left: 4px solid ${studentSelection === correctKey ? 'var(--success-color)' : 'var(--error-color)'}; padding-left: 15px;">
-                    <div class="question-text">${qNum}. ${question.q}</div>
-                    <ul class="options-list">
-            `;
-
-            question.options.forEach((option, oIdx) => {
-                const letter = String.fromCharCode(65 + oIdx);
-                let evaluationClass = '';
-                
-                if (letter === correctKey) {
-                    evaluationClass = 'correct-answer';
-                } else if (letter === studentSelection && studentSelection !== correctKey) {
-                    evaluationClass = 'wrong-answer wrong-choice-marker';
-                }
-
-                correctionsHtml += `
-                    <li class="option-item">
-                        <label class="${evaluationClass}" style="cursor: default;">
-                            <input type="radio" disabled ${letter === studentSelection ? 'checked' : ''}>
-                            <strong>${letter}.</strong> &nbsp;${option}
-                        </label>
-                    </li>
-                `;
-            });
-
-            correctionsHtml += `
-                    </ul>
-                    <div style="margin-top: 10px; font-size: 13px; color: #4a5568;">
-                        <strong>Marked Option:</strong> ${studentSelection || '<span style="color:red; font-weight:bold;">Unanswered</span>'} | 
-                        <strong>Correct Option:</strong> ${correctKey}
+                const cardUI = `
+                    <div class="question-card" id="card-block-q${node.id}">
+                        <div class="question-text">${index + 1}. ${node.q}</div>
+                        <div class="options-grid">
+                            ${optionsMarkup}
+                        </div>
+                        <div id="evaluation-q${node.id}"></div>
                     </div>
-                </div>
-            `;
-        });
-
-        // Set structural visual calculations output
-        document.getElementById('score-text').textContent = `${score} / ${total}`;
-        const percentageValue = Math.round((score / total) * 100);
-        document.getElementById('score-percentage').textContent = `Final Grade: ${percentageValue}%`;
-        
-        if (percentageValue >= 50) {
-            document.getElementById('score-percentage').style.color = 'var(--success-color)';
-        } else {
-            document.getElementById('score-percentage').style.color = 'var(--error-color)';
+                `;
+                displayPool.innerHTML += cardUI;
+            });
         }
 
-        correctionsContainer.innerHTML = correctionsHtml;
-        window.scrollTo(0, 0);
-    }
-</script>
+        function initializeWorkspace() {
+            const inputName = document.getElementById('candidate-name-input').value.trim();
+            if (!inputName) {
+                alert("Please input your full legal name before starting.");
+                return;
+            }
 
+            document.getElementById('hud-candidate').innerText = `Candidate: ${inputName.toUpperCase()}`;
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('hud-bar').classList.remove('hidden');
+            document.getElementById('examination-form').classList.remove('hidden');
+
+            assembleExamDOM();
+            beginTimeDecrement();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function beginTimeDecrement() {
+            countdownRef = setInterval(() => {
+                if (totalTimeSec <= 0) {
+                    clearInterval(countdownRef);
+                    document.getElementById('hud-timer').innerText = "TIME EXPIRED";
+                    alert("Your allocated exam session window has expired. Answers will now auto-evaluate.");
+                    evaluateExamPayload(true);
+                } else {
+                    totalTimeSec--;
+                    let min = Math.floor(totalTimeSec / 60);
+                    let sec = totalTimeSec % 60;
+
+                    min = min < 10 ? '0' + min : min;
+                    sec = sec < 10 ? '0' + sec : sec;
+
+                    document.getElementById('hud-timer').innerText = `Time Remaining: ${min}:${sec}`;
+
+                    if (totalTimeSec <= 300) {
+                        document.getElementById('hud-bar').classList.add('warning');
+                    }
+                }
+            }, 1000);
+        }
+
+        function requestUserConfirmation() {
+            let trackedAnswers = 0;
+            structurePayload.forEach(node => {
+                if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
+                    trackedAnswers++;
+                }
+            });
+
+            const userVerdict = confirm(`You have completed ${trackedAnswers} out of ${structurePayload.length} questions. Click OK to finish evaluation processing.`);
+            if (userVerdict) {
+                evaluateExamPayload(false);
+            }
+        }
+
+        function evaluateExamPayload(isForcedTimeout = false) {
+            if (formSubmitted) return;
+            formSubmitted = true;
+
+            clearInterval(countdownRef);
+            document.getElementById('hud-bar').classList.add('hidden');
+            document.getElementById('master-submit-btn').classList.add('hidden');
+
+            let aggregateScore = 0;
+            const userName = document.getElementById('candidate-name-input').value.toUpperCase();
+
+            structurePayload.forEach((node) => {
+                const selectedRadio = document.querySelector(`input[name="input-q${node.id}"]:checked`);
+                const logFeedbackNode = document.getElementById(`evaluation-q${node.id}`);
+                const selectionIdx = selectedRadio ? parseInt(selectedRadio.value) : null;
+
+                const optionElements = document.querySelectorAll(`input[name="input-q${node.id}"]`);
+                optionElements.forEach(radio => radio.disabled = true);
+
+                if (selectionIdx === node.ans) {
+                    aggregateScore++;
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct</span>`;
+                } else {
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    if (selectionIdx !== null) {
+                        document.getElementById(`lbl-q${node.id}-o${selectionIdx}`).classList.add('item-wrong');
+                    }
+                    
+                    const charMap = ["A", "B", "C", "D"];
+                    logFeedbackNode.innerHTML = `
+                        <span class="correction-badge badge-danger">
+                            Location Correction: Selection ${charMap[node.ans]} — "${node.options[node.ans]}"
+                        </span>`;
+                }
+            });
+
+            const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
+            
+            document.getElementById('report-name-target').innerText = `Performance Diagnostics for: ${userName}`;
+            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
+            document.getElementById('report-percentage-target').innerText = `Calculated Grade: ${computationPercentage}%`;
+            
+            document.getElementById('report-dashboard').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
