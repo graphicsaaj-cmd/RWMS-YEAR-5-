@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERM 3 PROMOTION EXAMINATION - PREVOCATIONAL STUDIES YEAR 5</title>
+    <title>THIRD TERM PROMOTIONAL EXAMINATION - BASIC SCIENCE</title>
     <style>
         :root {
-            --primary-color: #0d2c54; /* Royal Blue */
-            --accent-color: #c5a059;  /* Metallic Gold */
-            --light-bg: #f8f9fa;
-            --dark-text: #2b2d42;
-            --success-color: #2ec4b6;
-            --danger-color: #e71d36;
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #d69e2e;
+            --success-color: #2f855a;
+            --danger-color: #c53030;
+            --light-bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
         }
 
         * {
@@ -23,218 +25,219 @@
 
         body {
             background-color: var(--light-bg);
-            color: var(--dark-text);
+            color: var(--text-color);
+            line-height: 1.6;
             padding-bottom: 60px;
         }
 
         .container {
-            max-width: 850px;
+            max-width: 900px;
             margin: 30px auto;
-            background: #ffffff;
+            padding: 20px;
+        }
+
+        .header-panel {
+            background: var(--primary-color);
+            color: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border-top: 8px solid var(--primary-color);
-        }
-
-        /* School Branding Header */
-        .school-header {
             text-align: center;
-            border-bottom: 3px double var(--accent-color);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
         }
 
-        .school-header h1 {
-            color: var(--primary-color);
+        .header-panel h1 {
             font-size: 24px;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .school-header h2 {
-            font-size: 16px;
-            color: #555;
             text-transform: uppercase;
-            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
-        .exam-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
+        .header-panel h2 {
+            font-size: 18px;
+            color: #cbd5e0;
+            margin-bottom: 15px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
             font-size: 14px;
-            background: #f1f5f9;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: 500;
+            margin-top: 15px;
         }
 
-        /* Login Registration Screen */
-        #login-screen {
+        #login-view {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
-            padding: 40px 20px;
+            max-width: 500px;
+            margin: 40px auto;
         }
 
-        .input-group {
-            margin: 20px 0;
+        #login-view h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 20px;
         }
 
-        .input-group input {
+        .input-field {
+            width: 100%;
             padding: 12px 20px;
-            width: 80%;
-            max-width: 400px;
+            margin: 15px 0 25px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
             font-size: 16px;
-            border: 2px solid #ccc;
-            border-radius: 6px;
             outline: none;
-            transition: 0.3s;
+            transition: border-color 0.2s;
+            text-align: center;
         }
 
-        .input-group input:focus {
-            border-color: var(--primary-color);
+        .input-field:focus {
+            border-color: var(--secondary-color);
         }
 
         .btn {
-            background-color: var(--primary-color);
-            color: #fff;
-            border: 2px solid var(--primary-color);
+            background: var(--secondary-color);
+            color: white;
+            border: none;
             padding: 12px 30px;
             font-size: 16px;
-            font-weight: bold;
-            border-radius: 6px;
+            font-weight: 600;
+            border-radius: 8px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: background 0.2s;
             text-transform: uppercase;
         }
 
         .btn:hover {
-            background-color: transparent;
-            color: var(--primary-color);
-            border-color: var(--primary-color);
+            background: var(--primary-color);
         }
 
-        /* Sticky Status/Timer Dashboard Bar */
-        #timer-bar {
+        #hud-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             z-index: 1000;
-            border-bottom: 3px solid var(--accent-color);
+            border-bottom: 4px solid var(--accent-color);
         }
 
-        /* Test Section Structure Layout */
-        .section-title {
-            background: var(--primary-color);
-            color: #fff;
-            padding: 10px 15px;
-            margin: 20px 0;
+        #hud-bar.warning {
+            background: var(--danger-color);
+        }
+
+        .section-header {
+            background: #edf2f7;
+            color: var(--primary-color);
+            padding: 15px 20px;
+            border-left: 6px solid var(--secondary-color);
             border-radius: 4px;
-            font-size: 15px;
-            line-height: 1.4;
+            margin: 35px 0 20px 0;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
         }
 
-        .question-block {
-            margin-bottom: 25px;
-            padding: 15px;
-            background: #fff;
-            border-left: 4px solid #dee2e6;
-            border-radius: 0 6px 6px 0;
-            transition: 0.2s;
+        .question-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
         }
 
         .question-text {
-            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 12px;
-            line-height: 1.5;
+            font-size: 16px;
+            margin-bottom: 15px;
         }
 
-        .options-container {
+        .options-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 8px;
+            gap: 10px;
         }
 
-        @media(min-width: 600px) {
-            .options-container {
+        @media(min-width: 768px) {
+            .options-grid {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
-        .option-label {
+        .option-item {
             display: flex;
             align-items: center;
-            background: #f8f9fa;
-            padding: 10px 15px;
-            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            padding: 12px 15px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
-            transition: 0.2s;
+            transition: all 0.2s;
+            font-size: 15px;
         }
 
-        .option-label:hover {
+        .option-item:hover {
             background: #edf2f7;
+            border-color: #cbd5e0;
         }
 
-        .option-label input {
-            margin-right: 10px;
+        .option-item input {
+            margin-right: 12px;
             transform: scale(1.2);
+            cursor: pointer;
         }
 
-        /* Corrections & Automated Marking Styles */
-        .correct-ans {
-            background-color: #d1fae5 !important;
+        .item-correct {
+            background: #c6f6d5 !important;
             border-color: var(--success-color) !important;
-            color: #065f46;
-            font-weight: bold;
+            color: #22543d;
+            font-weight: 600;
         }
 
-        .wrong-ans {
-            background-color: #fee2e2 !important;
+        .item-wrong {
+            background: #fed7d7 !important;
             border-color: var(--danger-color) !important;
-            color: #991b1b;
+            color: #742a2a;
         }
 
-        .feedback-badge {
+        .correction-badge {
             display: inline-block;
-            margin-top: 8px;
-            padding: 4px 10px;
-            font-size: 13px;
+            margin-top: 12px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
             font-weight: bold;
-            border-radius: 4px;
         }
+        .badge-success { background: #c6f6d5; color: #22543d; }
+        .badge-danger { background: #fed7d7; color: #742a2a; }
 
-        .badge-success { background: #d1fae5; color: #065f46; }
-        .badge-danger { background: #fee2e2; color: #991b1b; }
-
-        /* Report Summary Card */
-        #results-card {
-            background: #fff;
+        #report-dashboard {
+            background: white;
             border: 3px solid var(--accent-color);
-            border-radius: 8px;
-            padding: 25px;
+            border-radius: 12px;
+            padding: 30px;
             text-align: center;
             margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        #results-card h2 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .score-display {
-            font-size: 48px;
+        .score-metrics {
+            font-size: 54px;
             font-weight: 800;
             color: var(--primary-color);
             margin: 15px 0;
@@ -247,259 +250,248 @@
 </head>
 <body>
 
-    <div id="timer-bar" class="hidden">
-        <div id="candidate-display">Candidate: </div>
-        <div id="countdown-timer">Time Left: 45:00</div>
+    <div id="hud-bar" class="hidden">
+        <div id="hud-candidate">Candidate: </div>
+        <div id="hud-timer">Time Remaining: 45:00</div>
     </div>
 
     <div class="container">
-        <div class="school-header">
-            <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-            <h2>Term 3 Promotion Examination | 2025/2026 Academic Session</h2>
-            <div class="exam-meta">
-                <span><strong>Subject:</strong> Prevocational Studies</span>
-                <span><strong>Class:</strong> Upper Key Stage 2 (Year 5)</span>
-                <span><strong>Duration:</strong> 45 Mins (CBT Module)</span>
+        
+        <div class="header-panel">
+            <h1>BASIC SCIENCE</h1>
+            <h2>THIRD TERM PROMOTIONAL EXAMINATION (2025/2026 SESSION)</h2>
+            <div class="meta-grid">
+                <div><strong>Subject:</strong> Basic Science</div>
+                <div><strong>Duration Window:</strong> 45 Minutes</div>
+                <div><strong>Directives:</strong> Answer all questions</div>
             </div>
         </div>
 
-        <div id="login-screen">
-            <h3>Enter Candidate Full Name to Activate Examination Screen</h3>
-            <div class="input-group">
-                <input type="text" id="candidate-name" placeholder="Surname First Name Middle Name" autocomplete="off">
-            </div>
-            <button type="button" class="btn" onclick="startExam()">Begin Examination</button>
+        <div id="login-view">
+            <h3>Candidate Registration</h3>
+            <p>Please enter your full name below to initialize the automated examination layout engine.</p>
+            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Full Name Here" autocomplete="off">
+            <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
         </div>
 
-        <form id="exam-form" class="hidden" onsubmit="event.preventDefault(); submitExam(false);">
+        <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
             
-            <div class="section-title">
-                <strong>SECTION A — INSTRUCTION:</strong> Answer all questions in this section by selecting the absolute correct option.
-            </div>
+            <div id="dynamic-exam-nodes"></div>
 
-            <div id="quiz-questions-container">
-                </div>
-
-            <div style="text-align: center; margin-top: 30px;">
-                <button type="button" class="btn" id="submit-btn" onclick="confirmSubmission()">Submit Answers</button>
+            <div style="text-align: center; margin: 40px 0;">
+                <button type="button" class="btn" id="master-submit-btn" onclick="requestUserConfirmation()">Submit Examination</button>
             </div>
         </form>
 
-        <div id="results-card" class="hidden">
-            <h2>Examination Card Grading Matrix</h2>
-            <p id="result-candidate-name"></p>
-            <div class="score-display" id="score-text">0 / 60</div>
-            <p id="percentage-text" style="font-weight: 600; font-size: 18px; margin-bottom: 15px;"></p>
-            <p style="color: #666;">Scroll through your script below to read structural corrections and marking analytics details.</p>
+        <div id="report-dashboard" class="hidden">
+            <h2>Examination Evaluation Scorecard</h2>
+            <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
+            <div class="score-metrics" id="report-score-target">0 / 60</div>
+            <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
+            <p style="margin-top: 15px; color: #718096;">Review the marked answers sheet complete with automated structural corrections tracking below.</p>
         </div>
 
     </div>
 
     <script>
-        // High-Fidelity Question-and-Correction Mapping Database Matrix
-        const questionsDB = [
-            { id: 1, q: "The agro-chemical used in killing rodent is called ____________", options: ["Herbicide", "Rodenticides", "insecticide", "weedicide"], ans: 1 },
-            { id: 2, q: "On large scale farming, maize are stored in __________", options: ["Barns", "Silo", "Hole", "Bucket"], ans: 1 },
-            { id: 3, q: "___________ is an abnormal conditions in crop plants that results in poor growth, development and yield.", options: ["Diseases", "Pathogens", "Nursery Raising", "Predation"], ans: 0 },
-            { id: 4, q: "Which of the following is NOT an ecto- parasite?", options: ["tick", "Lice", "Round worm", "mite"], ans: 2 },
-            { id: 5, q: "A disease reduces the productivity, quality, quantity and economic value of crops.", options: ["True", "False", "I don’t know", "All of the above."], ans: 0 },
-            { id: 6, q: "Disease causing organisms are _____________", options: ["Pathogens", "Carriers", "Aphids", "Birds"], ans: 0 },
-            { id: 7, q: "There are _______ main types of soil.", options: ["2", "5", "3", "4"], ans: 2 },
-            { id: 8, q: "The breaking down of rock to form soil is called _______.", options: ["Weathering", "Processing", "Preservation", "Marketing"], ans: 0 },
-            { id: 9, q: "_______soil is the type of soil best for farming.", options: ["Clayey", "Loamy", "Sandy", "Rocky"], ans: 1 },
-            { id: 10, q: "The gradual wearing/washing away of the top soil by water or wind is called _______.", options: ["Leaching", "Overgrazing", "Erosion", "Pollination"], ans: 2 },
-            { id: 11, q: "The downward movement of nutrients from the top soil to the underground layers of the soil is called _______.", options: ["Erosion", "Leaching", "Overgrazing", "Staking"], ans: 1 },
-            { id: 12, q: "When farm animals feed or graze on the land for a long period of time, exposing the land and making it to lose its fertility is called _______.", options: ["Leaching", "Erosion", "Overgrazing", "Mulching"], ans: 2 },
-            { id: 13, q: "Which of the following is a way of making the soil fertile?", options: ["By burning", "By overgrazing the land", "By adding fertilizer", "By clean clearing"], ans: 2 },
-            { id: 14, q: "Which of the following is not a chemical fertilizer?", options: ["Urine", "NPK", "Sulphate of Ammonia", "Urea"], ans: 0 },
-            { id: 15, q: "All these are ways by which the soil can lose its fertility EXCEPT _______.", options: ["Planting cover crops", "Leaching", "Erosion", "Overgrazing"], ans: 0 },
-            { id: 16, q: "The act of leaving a land to rest every year with a crop like mucuna growing on it is called _______.", options: ["Fallowing", "Mulching", "Crop rotation", "Staking"], ans: 0 },
-            { id: 17, q: "The act of removing unwanted plants growing on the farm is called _______.", options: ["Fallowing", "Weeding", "Fertilization", "Leaching"], ans: 1 },
-            { id: 18, q: "The practice of covering the top of soil or seed beds with dry plant leaves and grasses to prevents the sun from heating off and evaporating some of the nutrients available in the soil is called _______.", options: ["Overgrazing", "Erosion", "Mulching", "Weeding"], ans: 2 },
-            { id: 19, q: "Which of the following is NOT a cutting tool?", options: ["Cutlass", "Knife", "Wheel barrow", "Sickle"], ans: 2 },
-            { id: 20, q: "All the following are example of carrying tools EXCEPT _______.", options: ["Head pan", "Wheel barrow", "Basket", "Axe"], ans: 3 },
-            { id: 21, q: "Maize, wheat, millet, sorghum are examples of _______ crops.", options: ["Cereal", "Legume", "Tuber", "Forage"], ans: 0 },
-            { id: 22, q: "_______ are crops grown for the purpose of feeding farm animals.", options: ["Forage crop", "Ornamental crops", "Beverage crops", "Spice crops"], ans: 0 },
-            { id: 23, q: "The fluid or liquid obtained from rubber tree bark used in production of tyre is called _______.", options: ["Oil", "Syrup", "Latex", "Liquor"], ans: 2 },
-            { id: 24, q: "Which of the following is not an example of Beverage crops?", options: ["Tea", "Cocoa", "Coffee", "Garlic"], ans: 3 },
-            { id: 25, q: "The planting material in plantain is called _______.", options: ["Stem", "Sucker", "Sett", "Seedling"], ans: 1 },
-            { id: 26, q: "Which of the following is one of the marketing activities?", options: ["Grading or sorting", "Loading and Off-loading", "Transportation, packaging and storage", "All of the above"], ans: 3 },
-            { id: 27, q: "_______ involves all activities associated with the flow of goods and services from the producers (farmers) to the consumers.", options: ["Preservation", "Processing", "Distribution", "Marketing"], ans: 3 },
-            { id: 28, q: "The process of arranging farm produce into cans, packs, cartons and bags is called _______.", options: ["Transportation", "Packaging", "Storage", "Grading"], ans: 1 },
-            { id: 29, q: "_______ is a written statement of all the activities carried out by a farmer on the farm, within a farming season.", options: ["Farm record", "Farm preservation", "Marketing", "Packaging"], ans: 0 },
-            { id: 30, q: "_______ transmits a pathogen which causes sleeping sickness.", options: ["blackfly", "housefly", "tsetse fly", "sandfly"], ans: 2 },
-            { id: 31, q: "_______ is the first and the most important meal of the day", options: ["Lunch", "Supper", "Breakfast", "Dinner"], ans: 2 },
-            { id: 32, q: "Which of the following is a source of protein?", options: ["Legumes", "Cereal crop", "Oil crops", "Tuber crops"], ans: 0 },
-            { id: 33, q: "The organism on/in which the parasite lives is called _________", options: ["Man", "Host", "Pathogens", "Diseases"], ans: 1 },
-            { id: 34, q: "_______ is when the guests are served food and drinks to make their visit interesting.", options: ["Reception", "Entertainment", "Meal service", "Tolerance"], ans: 1 },
-            { id: 35, q: "_______ is the keeping of food in such a way that it does not spoil.", options: ["Food processing", "Food service", "Food distribution", "Food preservation"], ans: 3 },
-            { id: 36, q: "A drink made from the combination of many fruits is called _______.", options: ["Fruit juice", "Fruit punch", "Five alive", "Milk"], ans: 1 },
-            { id: 37, q: "The practice of changing a crop from one form to another form after harvesting e.g. Cassava to cassava flour is called _______.", options: ["Preservation", "Drying", "Processing", "Distribution"], ans: 2 },
-            { id: 38, q: "Which of the following is a method of preserving foods?", options: ["Freezing and refrigeration", "Canning", "Salting", "All of the above"], ans: 3 },
-            { id: 39, q: "Which of the following is not an example of household pest?", options: ["Cockroaches and flies", "Weevils and beetles", "Rats and rodents", "Dogs and goats"], ans: 3 },
-            { id: 40, q: "Household pests can cause the following EXCEPT _______.", options: ["Diseases", "Dirtiness of the environment", "Make holes in and around the house", "Proper growth of human being"], ans: 3 },
-            { id: 41, q: "_______ causes diseases like dysentery and cholera", options: ["Houseflies", "Fleas", "Weevils", "Cockroaches"], ans: 0 },
-            { id: 42, q: "_______ eats and destroy our foods, their droppings stain our books and clothes and produces offensive smell.", options: ["Ants", "Fleas", "Weevils", "Cockroaches"], ans: 3 },
-            { id: 43, q: "Which of the following food is prepared by boiling?", options: ["Biscuit", "Beans cakes", "Moi-moi", "Rice"], ans: 3 },
-            { id: 44, q: "Craft means making things using special skills with our ________.", options: ["Machine", "Hands", "Brain", "Head"], ans: 1 },
-            { id: 45, q: "All the following are made by beading EXCEPT _______.", options: ["Bags", "Purses", "Pillows", "Earrings and necklaces"], ans: 2 },
-            { id: 46, q: "All of the following can be used to preserve fresh fish EXCEPT _______.", options: ["Freezing", "Drying", "Adding pepper", "Canning"], ans: 2 },
-            { id: 47, q: "All the following are energy giving foods EXCEPT___________.", options: ["egg", "rice", "maize", "yam"], ans: 0 },
-            { id: 48, q: "______________ are sources of Vitamin.", options: ["rice and potato", "fruit and vegetable", "Palm oil and butter", "beans and okro"], ans: 1 },
-            { id: 49, q: "_____________ aids digestion of food.", options: ["water", "vegetable", "milk", "Tomato"], ans: 0 },
-            { id: 50, q: "______________ is also known as protective foods.", options: ["carbohydrate", "protein", "vitamin", "fat and oil."], ans: 2 },
-            { id: 51, q: "_________ is a friend of farmers.", options: ["earthworm", "flea", "grasshopper", "Weevil"], ans: 0 },
-            { id: 52, q: "All the following can be used to kill pest except__________", options: ["Pesticide", "rat poison", "insect powder", "Wire mesh"], ans: 3 },
-            { id: 53, q: "All the following are oil crops except ___________", options: ["Latex", "Palm kernel", "Ground nut", "coconut"], ans: 0 },
-            { id: 54, q: "____________ is an ornamental crop.", options: ["Rose flower", "Potato", "grass", "Soya beans"], ans: 0 },
-            { id: 55, q: "The pathogen which causes sleeping sickness in farm animals are _________ .", options: ["Bacteria", "Virus", "trypanosomas", "Fungi"], ans: 2 },
-            { id: 56, q: "Which of the following is an agent of soil formation?", options: ["Rain", "wind", "animal", "All of the above."], ans: 3 },
-            { id: 57, q: "The early man lived in __________", options: ["Cave", "Den", "Tree", "Modern house"], ans: 0 },
-            { id: 58, q: "The act of planting flowering plants is called _____________", options: ["afforestation", "deforestation", "horticulture", "weathering"], ans: 2 },
-            { id: 59, q: "The act of planting trees is called ________", options: ["afforestation", "horticulture", "Mulching", "deforestation"], ans: 0 },
-            { id: 60, q: "A skin lesion or wound in the shape of a ring is a disease called ____________-", options: ["Scabies", "Ringworm", "Tuberculosis", "Pneumonia"], ans: 1 }
+        // Compiled dynamic array of question structures containing properties mapped directly from the source text
+        const structurePayload = [
+            { id: 1, q: "The female part of the flower is known as _______.", options: ["corolla", "stamen", "pistil", "petal"], ans: 2 },
+            { id: 2, q: "The process of making waste product useful again is known as _______.", options: ["composition", "useful back", "recycling", "incinerator"], ans: 2 },
+            { id: 3, q: "These are simple machines except _______.", options: ["wheel barrow", "tractor", "hammer", "plier"], ans: 1 },
+            { id: 4, q: "The path through which the earth moves is called _______.", options: ["orbit", "rail", "road", "track"], ans: 0 },
+            { id: 5, q: "Which of these gases is useful to plants?", options: ["Oxygen", "Nitrogen", "Sulphur", "Carbondioxide"], ans: 3 },
+            { id: 6, q: "The organ of breathing in fish is called _______.", options: ["lung", "kidney", "tail", "gill"], ans: 3 },
+            { id: 7, q: "The unit of temperature is called _______.", options: ["degree centigrade", "newton", "kilogram", "centilitre"], ans: 0 },
+            { id: 8, q: "Which of these is not a secondary colour?", options: ["red", "orange", "pink", "indigo"], ans: 0 },
+            { id: 9, q: "The instrument used for measuring the direction of wind is known as _______.", options: ["rainguage", "windvane", "anemometer", "telescope"], ans: 1 },
+            { id: 10, q: "The standard unit of weight (mass) is _______.", options: ["kilogram", "kilometer", "gramme", "centometer"], ans: 0 },
+            { id: 11, q: "Carbohydrates, vitamins, proteins and fat & oil are _______.", options: ["nutrients", "diet", "meat", "minerals"], ans: 0 },
+            { id: 12, q: "During digestion, starch is changed into _______.", options: ["acid", "glucose", "water", "nitrogen"], ans: 1 },
+            { id: 13, q: "Air is a mixture of _______.", options: ["gases", "chemicals", "water", "oxygen"], ans: 0 },
+            { id: 14, q: "The temperature at which water boils is called _______.", options: ["90°C", "100°C", "78°C", "85°C"], ans: 1 },
+            { id: 15, q: "One of these is not an agent of pollination.", options: ["flowing water", "thunder", "insects", "wind"], ans: 1 },
+            { id: 16, q: "Objects that allow electricity to pass through them are called _______.", options: ["insulator", "conductor", "transformer", "cables"], ans: 1 },
+            { id: 17, q: "Which of these animals is able to live both on land and in water?", options: ["fish", "frog", "rat", "hen"], ans: 1 },
+            { id: 18, q: "The breaking down of the food we eat into watery form in our stomach is known as _______.", options: ["respiration", "reproduction", "digestion", "convulsion"], ans: 2 },
+            { id: 19, q: "Which of the following characteristics is not common to both animals and plants?", options: ["growth", "movement", "reproduction", "divorce"], ans: 3 },
+            { id: 20, q: "Natural resources are the things provided by _______ unlike those made by man.", options: ["nature", "sun", "machine", "man"], ans: 0 },
+            { id: 21, q: "Which of the following protects the brain from damage?", options: ["skull", "backbone", "spinal cord", "rib cage"], ans: 0 },
+            { id: 22, q: "A male/female is _______ when he/she reaches the age of puberty.", options: ["healthy", "beautiful", "mature", "handsome"], ans: 2 },
+            { id: 23, q: "Which of the following is/are signs of puberty?", options: ["breaking of the voice (boys)", "development of the breast and menstruation (girls)", "growth of pubic hairs (boys & girls)", "A to C above"], ans: 3 },
+            { id: 24, q: "The food nutrient that protects our body from disease is _______.", options: ["carbohydrate", "vitamins", "protein", "mineral salts"], ans: 1 },
+            { id: 25, q: "_______ is an example of communicable disease.", options: ["cancer", "asthma", "fever", "coughing"], ans: 3 },
+            { id: 26, q: "The first stage in digestion of food which starts in the mouth is by _______.", options: ["chewing", "drinking", "tasting", "swallowing"], ans: 0 },
+            { id: 27, q: "The instrument that makes work easier for us is called _______.", options: ["grinder", "pump", "machine", "hinges"], ans: 2 },
+            { id: 28, q: "The atmospheric condition of a place is called _______.", options: ["weather", "climate", "atmosphere", "condensation"], ans: 0 },
+            { id: 29, q: "Plants manufacture their food through the process of _______.", options: ["photosynthesis", "drinking", "feeding", "respiration"], ans: 0 },
+            { id: 30, q: "When metallic objects are heated, one of the following actions take place.", options: ["expansion", "boiling", "diffusion", "evaporation"], ans: 0 },
+            { id: 31, q: "The oiling of the moving parts of a machine is called _______.", options: ["creaming", "lubrication", "scratching", "repairing"], ans: 1 },
+            { id: 32, q: "Which of the following does not require science and technology?", options: ["cooking", "transportation", "communication", "none of the above"], ans: 3 },
+            { id: 33, q: "The three states of matter are:", options: ["atom, electron and proton", "gas, liquid and solid", "gas, vapour and solid", "steam, ice and water"], ans: 1 },
+            { id: 34, q: "The process whereby water is changed to steam is known as _______.", options: ["sublimation", "evaporation", "boiling", "freezing"], ans: 1 },
+            { id: 35, q: "The simplest unit of a substance that can exist separately is _______.", options: ["atom", "droplet", "element", "ion"], ans: 0 }, // Preserving foundational context for the target level
+            { id: 36, q: "The revolution of the earth around the sun causes _______.", options: ["day and night", "eclipse", "seasons", "formation of cloud"], ans: 2 },
+            { id: 37, q: "An example of a physical change is _______.", options: ["burning of magnesium in air", "melting of ice", "rusting of iron", "slaking of lime"], ans: 1 },
+            { id: 38, q: "The removal of waste product from the body of an organism is called _______.", options: ["defecation", "excretion", "reproduction", "respiration"], ans: 1 },
+            { id: 39, q: "S.T.D means _______.", options: ["sexually transmitted diseases", "safety treatment division", "special treatment on disease", "severe transmission disease"], ans: 0 },
+            { id: 40, q: "Malaria parasite is transmitted by _______.", options: ["blackfly", "housefly", "anopheles mosquito", "tsetsefly"], ans: 2 },
+            { id: 41, q: "Water borne diseases include the following EXCEPT _______.", options: ["cholera", "measles", "typhoid", "dysentery"], ans: 1 },
+            { id: 42, q: "The process by which solid changes directly to gas is called _______.", options: ["condensation", "evaporation", "sublimation", "melting"], ans: 2 },
+            { id: 43, q: "Anemometer is used to measure _______.", options: ["temperature", "wind speed", "wind direction", "rainfall"], ans: 1 },
+            { id: 44, q: "Egg, meat, fish, milk, cheese are examples of _______.", options: ["carbohydrates", "proteins", "vitamins", "fats & oils"], ans: 1 },
+            { id: 45, q: "The second set of teeth in mammals is called _______ teeth.", options: ["temporary", "permanent", "incisor", "canine"], ans: 1 },
+            { id: 46, q: "The energy we use in doing work comes mainly from _______.", options: ["carbohydrate", "fats", "protein", "vitamin"], ans: 0 },
+            { id: 47, q: "If you throw a stone up, what force pulls it to the ground?", options: ["electrical force", "frictional force", "gravitational force", "magnetic force"], ans: 2 },
+            { id: 48, q: "At 45 years of age, a woman who stops ovulating is in her period of _______.", options: ["conception", "gestation", "menopause", "puberty"], ans: 2 },
+            { id: 49, q: "Animals that feed on plants are _______.", options: ["carnivores", "herbivores", "omnivores", "scavengers"], ans: 1 },
+            { id: 50, q: "A child having frequent stooling and vomiting is likely to be suffering from _______.", options: ["cholera", "dysentery", "malaria", "typhoid"], ans: 0 },
+            { id: 51, q: "The following are characteristics of living things EXCEPT _______.", options: ["excretion", "expansion", "growth", "reproduction"], ans: 1 },
+            { id: 52, q: "The vector that transmits the parasite which causes river blindness is _______.", options: ["blackfly", "tsetsefly", "housefly", "mosquitoes"], ans: 0 },
+            { id: 53, q: "Which of those quantities is measured in newtons?", options: ["distance", "time", "mass", "force"], ans: 3 },
+            { id: 54, q: "The nearest planet to the sun is _______.", options: ["earth", "jupiter", "mars", "mercury"], ans: 3 },
+            { id: 55, q: "The rotation of the earth about its axis causes _______.", options: ["day and night", "seasons of the year", "shadow", "eclipse"], ans: 0 },
+            { id: 56, q: "The end product of photosynthesis is _______.", options: ["oxygen", "water", "glucose", "nitrogen"], ans: 2 },
+            { id: 57, q: "The transfer of pollen grain from anther to stigma of a flower is referred to as _______.", options: ["copulation", "fertilization", "germination", "pollination"], ans: 3 },
+            { id: 58, q: "The sense organ for sight is the _______.", options: ["ear", "eye", "nose", "tongue"], ans: 1 },
+            { id: 59, q: "How many months is the gestation period in man?", options: ["6", "7", "8", "9"], ans: 3 },
+            { id: 60, q: "Which of these food types is required by the body to fight against diseases?", options: ["carbohydrate", "fruits", "lipids", "protein"], ans: 1 } // Fruits map to structural vitamin content defenses
         ];
 
-        let timerInstance;
-        let totalSecondsRemaining = 45 * 60; // Configured for strict 45 Minutes timer
-        let examSubmitted = false;
+        let countdownRef;
+        let totalTimeSec = 45 * 60; 
+        let formSubmitted = false;
 
-        // Render Questions dynamically into containers
-        function initQuestions() {
-            const container = document.getElementById('quiz-questions-container');
-            container.innerHTML = "";
-            
-            questionsDB.forEach((item, index) => {
-                const optionPrefixes = ["A", "B", "C", "D"];
-                let optionsHTML = '';
-                
-                item.options.forEach((opt, optIndex) => {
-                    optionsHTML += `
-                        <label class="option-label" id="label-q${item.id}-o${optIndex}">
-                            <input type="radio" name="question${item.id}" value="${optIndex}">
-                            <span><strong>${optionPrefixes[optIndex]}.</strong> ${opt}</span>
+        function assembleExamDOM() {
+            const displayPool = document.getElementById('dynamic-exam-nodes');
+            displayPool.innerHTML = `<div class="section-header">SECTION A (MULTIPLE CHOICE QUESTIONS)</div>`;
+
+            structurePayload.forEach((node, index) => {
+                const optionPrefix = ["A", "B", "C", "D"];
+                let optionsMarkup = "";
+
+                node.options.forEach((opt, idx) => {
+                    optionsMarkup += `
+                        <label class="option-item" id="lbl-q${node.id}-o${idx}">
+                            <input type="radio" name="input-q${node.id}" value="${idx}">
+                            <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
                         </label>
                     `;
                 });
 
-                const questionBlock = `
-                    <div class="question-block" id="q-block-${item.id}">
-                        <div class="question-text">${index + 1}. ${item.q}</div>
-                        <div class="options-container">
-                            ${optionsHTML}
+                const cardUI = `
+                    <div class="question-card" id="card-block-q${node.id}">
+                        <div class="question-text">${index + 1}. ${node.q}</div>
+                        <div class="options-grid">
+                            ${optionsMarkup}
                         </div>
-                        <div id="feedback-q${item.id}"></div>
+                        <div id="evaluation-q${node.id}"></div>
                     </div>
                 `;
-                container.innerHTML += questionBlock;
+                displayPool.innerHTML += cardUI;
             });
         }
 
-        // Initialize exam control sequence
-        function startExam() {
-            const nameInput = document.getElementById('candidate-name').value.trim();
-            if(!nameInput) {
-                alert("Please enter Candidate Name to validate access credentials.");
+        function initializeWorkspace() {
+            const inputName = document.getElementById('candidate-name-input').value.trim();
+            if (!inputName) {
+                alert("Please type your full candidate name before launching the script.");
                 return;
             }
 
-            document.getElementById('candidate-display').innerText = `Candidate: ${nameInput.toUpperCase()}`;
-            document.getElementById('login-screen').classList.add('hidden');
-            document.getElementById('timer-bar').classList.remove('hidden');
-            document.getElementById('exam-form').classList.remove('hidden');
-            
-            initQuestions();
-            startCountdown();
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            document.getElementById('hud-candidate').innerText = `Candidate: ${inputName.toUpperCase()}`;
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('hud-bar').classList.remove('hidden');
+            document.getElementById('examination-form').classList.remove('hidden');
+
+            assembleExamDOM();
+            beginTimeDecrement();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Countdown Timer Engine Logic
-        function startCountdown() {
-            timerInstance = setInterval(() => {
-                if(totalSecondsRemaining <= 0) {
-                    clearInterval(timerInstance);
-                    document.getElementById('countdown-timer').innerText = "TIME EXPIRED!";
-                    alert("Duration limit reached! The CBT application will lock and score your inputs automatically.");
-                    submitExam(true);
+        function beginTimeDecrement() {
+            countdownRef = setInterval(() => {
+                if (totalTimeSec <= 0) {
+                    clearInterval(countdownRef);
+                    document.getElementById('hud-timer').innerText = "TIME EXPIRED";
+                    alert("Your matching countdown timer window has reached zero. Answers will now automatically score.");
+                    evaluateExamPayload(true);
                 } else {
-                    totalSecondsRemaining--;
-                    let minutes = Math.floor(totalSecondsRemaining / 60);
-                    let seconds = totalSecondsRemaining % 60;
-                    
-                    minutes = minutes < 10 ? '0' + minutes : minutes;
-                    seconds = seconds < 10 ? '0' + seconds : seconds;
-                    
-                    document.getElementById('countdown-timer').innerText = `Time Left: ${minutes}:${seconds}`;
-                    
-                    // Danger state warning shift
-                    if(totalSecondsRemaining <= 300) {
-                        document.getElementById('timer-bar').style.backgroundColor = '#e71d36';
+                    totalTimeSec--;
+                    let min = Math.floor(totalTimeSec / 60);
+                    let sec = totalTimeSec % 60;
+
+                    min = min < 10 ? '0' + min : min;
+                    sec = sec < 10 ? '0' + sec : sec;
+
+                    document.getElementById('hud-timer').innerText = `Time Remaining: ${min}:${sec}`;
+
+                    if (totalTimeSec <= 300) {
+                        document.getElementById('hud-bar').classList.add('warning');
                     }
                 }
             }, 1000);
         }
 
-        function confirmSubmission() {
-            let countAnswered = 0;
-            questionsDB.forEach(item => {
-                const selection = document.querySelector(`input[name="question${item.id}"]:checked`);
-                if(selection) countAnswered++;
-            });
-
-            const userConfirm = confirm(`You have answered ${countAnswered} out of 60 questions. Are you ready to submit your test file?`);
-            if(userConfirm) {
-                submitExam(false);
-            }
-        }
-
-        // Grading Engine and Instant Corrective Mechanism
-        function submitExam(isAutoForced = false) {
-            if(examSubmitted) return;
-            examSubmitted = true;
-            
-            clearInterval(timerInstance);
-            document.getElementById('timer-bar').classList.add('hidden');
-            document.getElementById('submit-btn').classList.add('hidden');
-            
-            let totalCorrect = 0;
-            const nameString = document.getElementById('candidate-name').value.toUpperCase();
-
-            questionsDB.forEach(item => {
-                const selectionInput = document.querySelector(`input[name="question${item.id}"]:checked`);
-                const feedbackWrapper = document.getElementById(`feedback-q${item.id}`);
-                
-                let selectedIdx = selectionInput ? parseInt(selectionInput.value) : null;
-                
-                // Block further inputs across all elements
-                const inputs = document.querySelectorAll(`input[name="question${item.id}"]`);
-                inputs.forEach(radio => radio.disabled = true);
-
-                if(selectedIdx === item.ans) {
-                    totalCorrect++;
-                    document.getElementById(`label-q${item.id}-o${item.ans}`).classList.add('correct-ans');
-                    feedbackWrapper.innerHTML = `<span class="feedback-badge badge-success">✓ Correct</span>`;
-                } else {
-                    // Structure correction view rendering
-                    document.getElementById(`label-q${item.id}-o${item.ans}`).classList.add('correct-ans');
-                    
-                    if(selectedIdx !== null) {
-                        document.getElementById(`label-q${item.id}-o${selectedIdx}`).classList.add('wrong-ans');
-                    }
-                    
-                    const prefix = ["A", "B", "C", "D"][item.ans];
-                    const labelText = item.options[item.ans];
-                    feedbackWrapper.innerHTML = `<span class="feedback-badge badge-danger">✗ Incorrect (Correct Answer is ${prefix}: ${labelText})</span>`;
+        function requestUserConfirmation() {
+            let trackedAnswers = 0;
+            structurePayload.forEach(node => {
+                if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
+                    trackedAnswers++;
                 }
             });
 
-            // Calculate score properties
-            const displayPercentage = Math.round((totalCorrect / 60) * 100);
-            document.getElementById('result-candidate-name').innerText = `Candidate Performance Record for: ${nameString}`;
-            document.getElementById('score-text').innerText = `${totalCorrect} / 60`;
-            document.getElementById('percentage-text').innerText = `Final Score: ${displayPercentage}%`;
+            const userVerdict = confirm(`You have responded to ${trackedAnswers} out of ${structurePayload.length} questions. Are you ready to submit your exam sheet?`);
+            if (userVerdict) {
+                evaluateExamPayload(false);
+            }
+        }
+
+        function evaluateExamPayload(isForcedTimeout = false) {
+            if (formSubmitted) return;
+            formSubmitted = true;
+
+            clearInterval(countdownRef);
+            document.getElementById('hud-bar').classList.add('hidden');
+            document.getElementById('master-submit-btn').classList.add('hidden');
+
+            let aggregateScore = 0;
+            const userName = document.getElementById('candidate-name-input').value.toUpperCase();
+
+            structurePayload.forEach((node) => {
+                const selectedRadio = document.querySelector(`input[name="input-q${node.id}"]:checked`);
+                const logFeedbackNode = document.getElementById(`evaluation-q${node.id}`);
+                const selectionIdx = selectedRadio ? parseInt(selectedRadio.value) : null;
+
+                const optionElements = document.querySelectorAll(`input[name="input-q${node.id}"]`);
+                optionElements.forEach(radio => radio.disabled = true);
+
+                if (selectionIdx === node.ans) {
+                    aggregateScore++;
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct Answer</span>`;
+                } else {
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    if (selectionIdx !== null) {
+                        document.getElementById(`lbl-q${node.id}-o${selectionIdx}`).classList.add('item-wrong');
+                    }
+                    
+                    const charMap = ["A", "B", "C", "D"];
+                    logFeedbackNode.innerHTML = `
+                        <span class="correction-badge badge-danger">
+                            Correction Field: Option ${charMap[node.ans]} — "${node.options[node.ans]}" is correct.
+                        </span>`;
+                }
+            });
+
+            const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
             
-            document.getElementById('results-card').classList.remove('hidden');
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            document.getElementById('report-name-target').innerText = `Performance Record for: ${userName}`;
+            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
+            document.getElementById('report-percentage-target').innerText = `Total Score Grade: ${computationPercentage}%`;
+            
+            document.getElementById('report-dashboard').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
