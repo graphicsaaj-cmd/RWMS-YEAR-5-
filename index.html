@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERM 3 PROMOTIONAL EXAMINATION - HUMANITIES YEAR 5</title>
+    <title>TERM 3 PROMOTION EXAMINATION - PREVOCATIONAL STUDIES YEAR 5</title>
     <style>
         :root {
             --primary-color: #0d2c54; /* Royal Blue */
@@ -70,7 +70,7 @@
             font-weight: 500;
         }
 
-        /* Login Screen Setup */
+        /* Login Registration Screen */
         #login-screen {
             text-align: center;
             padding: 40px 20px;
@@ -114,7 +114,7 @@
             border-color: var(--primary-color);
         }
 
-        /* Fixed Timer Bar */
+        /* Sticky Status/Timer Dashboard Bar */
         #timer-bar {
             position: fixed;
             top: 0;
@@ -132,14 +132,15 @@
             border-bottom: 3px solid var(--accent-color);
         }
 
-        /* Questions Layout */
+        /* Test Section Structure Layout */
         .section-title {
             background: var(--primary-color);
             color: #fff;
-            padding: 8px 15px;
+            padding: 10px 15px;
             margin: 20px 0;
             border-radius: 4px;
-            font-size: 16px;
+            font-size: 15px;
+            line-height: 1.4;
         }
 
         .question-block {
@@ -191,7 +192,7 @@
             transform: scale(1.2);
         }
 
-        /* Corrections and Review Styling */
+        /* Corrections & Automated Marking Styles */
         .correct-ans {
             background-color: #d1fae5 !important;
             border-color: var(--success-color) !important;
@@ -217,7 +218,7 @@
         .badge-success { background: #d1fae5; color: #065f46; }
         .badge-danger { background: #fee2e2; color: #991b1b; }
 
-        /* Results Card */
+        /* Report Summary Card */
         #results-card {
             background: #fff;
             border: 3px solid var(--accent-color);
@@ -254,26 +255,26 @@
     <div class="container">
         <div class="school-header">
             <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-            <h2>Term 3 Promotional Examination | 2025/2026 Session</h2>
+            <h2>Term 3 Promotion Examination | 2025/2026 Academic Session</h2>
             <div class="exam-meta">
-                <span><strong>Subject:</strong> Humanities</span>
-                <span><strong>Class:</strong> Year 5</span>
-                <span><strong>Duration:</strong> 45 Mins (CBT Mode)</span>
+                <span><strong>Subject:</strong> Prevocational Studies</span>
+                <span><strong>Class:</strong> Upper Key Stage 2 (Year 5)</span>
+                <span><strong>Duration:</strong> 45 Mins (CBT Module)</span>
             </div>
         </div>
 
         <div id="login-screen">
-            <h3>Enter Candidate Full Name to Start Examination</h3>
+            <h3>Enter Candidate Full Name to Activate Examination Screen</h3>
             <div class="input-group">
                 <input type="text" id="candidate-name" placeholder="Surname First Name Middle Name" autocomplete="off">
             </div>
-            <button type="button" class="btn" onclick="startExam()">Start Examination</button>
+            <button type="button" class="btn" onclick="startExam()">Begin Examination</button>
         </div>
 
         <form id="exam-form" class="hidden" onsubmit="event.preventDefault(); submitExam(false);">
             
             <div class="section-title">
-                <strong>INSTRUCTION:</strong> Attempt all the questions in Section A. Select the most accurate option.
+                <strong>SECTION A — INSTRUCTION:</strong> Answer all questions in this section by selecting the absolute correct option.
             </div>
 
             <div id="quiz-questions-container">
@@ -285,85 +286,85 @@
         </form>
 
         <div id="results-card" class="hidden">
-            <h2>Examination Completed!</h2>
+            <h2>Examination Card Grading Matrix</h2>
             <p id="result-candidate-name"></p>
             <div class="score-display" id="score-text">0 / 60</div>
             <p id="percentage-text" style="font-weight: 600; font-size: 18px; margin-bottom: 15px;"></p>
-            <p style="color: #666;">Scroll down to review systematic feedback and corrections for your attempted questions.</p>
+            <p style="color: #666;">Scroll through your script below to read structural corrections and marking analytics details.</p>
         </div>
 
     </div>
 
     <script>
-        // Complete Question Database Array with Integrated Corrections Definition Matrix
+        // High-Fidelity Question-and-Correction Mapping Database Matrix
         const questionsDB = [
-            { id: 1, q: "The first military government in Nigeria was led by ___________", options: ["Gen. Aguiyi Ironsi", "Gen. Yakubu Gowon", "Gen. Murtala Mohammed", "Gen. Olusegun Obasanjo"], ans: 0 },
-            { id: 2, q: "General Yakubu Gowon is from _______ State.", options: ["Abia", "Katsina", "Plateau", "Borno"], ans: 2 },
-            { id: 3, q: "Another name for crude oil is ______ gold.", options: ["Yellow", "Black", "Red", "Green"], ans: 1 },
-            { id: 4, q: "_______ is not a by - product of crude oil.", options: ["Palm oil", "Petrol", "Kerosene", "Diesel fuel"], ans: 0 },
-            { id: 5, q: "Olobiri is in present day ________ State.", options: ["Rivers", "Bayelsa", "Akwa-Ibom", "Delta"], ans: 1 },
-            { id: 6, q: "________ is a factory that processes raw materials into finished products.", options: ["Industry", "Office", "Establishment", "Hall"], ans: 0 },
-            { id: 7, q: "A company that builds software falls under _________ industry.", options: ["Service", "Oil & gas", "Information and Communication Technology", "Agriculture"], ans: 2 },
-            { id: 8, q: "Textile companies are majorly located in _______ and ___________ .", options: ["Ondo and Osun", "Lagos and Ekiti", "Kaduna and Kano", "Lagos and Abuja"], ans: 2 },
-            { id: 9, q: "Banks, transportation etc fall under ______ industry.", options: ["Agriculture", "Banking", "Consumable goods", "None of the above"], ans: 3 },
-            { id: 10, q: "______ is a raw material processed into tyres and plastic chair.", options: ["rubber", "timber", "Cotton", "limestone"], ans: 0 },
-            { id: 11, q: "The Nigeria oil refineries are located in the following EXCEPT _________ .", options: ["Warri", "Kaduna", "Port – Harcourt", "Lagos"], ans: 3 },
-            { id: 12, q: "______ is a raw material for cement.", options: ["Tin – ore", "limestone", "Rubber", "Stone"], ans: 1 },
-            { id: 13, q: "The longest river in Nigeria is River _______ .", options: ["Asa", "Cross", "Niger", "Benue"], ans: 2 },
-            { id: 14, q: "A person who is a legal member of a country is called __________", options: ["An Alien", "Ambassador", "Resident", "Citizen"], ans: 3 },
-            { id: 15, q: "The new Federal Capital of Nigeria is __________ .", options: ["Lagos", "Abuja", "Suleja", "Ibadan"], ans: 1 },
-            { id: 16, q: "_______ is the first occupation of man.", options: ["Farming", "Trading", "Tailoring", "Manufacturing"], ans: 0 },
-            { id: 17, q: "Corruption, bribery, lateness to work are acts of _________ .", options: ["Conflict", "Cooperation", "Dedication", "Indiscipline"], ans: 3 },
-            { id: 18, q: "Who designed the Nigeria national flag?", options: ["H.D Arowolo", "Alvan Ikoku", "Taiwo Akinkunmi", "Ibrahim Babangida"], ans: 2 },
-            { id: 19, q: "What does the black shield on the coat of arm stand for?", options: ["Good soil of Nigeria", "Strength of Nigeria", "Beauty of Nigeria", "Unity and Progress"], ans: 0 },
-            { id: 20, q: "The greatest foreign exchange of Nigeria is ___________ .", options: ["Cassava", "Petroleum", "Coal", "Rubber"], ans: 1 },
-            { id: 21, q: "The two horses on the Nigerian Coat of arms is ___________ .", options: ["Peace", "Progress", "Wealth", "Strength"], ans: 3 },
-            { id: 22, q: "The place where two rivers meet is called _________ .", options: ["Joint", "Confluence", "Valley", "Lake"], ans: 1 },
-            { id: 23, q: "The body responsible for the conduct of general election is ___________- .", options: ["ECOWAS", "OPEC", "INEC", "APC"], ans: 2 },
-            { id: 24, q: "Which political party won the presidential election held on 23rd, 2019?", options: ["PDP", "ANN", "APC", "NNPP"], ans: 2 },
-            { id: 25, q: "Which of the following is not a traditional occupation of the Nigerian?", options: ["farming", "carving", "Palm wine tapping", "formal teaching"], ans: 3 },
-            { id: 26, q: "_____________ translated the Bible into Yoruba language.", options: ["Pa Taiwo Akinkumi", "Henry Townsend", "Ajayi Crowther", "Mary Slessor"], ans: 2 },
-            { id: 27, q: "All the following are early missionaries EXCEPT _____________ .", options: ["Chief Obafemi Awolowo", "Mary Slessor", "Birch Freeman", "Henry Townsend"], ans: 0 },
-            { id: 28, q: "Mary Slessor did her missionary work in_______ .", options: ["Calabar", "Abeokuta", "Lagos", "Warri"], ans: 0 },
-            { id: 29, q: "Who among these missionaries founded the Methodist Church in Nigeria?", options: ["Mary Slessor", "Thomas Birch Freeman", "Ajayi Crowther", "Henry Townsend"], ans: 1 },
-            { id: 30, q: "___________ was the missionary who founded the Anglican mission in Nigeria.", options: ["Thomas Freeman", "Ajayi Crowther", "Henry Townsend", "Mary Slessor"], ans: 2 },
-            { id: 31, q: "___________ is the god of thunder and lightning.", options: ["Sopona", "Ogun", "Amadioha", "Osanyin"], ans: 2 },
-            { id: 32, q: "Nigeria became a republic in ____________ .", options: ["1959", "1963", "1960", "1964"], ans: 1 },
-            { id: 33, q: "____________ is the god of rainbow.", options: ["Oshumare", "Osanyin", "Oya", "Oshun"], ans: 0 },
-            { id: 34, q: "____________ is the god of thunder and fire.", options: ["Shango", "Oya", "Obatala", "Orunmila"], ans: 0 },
-            { id: 35, q: "Nigeria came under colonial rule in__________ .", options: ["1900", "1901", "1902", "1903"], ans: 0 },
-            { id: 36, q: "_________ was the first and only ceremonial president of Nigeria.", options: ["Herbert Macaulay", "Dr. Nnamdi Azikiwe", "Chief Obafemi Awolowo", "Mallam Aminu Kano"], ans: 1 },
-            { id: 37, q: "Free education was introduced in Western region in _______ .", options: ["1955", "1956", "1954", "1953"], ans: 0 },
-            { id: 38, q: "___________ established the first television station in Africa.", options: ["Herbert Macaulay", "Dr. Nnamdi Azikiwe", "Chief Obafemi Awolowo", "Mallam Aminu Kanu"], ans: 2 },
-            { id: 39, q: "A person who has or had great love for his or her country and who fought for the independence of his or her country is a ____________ .", options: ["Freedom fighter", "Nationalist", "Nationalism", "None of the above"], ans: 1 },
-            { id: 40, q: "_________ was born at ___________ .", options: ["Dr. Nnamdi Azikiwe", "Obafemi Awolowo", "Aminu Kano", "Herbert Macaulay"], ans: 0 },
-            { id: 41, q: "Dr. Nnamdi Azikwe newspaper was called_________ .", options: ["Nigeria Tribune", "The Daily News", "The Sun", "West Africa Pilot"], ans: 3 },
-            { id: 42, q: "All the following are importance of occupation EXCEPT________ .", options: ["source of income", "employment opportunities", "provision of food", "None of the above"], ans: 3 },
-            { id: 43, q: "________ became Nigeria Governor General in 1914.", options: ["Sir Fredrick Lord Lugard", "Sir Hugh Clifford", "Sir Graeme Thomas", "Sir Donald Cameron"], ans: 0 },
-            { id: 44, q: "------------- was the first Africa Bishop of Anglican Church in Nigeria.", options: ["Bishop Oyedepo", "Bishop Samuel Ajayi Crowther", "Bishop William Kumuyi", "Bishop Henry Townsend."], ans: 1 },
-            { id: 45, q: "The traditionalists make blood sacrifices to their gods in ___________-", options: ["shrine", "mosque", "church", "street"], ans: 0 },
-            { id: 46, q: "Enugu State is popular for the production of __________ .", options: ["gold", "coal", "Lead", "tin"], ans: 1 },
-            { id: 47, q: "Children’s day is usually celebrated on ---------- every year.", options: ["14th February", "1st May", "27th May", "1st October"], ans: 2 },
-            { id: 48, q: "The act of making and repairing objects made of iron is ________ .", options: ["Fishing", "Blacksmithing", "Carving", "None of the above"], ans: 1 },
-            { id: 49, q: "The act of making patterned objects from wood and stone is called _____________ .", options: ["Fishing", "Blacksmithing", "Carving", "All of the above"], ans: 2 },
-            { id: 50, q: "___________ built the first story building in Nigeria.", options: ["Mary Slessor", "Henry Townsend", "Ajayi Crowther", "Birch Thomas Freeman"], ans: 1 },
-            { id: 51, q: "Christianity was introduced to Nigeria in the ____________ century.", options: ["14th", "15th", "16th", "17th"], ans: 1 },
-            { id: 52, q: "Nigeria is divided into how many political zones?", options: ["4", "6", "5", "10"], ans: 1 },
-            { id: 53, q: "The total number of Local government in Kwara State is __________ .", options: ["20", "774", "16", "19"], ans: 2 },
-            { id: 54, q: "The total number of Local government in Nigeria is ___________- .", options: ["774", "874", "500", "775"], ans: 0 },
-            { id: 55, q: "The Efik are found in one of the following States in Nigeria.", options: ["Rivers", "Cross-River", "Ondo", "Niger"], ans: 1 },
-            { id: 56, q: "Culture is dynamic mean that culture is ____________ .", options: ["Changing", "Complex", "Rigid", "Static"], ans: 0 },
-            { id: 57, q: "Tin is mined in ________ .", options: ["Enugu", "Jos", "Abeokuta", "Ogbomoso"], ans: 1 },
-            { id: 58, q: "What was the first Political party in Nigeria?", options: ["Nigeria Youth Movement", "African Democratic Party", "Action Group", "Nigeria National Democratic Party (NNDP)."], ans: 3 },
-            { id: 59, q: "Who was the first Nigerian to become a Noble Laureate?", options: ["Wole Soyinka", "Chinua Achebe", "Michael Ikoku", "Adamu Adamu"], ans: 0 },
-            { id: 60, q: "Where was crude oil first discovered in Nigeria?", options: ["Olobiri Oilfield in Bayelsa State", "Ransome Kuti garden in Lagos State", "Icon Conservation in Lagos State", "Obajana Cement Factory in Kogi State"], ans: 0 }
+            { id: 1, q: "The agro-chemical used in killing rodent is called ____________", options: ["Herbicide", "Rodenticides", "insecticide", "weedicide"], ans: 1 },
+            { id: 2, q: "On large scale farming, maize are stored in __________", options: ["Barns", "Silo", "Hole", "Bucket"], ans: 1 },
+            { id: 3, q: "___________ is an abnormal conditions in crop plants that results in poor growth, development and yield.", options: ["Diseases", "Pathogens", "Nursery Raising", "Predation"], ans: 0 },
+            { id: 4, q: "Which of the following is NOT an ecto- parasite?", options: ["tick", "Lice", "Round worm", "mite"], ans: 2 },
+            { id: 5, q: "A disease reduces the productivity, quality, quantity and economic value of crops.", options: ["True", "False", "I don’t know", "All of the above."], ans: 0 },
+            { id: 6, q: "Disease causing organisms are _____________", options: ["Pathogens", "Carriers", "Aphids", "Birds"], ans: 0 },
+            { id: 7, q: "There are _______ main types of soil.", options: ["2", "5", "3", "4"], ans: 2 },
+            { id: 8, q: "The breaking down of rock to form soil is called _______.", options: ["Weathering", "Processing", "Preservation", "Marketing"], ans: 0 },
+            { id: 9, q: "_______soil is the type of soil best for farming.", options: ["Clayey", "Loamy", "Sandy", "Rocky"], ans: 1 },
+            { id: 10, q: "The gradual wearing/washing away of the top soil by water or wind is called _______.", options: ["Leaching", "Overgrazing", "Erosion", "Pollination"], ans: 2 },
+            { id: 11, q: "The downward movement of nutrients from the top soil to the underground layers of the soil is called _______.", options: ["Erosion", "Leaching", "Overgrazing", "Staking"], ans: 1 },
+            { id: 12, q: "When farm animals feed or graze on the land for a long period of time, exposing the land and making it to lose its fertility is called _______.", options: ["Leaching", "Erosion", "Overgrazing", "Mulching"], ans: 2 },
+            { id: 13, q: "Which of the following is a way of making the soil fertile?", options: ["By burning", "By overgrazing the land", "By adding fertilizer", "By clean clearing"], ans: 2 },
+            { id: 14, q: "Which of the following is not a chemical fertilizer?", options: ["Urine", "NPK", "Sulphate of Ammonia", "Urea"], ans: 0 },
+            { id: 15, q: "All these are ways by which the soil can lose its fertility EXCEPT _______.", options: ["Planting cover crops", "Leaching", "Erosion", "Overgrazing"], ans: 0 },
+            { id: 16, q: "The act of leaving a land to rest every year with a crop like mucuna growing on it is called _______.", options: ["Fallowing", "Mulching", "Crop rotation", "Staking"], ans: 0 },
+            { id: 17, q: "The act of removing unwanted plants growing on the farm is called _______.", options: ["Fallowing", "Weeding", "Fertilization", "Leaching"], ans: 1 },
+            { id: 18, q: "The practice of covering the top of soil or seed beds with dry plant leaves and grasses to prevents the sun from heating off and evaporating some of the nutrients available in the soil is called _______.", options: ["Overgrazing", "Erosion", "Mulching", "Weeding"], ans: 2 },
+            { id: 19, q: "Which of the following is NOT a cutting tool?", options: ["Cutlass", "Knife", "Wheel barrow", "Sickle"], ans: 2 },
+            { id: 20, q: "All the following are example of carrying tools EXCEPT _______.", options: ["Head pan", "Wheel barrow", "Basket", "Axe"], ans: 3 },
+            { id: 21, q: "Maize, wheat, millet, sorghum are examples of _______ crops.", options: ["Cereal", "Legume", "Tuber", "Forage"], ans: 0 },
+            { id: 22, q: "_______ are crops grown for the purpose of feeding farm animals.", options: ["Forage crop", "Ornamental crops", "Beverage crops", "Spice crops"], ans: 0 },
+            { id: 23, q: "The fluid or liquid obtained from rubber tree bark used in production of tyre is called _______.", options: ["Oil", "Syrup", "Latex", "Liquor"], ans: 2 },
+            { id: 24, q: "Which of the following is not an example of Beverage crops?", options: ["Tea", "Cocoa", "Coffee", "Garlic"], ans: 3 },
+            { id: 25, q: "The planting material in plantain is called _______.", options: ["Stem", "Sucker", "Sett", "Seedling"], ans: 1 },
+            { id: 26, q: "Which of the following is one of the marketing activities?", options: ["Grading or sorting", "Loading and Off-loading", "Transportation, packaging and storage", "All of the above"], ans: 3 },
+            { id: 27, q: "_______ involves all activities associated with the flow of goods and services from the producers (farmers) to the consumers.", options: ["Preservation", "Processing", "Distribution", "Marketing"], ans: 3 },
+            { id: 28, q: "The process of arranging farm produce into cans, packs, cartons and bags is called _______.", options: ["Transportation", "Packaging", "Storage", "Grading"], ans: 1 },
+            { id: 29, q: "_______ is a written statement of all the activities carried out by a farmer on the farm, within a farming season.", options: ["Farm record", "Farm preservation", "Marketing", "Packaging"], ans: 0 },
+            { id: 30, q: "_______ transmits a pathogen which causes sleeping sickness.", options: ["blackfly", "housefly", "tsetse fly", "sandfly"], ans: 2 },
+            { id: 31, q: "_______ is the first and the most important meal of the day", options: ["Lunch", "Supper", "Breakfast", "Dinner"], ans: 2 },
+            { id: 32, q: "Which of the following is a source of protein?", options: ["Legumes", "Cereal crop", "Oil crops", "Tuber crops"], ans: 0 },
+            { id: 33, q: "The organism on/in which the parasite lives is called _________", options: ["Man", "Host", "Pathogens", "Diseases"], ans: 1 },
+            { id: 34, q: "_______ is when the guests are served food and drinks to make their visit interesting.", options: ["Reception", "Entertainment", "Meal service", "Tolerance"], ans: 1 },
+            { id: 35, q: "_______ is the keeping of food in such a way that it does not spoil.", options: ["Food processing", "Food service", "Food distribution", "Food preservation"], ans: 3 },
+            { id: 36, q: "A drink made from the combination of many fruits is called _______.", options: ["Fruit juice", "Fruit punch", "Five alive", "Milk"], ans: 1 },
+            { id: 37, q: "The practice of changing a crop from one form to another form after harvesting e.g. Cassava to cassava flour is called _______.", options: ["Preservation", "Drying", "Processing", "Distribution"], ans: 2 },
+            { id: 38, q: "Which of the following is a method of preserving foods?", options: ["Freezing and refrigeration", "Canning", "Salting", "All of the above"], ans: 3 },
+            { id: 39, q: "Which of the following is not an example of household pest?", options: ["Cockroaches and flies", "Weevils and beetles", "Rats and rodents", "Dogs and goats"], ans: 3 },
+            { id: 40, q: "Household pests can cause the following EXCEPT _______.", options: ["Diseases", "Dirtiness of the environment", "Make holes in and around the house", "Proper growth of human being"], ans: 3 },
+            { id: 41, q: "_______ causes diseases like dysentery and cholera", options: ["Houseflies", "Fleas", "Weevils", "Cockroaches"], ans: 0 },
+            { id: 42, q: "_______ eats and destroy our foods, their droppings stain our books and clothes and produces offensive smell.", options: ["Ants", "Fleas", "Weevils", "Cockroaches"], ans: 3 },
+            { id: 43, q: "Which of the following food is prepared by boiling?", options: ["Biscuit", "Beans cakes", "Moi-moi", "Rice"], ans: 3 },
+            { id: 44, q: "Craft means making things using special skills with our ________.", options: ["Machine", "Hands", "Brain", "Head"], ans: 1 },
+            { id: 45, q: "All the following are made by beading EXCEPT _______.", options: ["Bags", "Purses", "Pillows", "Earrings and necklaces"], ans: 2 },
+            { id: 46, q: "All of the following can be used to preserve fresh fish EXCEPT _______.", options: ["Freezing", "Drying", "Adding pepper", "Canning"], ans: 2 },
+            { id: 47, q: "All the following are energy giving foods EXCEPT___________.", options: ["egg", "rice", "maize", "yam"], ans: 0 },
+            { id: 48, q: "______________ are sources of Vitamin.", options: ["rice and potato", "fruit and vegetable", "Palm oil and butter", "beans and okro"], ans: 1 },
+            { id: 49, q: "_____________ aids digestion of food.", options: ["water", "vegetable", "milk", "Tomato"], ans: 0 },
+            { id: 50, q: "______________ is also known as protective foods.", options: ["carbohydrate", "protein", "vitamin", "fat and oil."], ans: 2 },
+            { id: 51, q: "_________ is a friend of farmers.", options: ["earthworm", "flea", "grasshopper", "Weevil"], ans: 0 },
+            { id: 52, q: "All the following can be used to kill pest except__________", options: ["Pesticide", "rat poison", "insect powder", "Wire mesh"], ans: 3 },
+            { id: 53, q: "All the following are oil crops except ___________", options: ["Latex", "Palm kernel", "Ground nut", "coconut"], ans: 0 },
+            { id: 54, q: "____________ is an ornamental crop.", options: ["Rose flower", "Potato", "grass", "Soya beans"], ans: 0 },
+            { id: 55, q: "The pathogen which causes sleeping sickness in farm animals are _________ .", options: ["Bacteria", "Virus", "trypanosomas", "Fungi"], ans: 2 },
+            { id: 56, q: "Which of the following is an agent of soil formation?", options: ["Rain", "wind", "animal", "All of the above."], ans: 3 },
+            { id: 57, q: "The early man lived in __________", options: ["Cave", "Den", "Tree", "Modern house"], ans: 0 },
+            { id: 58, q: "The act of planting flowering plants is called _____________", options: ["afforestation", "deforestation", "horticulture", "weathering"], ans: 2 },
+            { id: 59, q: "The act of planting trees is called ________", options: ["afforestation", "horticulture", "Mulching", "deforestation"], ans: 0 },
+            { id: 60, q: "A skin lesion or wound in the shape of a ring is a disease called ____________-", options: ["Scabies", "Ringworm", "Tuberculosis", "Pneumonia"], ans: 1 }
         ];
 
         let timerInstance;
-        let totalSecondsRemaining = 45 * 60; // Strict 45 Minutes Configured
+        let totalSecondsRemaining = 45 * 60; // Configured for strict 45 Minutes timer
         let examSubmitted = false;
 
-        // Render Questions dynamically on setup
+        // Render Questions dynamically into containers
         function initQuestions() {
             const container = document.getElementById('quiz-questions-container');
             container.innerHTML = "";
@@ -394,11 +395,11 @@
             });
         }
 
-        // Initialize exam control
+        // Initialize exam control sequence
         function startExam() {
             const nameInput = document.getElementById('candidate-name').value.trim();
             if(!nameInput) {
-                alert("Please enter candidate full name before beginning execution.");
+                alert("Please enter Candidate Name to validate access credentials.");
                 return;
             }
 
@@ -412,26 +413,25 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // Countdown Processor logic
+        // Countdown Timer Engine Logic
         function startCountdown() {
             timerInstance = setInterval(() => {
                 if(totalSecondsRemaining <= 0) {
                     clearInterval(timerInstance);
-                    document.getElementById('countdown-timer').innerText = "TIME ELAPSED!";
-                    alert("Time is up! Your examination script will be automatically analyzed and locked.");
+                    document.getElementById('countdown-timer').innerText = "TIME EXPIRED!";
+                    alert("Duration limit reached! The CBT application will lock and score your inputs automatically.");
                     submitExam(true);
                 } else {
                     totalSecondsRemaining--;
                     let minutes = Math.floor(totalSecondsRemaining / 60);
                     let seconds = totalSecondsRemaining % 60;
                     
-                    // Format prefix
                     minutes = minutes < 10 ? '0' + minutes : minutes;
                     seconds = seconds < 10 ? '0' + seconds : seconds;
                     
                     document.getElementById('countdown-timer').innerText = `Time Left: ${minutes}:${seconds}`;
                     
-                    // Visual trigger when time gets low
+                    // Danger state warning shift
                     if(totalSecondsRemaining <= 300) {
                         document.getElementById('timer-bar').style.backgroundColor = '#e71d36';
                     }
@@ -440,19 +440,19 @@
         }
 
         function confirmSubmission() {
-            let answeredCount = 0;
+            let countAnswered = 0;
             questionsDB.forEach(item => {
-                const checkedOpt = document.querySelector(`input[name="question${item.id}"]:checked`);
-                if(checkedOpt) answeredCount++;
+                const selection = document.querySelector(`input[name="question${item.id}"]:checked`);
+                if(selection) countAnswered++;
             });
 
-            const confirmation = confirm(`You have answered ${answeredCount} out of 60 questions. Are you certain you want to close and grade your examination card?`);
-            if(confirmation) {
+            const userConfirm = confirm(`You have answered ${countAnswered} out of 60 questions. Are you ready to submit your test file?`);
+            if(userConfirm) {
                 submitExam(false);
             }
         }
 
-        // Automated marking engine
+        // Grading Engine and Instant Corrective Mechanism
         function submitExam(isAutoForced = false) {
             if(examSubmitted) return;
             examSubmitted = true;
@@ -462,44 +462,41 @@
             document.getElementById('submit-btn').classList.add('hidden');
             
             let totalCorrect = 0;
-            const candidateName = document.getElementById('candidate-name').value.toUpperCase();
+            const nameString = document.getElementById('candidate-name').value.toUpperCase();
 
-            // Disable all input tags and evaluate response metrics
             questionsDB.forEach(item => {
-                const selectedOptInput = document.querySelector(`input[name="question${item.id}"]:checked`);
-                const feedbackDiv = document.getElementById(`feedback-q${item.id}`);
+                const selectionInput = document.querySelector(`input[name="question${item.id}"]:checked`);
+                const feedbackWrapper = document.getElementById(`feedback-q${item.id}`);
                 
-                let selectedIndex = selectedOptInput ? parseInt(selectedOptInput.value) : null;
+                let selectedIdx = selectionInput ? parseInt(selectionInput.value) : null;
                 
-                // Disable all choice selections
-                const optionsElements = document.querySelectorAll(`input[name="question${item.id}"]`);
-                optionsElements.forEach(el => el.disabled = true);
+                // Block further inputs across all elements
+                const inputs = document.querySelectorAll(`input[name="question${item.id}"]`);
+                inputs.forEach(radio => radio.disabled = true);
 
-                if(selectedIndex === item.ans) {
+                if(selectedIdx === item.ans) {
                     totalCorrect++;
-                    // Turn selected option text container emerald green
                     document.getElementById(`label-q${item.id}-o${item.ans}`).classList.add('correct-ans');
-                    feedbackDiv.innerHTML = `<span class="feedback-badge badge-success">✓ Correct</span>`;
+                    feedbackWrapper.innerHTML = `<span class="feedback-badge badge-success">✓ Correct</span>`;
                 } else {
-                    // Turn correct target option green
+                    // Structure correction view rendering
                     document.getElementById(`label-q${item.id}-o${item.ans}`).classList.add('correct-ans');
                     
-                    if(selectedIndex !== null) {
-                        // Mark user selection crimson red
-                        document.getElementById(`label-q${item.id}-o${selectedIndex}`).classList.add('wrong-ans');
+                    if(selectedIdx !== null) {
+                        document.getElementById(`label-q${item.id}-o${selectedIdx}`).classList.add('wrong-ans');
                     }
                     
-                    const correctLetter = ["A", "B", "C", "D"][item.ans];
-                    const correctText = item.options[item.ans];
-                    feedbackDiv.innerHTML = `<span class="feedback-badge badge-danger">✗ Incorrect (Correct Answer is ${correctLetter}: ${correctText})</span>`;
+                    const prefix = ["A", "B", "C", "D"][item.ans];
+                    const labelText = item.options[item.ans];
+                    feedbackWrapper.innerHTML = `<span class="feedback-badge badge-danger">✗ Incorrect (Correct Answer is ${prefix}: ${labelText})</span>`;
                 }
             });
 
-            // Display Score Summary Box
-            const scorePercentage = Math.round((totalCorrect / 60) * 100);
-            document.getElementById('result-candidate-name').innerText = `Performance Metrics Profile for: ${candidateName}`;
+            // Calculate score properties
+            const displayPercentage = Math.round((totalCorrect / 60) * 100);
+            document.getElementById('result-candidate-name').innerText = `Candidate Performance Record for: ${nameString}`;
             document.getElementById('score-text').innerText = `${totalCorrect} / 60`;
-            document.getElementById('percentage-text').innerText = `Score Rating: ${scorePercentage}%`;
+            document.getElementById('percentage-text').innerText = `Final Score: ${displayPercentage}%`;
             
             document.getElementById('results-card').classList.remove('hidden');
             window.scrollTo({top: 0, behavior: 'smooth'});
