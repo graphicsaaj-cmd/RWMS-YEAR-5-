@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THIRD TERM PROMOTIONAL EXAMINATION - BASIC SCIENCE</title>
+    <title>YEAR 5 SOCIAL & CITIZENSHIP STUDIES - PROMOTIONAL EXAMINATION</title>
     <style>
         :root {
             --primary-color: #1a365d;
@@ -258,18 +258,18 @@
     <div class="container">
         
         <div class="header-panel">
-            <h1>BASIC SCIENCE</h1>
-            <h2>THIRD TERM PROMOTIONAL EXAMINATION (2025/2026 SESSION)</h2>
+            <h1>SOCIAL & CITIZENSHIP STUDIES</h1>
+            <h2>TERM 3 PROMOTIONAL EXAMINATION (2025/2026 ACADEMIC SESSION)</h2>
             <div class="meta-grid">
-                <div><strong>Subject:</strong> Basic Science</div>
-                <div><strong>Duration Window:</strong> 45 Minutes</div>
-                <div><strong>Directives:</strong> Answer all questions</div>
+                <div><strong>Class:</strong> Year 5</div>
+                <div><strong>Allowed Window:</strong> 45 Minutes</div>
+                <div><strong>Instructions:</strong> Attempt all questions</div>
             </div>
         </div>
 
         <div id="login-view">
             <h3>Candidate Registration</h3>
-            <p>Please enter your full name below to initialize the automated examination layout engine.</p>
+            <p>Please type your full name below to initialize your interactive Computer-Based Testing (CBT) engine.</p>
             <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Full Name Here" autocomplete="off">
             <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
         </div>
@@ -288,74 +288,74 @@
             <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
             <div class="score-metrics" id="report-score-target">0 / 60</div>
             <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
-            <p style="margin-top: 15px; color: #718096;">Review the marked answers sheet complete with automated structural corrections tracking below.</p>
+            <p style="margin-top: 15px; color: #718096;">Review your completely marked answer-sheet detailing structured corrections below.</p>
         </div>
 
     </div>
 
     <script>
-        // Compiled dynamic array of question structures containing properties mapped directly from the source text
+        // Structural database containing your exact quiz metadata
         const structurePayload = [
-            { id: 1, q: "The female part of the flower is known as _______.", options: ["corolla", "stamen", "pistil", "petal"], ans: 2 },
-            { id: 2, q: "The process of making waste product useful again is known as _______.", options: ["composition", "useful back", "recycling", "incinerator"], ans: 2 },
-            { id: 3, q: "These are simple machines except _______.", options: ["wheel barrow", "tractor", "hammer", "plier"], ans: 1 },
-            { id: 4, q: "The path through which the earth moves is called _______.", options: ["orbit", "rail", "road", "track"], ans: 0 },
-            { id: 5, q: "Which of these gases is useful to plants?", options: ["Oxygen", "Nitrogen", "Sulphur", "Carbondioxide"], ans: 3 },
-            { id: 6, q: "The organ of breathing in fish is called _______.", options: ["lung", "kidney", "tail", "gill"], ans: 3 },
-            { id: 7, q: "The unit of temperature is called _______.", options: ["degree centigrade", "newton", "kilogram", "centilitre"], ans: 0 },
-            { id: 8, q: "Which of these is not a secondary colour?", options: ["red", "orange", "pink", "indigo"], ans: 0 },
-            { id: 9, q: "The instrument used for measuring the direction of wind is known as _______.", options: ["rainguage", "windvane", "anemometer", "telescope"], ans: 1 },
-            { id: 10, q: "The standard unit of weight (mass) is _______.", options: ["kilogram", "kilometer", "gramme", "centometer"], ans: 0 },
-            { id: 11, q: "Carbohydrates, vitamins, proteins and fat & oil are _______.", options: ["nutrients", "diet", "meat", "minerals"], ans: 0 },
-            { id: 12, q: "During digestion, starch is changed into _______.", options: ["acid", "glucose", "water", "nitrogen"], ans: 1 },
-            { id: 13, q: "Air is a mixture of _______.", options: ["gases", "chemicals", "water", "oxygen"], ans: 0 },
-            { id: 14, q: "The temperature at which water boils is called _______.", options: ["90°C", "100°C", "78°C", "85°C"], ans: 1 },
-            { id: 15, q: "One of these is not an agent of pollination.", options: ["flowing water", "thunder", "insects", "wind"], ans: 1 },
-            { id: 16, q: "Objects that allow electricity to pass through them are called _______.", options: ["insulator", "conductor", "transformer", "cables"], ans: 1 },
-            { id: 17, q: "Which of these animals is able to live both on land and in water?", options: ["fish", "frog", "rat", "hen"], ans: 1 },
-            { id: 18, q: "The breaking down of the food we eat into watery form in our stomach is known as _______.", options: ["respiration", "reproduction", "digestion", "convulsion"], ans: 2 },
-            { id: 19, q: "Which of the following characteristics is not common to both animals and plants?", options: ["growth", "movement", "reproduction", "divorce"], ans: 3 },
-            { id: 20, q: "Natural resources are the things provided by _______ unlike those made by man.", options: ["nature", "sun", "machine", "man"], ans: 0 },
-            { id: 21, q: "Which of the following protects the brain from damage?", options: ["skull", "backbone", "spinal cord", "rib cage"], ans: 0 },
-            { id: 22, q: "A male/female is _______ when he/she reaches the age of puberty.", options: ["healthy", "beautiful", "mature", "handsome"], ans: 2 },
-            { id: 23, q: "Which of the following is/are signs of puberty?", options: ["breaking of the voice (boys)", "development of the breast and menstruation (girls)", "growth of pubic hairs (boys & girls)", "A to C above"], ans: 3 },
-            { id: 24, q: "The food nutrient that protects our body from disease is _______.", options: ["carbohydrate", "vitamins", "protein", "mineral salts"], ans: 1 },
-            { id: 25, q: "_______ is an example of communicable disease.", options: ["cancer", "asthma", "fever", "coughing"], ans: 3 },
-            { id: 26, q: "The first stage in digestion of food which starts in the mouth is by _______.", options: ["chewing", "drinking", "tasting", "swallowing"], ans: 0 },
-            { id: 27, q: "The instrument that makes work easier for us is called _______.", options: ["grinder", "pump", "machine", "hinges"], ans: 2 },
-            { id: 28, q: "The atmospheric condition of a place is called _______.", options: ["weather", "climate", "atmosphere", "condensation"], ans: 0 },
-            { id: 29, q: "Plants manufacture their food through the process of _______.", options: ["photosynthesis", "drinking", "feeding", "respiration"], ans: 0 },
-            { id: 30, q: "When metallic objects are heated, one of the following actions take place.", options: ["expansion", "boiling", "diffusion", "evaporation"], ans: 0 },
-            { id: 31, q: "The oiling of the moving parts of a machine is called _______.", options: ["creaming", "lubrication", "scratching", "repairing"], ans: 1 },
-            { id: 32, q: "Which of the following does not require science and technology?", options: ["cooking", "transportation", "communication", "none of the above"], ans: 3 },
-            { id: 33, q: "The three states of matter are:", options: ["atom, electron and proton", "gas, liquid and solid", "gas, vapour and solid", "steam, ice and water"], ans: 1 },
-            { id: 34, q: "The process whereby water is changed to steam is known as _______.", options: ["sublimation", "evaporation", "boiling", "freezing"], ans: 1 },
-            { id: 35, q: "The simplest unit of a substance that can exist separately is _______.", options: ["atom", "droplet", "element", "ion"], ans: 0 }, // Preserving foundational context for the target level
-            { id: 36, q: "The revolution of the earth around the sun causes _______.", options: ["day and night", "eclipse", "seasons", "formation of cloud"], ans: 2 },
-            { id: 37, q: "An example of a physical change is _______.", options: ["burning of magnesium in air", "melting of ice", "rusting of iron", "slaking of lime"], ans: 1 },
-            { id: 38, q: "The removal of waste product from the body of an organism is called _______.", options: ["defecation", "excretion", "reproduction", "respiration"], ans: 1 },
-            { id: 39, q: "S.T.D means _______.", options: ["sexually transmitted diseases", "safety treatment division", "special treatment on disease", "severe transmission disease"], ans: 0 },
-            { id: 40, q: "Malaria parasite is transmitted by _______.", options: ["blackfly", "housefly", "anopheles mosquito", "tsetsefly"], ans: 2 },
-            { id: 41, q: "Water borne diseases include the following EXCEPT _______.", options: ["cholera", "measles", "typhoid", "dysentery"], ans: 1 },
-            { id: 42, q: "The process by which solid changes directly to gas is called _______.", options: ["condensation", "evaporation", "sublimation", "melting"], ans: 2 },
-            { id: 43, q: "Anemometer is used to measure _______.", options: ["temperature", "wind speed", "wind direction", "rainfall"], ans: 1 },
-            { id: 44, q: "Egg, meat, fish, milk, cheese are examples of _______.", options: ["carbohydrates", "proteins", "vitamins", "fats & oils"], ans: 1 },
-            { id: 45, q: "The second set of teeth in mammals is called _______ teeth.", options: ["temporary", "permanent", "incisor", "canine"], ans: 1 },
-            { id: 46, q: "The energy we use in doing work comes mainly from _______.", options: ["carbohydrate", "fats", "protein", "vitamin"], ans: 0 },
-            { id: 47, q: "If you throw a stone up, what force pulls it to the ground?", options: ["electrical force", "frictional force", "gravitational force", "magnetic force"], ans: 2 },
-            { id: 48, q: "At 45 years of age, a woman who stops ovulating is in her period of _______.", options: ["conception", "gestation", "menopause", "puberty"], ans: 2 },
-            { id: 49, q: "Animals that feed on plants are _______.", options: ["carnivores", "herbivores", "omnivores", "scavengers"], ans: 1 },
-            { id: 50, q: "A child having frequent stooling and vomiting is likely to be suffering from _______.", options: ["cholera", "dysentery", "malaria", "typhoid"], ans: 0 },
-            { id: 51, q: "The following are characteristics of living things EXCEPT _______.", options: ["excretion", "expansion", "growth", "reproduction"], ans: 1 },
-            { id: 52, q: "The vector that transmits the parasite which causes river blindness is _______.", options: ["blackfly", "tsetsefly", "housefly", "mosquitoes"], ans: 0 },
-            { id: 53, q: "Which of those quantities is measured in newtons?", options: ["distance", "time", "mass", "force"], ans: 3 },
-            { id: 54, q: "The nearest planet to the sun is _______.", options: ["earth", "jupiter", "mars", "mercury"], ans: 3 },
-            { id: 55, q: "The rotation of the earth about its axis causes _______.", options: ["day and night", "seasons of the year", "shadow", "eclipse"], ans: 0 },
-            { id: 56, q: "The end product of photosynthesis is _______.", options: ["oxygen", "water", "glucose", "nitrogen"], ans: 2 },
-            { id: 57, q: "The transfer of pollen grain from anther to stigma of a flower is referred to as _______.", options: ["copulation", "fertilization", "germination", "pollination"], ans: 3 },
-            { id: 58, q: "The sense organ for sight is the _______.", options: ["ear", "eye", "nose", "tongue"], ans: 1 },
-            { id: 59, q: "How many months is the gestation period in man?", options: ["6", "7", "8", "9"], ans: 3 },
-            { id: 60, q: "Which of these food types is required by the body to fight against diseases?", options: ["carbohydrate", "fruits", "lipids", "protein"], ans: 1 } // Fruits map to structural vitamin content defenses
+            { id: 1, q: "The marriage between partners who are both Yoruba is an/a _______ marriage.", options: ["regional", "zonal", "intra-ethnic", "inter-ethnic"], ans: 2 },
+            { id: 2, q: "_______ industry is located at Ewekoro.", options: ["tobacco", "cement", "soap", "soft drink"], ans: 1 },
+            { id: 3, q: "_______ is a situation where a wife and the husband separate permanently because of quarrel or other reasons.", options: ["polyandry", "divorce", "disloyalty", "friendship"], ans: 1 },
+            { id: 4, q: "Tobacco is used in making _______.", options: ["paper", "ovaltine", "tyres", "cigarette"], ans: 3 },
+            { id: 5, q: "The claim of every citizen under the law is called _______.", options: ["write", "right", "benefit", "entitlement"], ans: 1 },
+            { id: 6, q: "_______ amalgamated Northern and Southern Nigeria in 1914.", options: ["John Beecraft", "Lord Lugard", "Judge Wilson", "Lander"], ans: 1 },
+            { id: 7, q: "_______ is a person who has full right in a country.", options: ["king", "queen", "rich man", "citizen"], ans: 3 },
+            { id: 8, q: "Labour within an establishment refers to _______.", options: ["manager", "clerks", "workers", "labourers"], ans: 2 },
+            { id: 9, q: "The contributions of teachers, lawyers, journalists, soldiers, policemen, bankers etc. are part of _______ resources.", options: ["economical", "social", "human", "technical"], ans: 2 },
+            { id: 10, q: "Plough and tractors help _______ to save their labor.", options: ["farmers", "teachers", "doctors", "carpenters"], ans: 0 },
+            { id: 11, q: "Which of these states in Nigeria produces cement?", options: ["Oyo", "Kano", "Ogun", "Sokoto"], ans: 2 },
+            { id: 12, q: "Unemployment is not good for our society because _______.", options: ["it leads to crime", "it increases productivity", "it improves our economy", "it supplies food"], ans: 0 },
+            { id: 13, q: "Inflation means _______.", options: ["plenty of goods are available", "prices are low", "there is plenty of employment", "high prices of goods"], ans: 3 },
+            { id: 14, q: "AU (African Union) was established in the year _______.", options: ["1973", "1975", "1963", "1948"], ans: 2 }, // OAU founded 1963; relaunched as AU in 2002. Mapped to 1963 context.
+            { id: 15, q: "The highest court of justice in Nigeria is _______.", options: ["sharia court", "supreme court", "state high court", "federal high court"], ans: 1 },
+            { id: 16, q: "The government of the people by the people and for the people is referred to as _______.", options: ["democracy", "autocracy", "monarchy", "people crazy"], ans: 0 },
+            { id: 17, q: "The bank that controls all other banks in Nigeria is the _______.", options: ["Union Bank of Nigeria", "Central Bank of Nigeria", "First Bank of Nigeria", "Wema Bank of Nigeria"], ans: 1 },
+            { id: 18, q: "PHCN means _______.", options: ["Power Healing Company of Nigeria", "Power Holding Company of Nigeria", "People Holding Crosses of Nigeria", "Progress Holding Commercial of Nigeria"], ans: 1 },
+            { id: 19, q: "An act of doing bad things to people because of their religion is known as _______.", options: ["preaching", "baptism", "persecution", "recreation"], ans: 2 },
+            { id: 20, q: "The two horses in the Nigeria Coat of Arms represent _______.", options: ["Faith and Progress", "Peace and Unity", "Water & river Niger and River Benue", "Dignity"], ans: 3 },
+            { id: 21, q: "Which of the following towns is at the confluence in Nigeria?", options: ["Lagos", "Ibadan", "Lokoja", "Sokoto"], ans: 2 },
+            { id: 22, q: "The white colour on the Nigeria flag represents _______.", options: ["peace", "agriculture", "unity", "money"], ans: 0 },
+            { id: 23, q: "One of these is a road safety agency.", options: ["NEPA", "NAFDAC", "NDLEA", "FRSC"], ans: 3 },
+            { id: 24, q: "_______ is a good societal behaviour.", options: ["fighting", "stealing", "armed robbery", "obedience to rules and regulations"], ans: 3 },
+            { id: 25, q: "Limestone is used in making _______.", options: ["coal", "iron", "gold", "cement"], ans: 3 },
+            { id: 26, q: "Mountains, valleys, rivers and plateaus are features of _______ environment.", options: ["social environment", "physical environment", "political environment", "boundary environment"], ans: 1 },
+            { id: 27, q: "The average weather condition of a place over a number of years is _______.", options: ["climate", "weather", "humidity", "temperature"], ans: 0 },
+            { id: 28, q: "The instrument used in measuring rainfall is _______.", options: ["windvane", "rainguage", "barometer", "anemometer"], ans: 1 },
+            { id: 29, q: "The love and loyalty to one's country or nation is called _______.", options: ["nationalism", "patriotism", "service", "negritude"], ans: 1 },
+            { id: 30, q: "Which of the following is the best way of choosing a National Leader by a people?", options: ["heritage", "election", "appointment", "palace coup"], ans: 1 },
+            { id: 31, q: "_______ is important for a society to progress and develop.", options: ["peace", "pressure", "conflict", "none of the above"], ans: 0 },
+            { id: 32, q: "_______ will lead to great loss of lives, property and destruction of society.", options: ["war", "peace", "education", "peace educator"], ans: 0 },
+            { id: 33, q: "Peacemaking skills include all the following EXCEPT _______.", options: ["propaganda", "mediation", "negotiation", "dialogue"], ans: 0 },
+            { id: 34, q: "The act of destroying public property is called _______.", options: ["vandalism", "public demonstration", "protest", "destruction"], ans: 0 },
+            { id: 35, q: "_______ is anyone who destroys public property.", options: ["vandal", "fighter", "provoker", "destroyer"], ans: 0 },
+            { id: 36, q: "_______ is a sad event that happens suddenly.", options: ["ceremony", "marriage", "disaster", "match"], ans: 2 },
+            { id: 37, q: "A disaster can be _______ or _______.", options: ["natural or accidental", "accidental or deliberate", "natural or man-made", "none of the above"], ans: 2 },
+            { id: 38, q: "Man is regarded as a _______ being.", options: ["animal", "social", "business", "commercial"], ans: 1 },
+            { id: 39, q: "Natural disasters are caused by _______.", options: ["nature", "man's mistake", "too many resources", "carelessness"], ans: 0 },
+            { id: 40, q: "The ability to understand and accept people for their uniqueness is called _______.", options: ["understanding", "acceptance", "tolerance", "morality"], ans: 2 },
+            { id: 41, q: "Examples of natural disasters include the following EXCEPT _______.", options: ["breaking a flower vase", "windstorms", "tornadoes", "flooding"], ans: 0 },
+            { id: 42, q: "Togetherness and oneness describe _______.", options: ["unity", "single-mindedness", "community", "defence"], ans: 0 },
+            { id: 43, q: "Laws are enforced to ensure _______.", options: ["indiscipline", "unity", "discipline", "tolerance"], ans: 2 },
+            { id: 44, q: "Which of these prevents living peacefully with others?", options: ["service to the community", "cooperation", "greed", "tolerance"], ans: 2 },
+            { id: 45, q: "The coming together of people to agree and work with one another for the development of society is known as _______.", options: ["togetherness", "cooperation", "mutual interest", "community association"], ans: 1 },
+            { id: 46, q: "Which of the following differentiates people from each other?", options: ["language", "religion", "history", "all of the above"], ans: 3 },
+            { id: 47, q: "Erosion is a _______.", options: ["man-made disaster", "natural disaster", "mandate disaster", "none of the above"], ans: 1 },
+            { id: 48, q: "Natural disasters in most cases lead to _______.", options: ["loss of life", "prosperity", "torture", "none of the above"], ans: 0 },
+            { id: 49, q: "Laws are enforced to maintain community security and _______.", options: ["indiscipline", "disunity", "discipline", "tolerance"], ans: 2 },
+            { id: 50, q: "All of the following are effects of natural disasters EXCEPT _______.", options: ["loss of human lives", "damage to buildings", "destruction of farmlands", "organising workshop"], ans: 3 },
+            { id: 51, q: "A violently rotating storm that disturbs the air is called _______.", options: ["erosion", "flood", "tornado", "storm"], ans: 2 },
+            { id: 52, q: "Leaving dustbins open to emit offensive smell in the community can cause _______.", options: ["chemical pollution", "land pollution", "air pollution", "sleeplessness"], ans: 2 },
+            { id: 53, q: "Coughing and lung disease are some of the consequences of _______.", options: ["air pollution", "not eating well", "water pollution", "malnutrition"], ans: 0 },
+            { id: 54, q: "____________ is the state of being free from danger and threat.", options: ["Security", "Happiness", "Prosperity", "Health"], ans: 0 },
+            { id: 55, q: "All the following are used for personal security except ________ .", options: ["gatekeeper", "dogs", "Security uniform", "barbed wire"], ans: 2 },
+            { id: 56, q: "Security is __________ business.", options: ["government’s", "police’s", "everybody’s", "vigilantes"], ans: 2 },
+            { id: 57, q: "Forcefully having sexual intercourse with a person without his or her consent is called _______ .", options: ["Rape", "Theft", "Forgery", "Fort"], ans: 0 },
+            { id: 58, q: "A piece of equipment installed to monitor the movement of people in a building or office complex is a ______________ .", options: ["Closed circuit camera", "Security alarm", "Bell", "metal detector"], ans: 0 },
+            { id: 59, q: "All the measures taken by an individual to ensure that he or she is free from danger or threat are known as __________ .", options: ["Personal security", "national security", "Collective security", "Manual security"], ans: 0 },
+            { id: 60, q: "One can take any of the following appropriate actions in the face of danger except __________ .", options: ["running away to safety", "calling for help", "hugging the attacker", "reporting to the police."], ans: 2 }
         ];
 
         let countdownRef;
@@ -395,7 +395,7 @@
         function initializeWorkspace() {
             const inputName = document.getElementById('candidate-name-input').value.trim();
             if (!inputName) {
-                alert("Please type your full candidate name before launching the script.");
+                alert("Please type your candidate name before beginning.");
                 return;
             }
 
@@ -414,7 +414,7 @@
                 if (totalTimeSec <= 0) {
                     clearInterval(countdownRef);
                     document.getElementById('hud-timer').innerText = "TIME EXPIRED";
-                    alert("Your matching countdown timer window has reached zero. Answers will now automatically score.");
+                    alert("Your allocated time window has run out. Your exam will be submitted automatically.");
                     evaluateExamPayload(true);
                 } else {
                     totalTimeSec--;
@@ -441,7 +441,7 @@
                 }
             });
 
-            const userVerdict = confirm(`You have responded to ${trackedAnswers} out of ${structurePayload.length} questions. Are you ready to submit your exam sheet?`);
+            const userVerdict = confirm(`You have answered ${trackedAnswers} out of ${structurePayload.length} questions. Click OK to process submission.`);
             if (userVerdict) {
                 evaluateExamPayload(false);
             }
@@ -479,16 +479,16 @@
                     const charMap = ["A", "B", "C", "D"];
                     logFeedbackNode.innerHTML = `
                         <span class="correction-badge badge-danger">
-                            Correction Field: Option ${charMap[node.ans]} — "${node.options[node.ans]}" is correct.
+                            Correction: Option ${charMap[node.ans]} — "${node.options[node.ans]}" is the right answer.
                         </span>`;
                 }
             });
 
             const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
             
-            document.getElementById('report-name-target').innerText = `Performance Record for: ${userName}`;
+            document.getElementById('report-name-target').innerText = `Performance Metrics For: ${userName}`;
             document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
-            document.getElementById('report-percentage-target').innerText = `Total Score Grade: ${computationPercentage}%`;
+            document.getElementById('report-percentage-target').innerText = `Calculated Grade: ${computationPercentage}%`;
             
             document.getElementById('report-dashboard').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
